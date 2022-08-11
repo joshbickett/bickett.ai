@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import coding from "./assets/coding.png";
+import styled from "@emotion/styled";
 
 function App() {
   return (
@@ -29,9 +30,14 @@ function App() {
               alignItems: "center",
             }}
           >
-            <div>projects</div>
-            <div>github</div>
-            <div>writing</div>
+            <ActiveNavButton
+              style={{ backgroundColor: "#724CDB", borderRadius: "40%" }}
+            >
+              current focus
+            </ActiveNavButton>
+            <NavButton>projects</NavButton>
+            <NavButton>github</NavButton>
+            <NavButton>writing</NavButton>
           </div>
         </div>
       </div>
@@ -40,3 +46,12 @@ function App() {
 }
 
 export default App;
+
+const ActiveNavButton = styled.div`
+  background-color: #724cdb;
+  border-radius: 40%;
+  padding: 10px;
+`;
+const NavButton = styled.div`
+  padding: 10px;
+`;
