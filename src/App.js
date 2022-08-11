@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import coding from "./assets/coding.png";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div style={{ backgroundColor: "black", height: "100vh" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={coding}
+              alt="tron"
+              style={{ width: "100px", borderRadius: "50%", margin: "10px" }}
+            />
+            <div
+              style={{
+                fontSize: "20px",
+              }}
+            >
+              Josh Bickett
+            </div>
+          </div>
+
+          {/* <div>test</div> */}
+        </div>
+      </div>
     </div>
   );
 }
