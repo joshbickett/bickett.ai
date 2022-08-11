@@ -54,7 +54,7 @@ function App() {
             style={{ display: "flex", alignItems: "center", fontSize: "30px" }}
           >
             Many industries have potential in the next decade, but what I am
-            most excited about is deep learning, AI, and software in general
+            most excited about is deep learning, AI, and software in general.
           </div>
           <img
             src={focusImg}
