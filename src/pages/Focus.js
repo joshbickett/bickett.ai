@@ -4,7 +4,7 @@ import codingImg from "./assets/coding.png";
 import focusImg from "./assets/web.png";
 import styled from "@emotion/styled";
 
-function App() {
+function Focus() {
   return (
     <div className="App">
       <div style={{ backgroundColor: "black", height: "100vh" }}>
