@@ -2,44 +2,13 @@ import "../App.css";
 import codingImg from "../assets/coding.png";
 import focusImg from "../assets/web.png";
 import styled from "@emotion/styled";
+import { NavigationBar } from "../components/NavigationBar";
 
 function Focus() {
   return (
     <div className="App">
       <div style={{ backgroundColor: "black", height: "100vh" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={codingImg}
-              alt="coding"
-              style={{ width: "100px", borderRadius: "50%", margin: "10px" }}
-            />
-            <div
-              style={{
-                fontSize: "30px",
-              }}
-            >
-              Josh Bickett
-            </div>
-          </div>
-          <div
-            style={{
-              fontSize: "30px",
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-          >
-            <ActiveNavButton
-              style={{ backgroundColor: "#724CDB", borderRadius: "40%" }}
-            >
-              my focus
-            </ActiveNavButton>
-            <NavButton>projects</NavButton>
-            <NavButton>github</NavButton>
-            <NavButton>writing</NavButton>
-          </div>
-        </div>
+        <NavigationBar />
         <div
           style={{
             display: "grid",
