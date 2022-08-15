@@ -1,7 +1,6 @@
-import logo from "./logo.svg";
-import "./App.css";
-import codingImg from "./assets/coding.png";
-import focusImg from "./assets/web.png";
+import "../App.css";
+import codingImg from "../assets/coding.png";
+import focusImg from "../assets/web.png";
 import styled from "@emotion/styled";
 
 function Focus() {
@@ -68,7 +67,7 @@ function Focus() {
   );
 }
 
-export default App;
+export default Focus;
 
 const ActiveNavButton = styled.div`
   background-color: #724cdb;

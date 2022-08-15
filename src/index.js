@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./pages/Focus";
+import Focus from "./pages/Focus";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,6 +10,8 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Focus />}></Route>
+      <Route path="/projects" element={<Focus />}></Route>
+      <Route path="/writing" element={<Focus />}></Route>
     </Routes>
   </BrowserRouter>
 );
