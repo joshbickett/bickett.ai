@@ -1,4 +1,9 @@
-export const NavigationBar = () => {
+import codingImg from "../assets/coding.png";
+import styled from "@emotion/styled";
+
+export const NavigationBar = ({ active }) => {
+  const options = ["my focus", "projects", "github", "writing"];
+
   return (
     <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -23,15 +28,24 @@ export const NavigationBar = () => {
           alignItems: "center",
         }}
       >
-        <ActiveNavButton
-          style={{ backgroundColor: "#724CDB", borderRadius: "40%" }}
-        >
-          my focus
-        </ActiveNavButton>
-        <NavButton>projects</NavButton>
-        <NavButton>github</NavButton>
-        <NavButton>writing</NavButton>
+        {options.map((option) => {
+          if (option === active) {
+            return <ActiveNavButton key={option}>{option}</ActiveNavButton>;
+          } else {
+            return <NavButton key={option}>{option}</NavButton>;
+          }
+        })}
       </div>
     </div>
   );
 };
+
+const ActiveNavButton = styled.div`
+  background-color: white;
+  color: black;
+  border-radius: 40%;
+  padding: 10px;
+`;
+const NavButton = styled.div`
+  padding: 10px;
+`;

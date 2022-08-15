@@ -1,14 +1,14 @@
 import "../App.css";
-import codingImg from "../assets/coding.png";
+
 import focusImg from "../assets/web.png";
-import styled from "@emotion/styled";
+
 import { NavigationBar } from "../components/NavigationBar";
 
 function Focus() {
   return (
     <div className="App">
       <div style={{ backgroundColor: "black", height: "100vh" }}>
-        <NavigationBar />
+        <NavigationBar active={"my focus"} />
         <div
           style={{
             display: "grid",
@@ -37,12 +37,3 @@ function Focus() {
 }
 
 export default Focus;
-
-const ActiveNavButton = styled.div`
-  background-color: #724cdb;
-  border-radius: 40%;
-  padding: 10px;
-`;
-const NavButton = styled.div`
-  padding: 10px;
-`;
