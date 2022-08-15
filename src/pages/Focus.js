@@ -4,9 +4,9 @@ import focusImg from "../assets/web.png";
 
 import { NavigationBar } from "../components/NavigationBar";
 
-function Focus() {
+export const Focus = () => {
   return (
-    <div className="App">
+    <div>
       <div style={{ backgroundColor: "black", height: "100vh" }}>
         <NavigationBar active={"my focus"} />
         <div
@@ -34,6 +34,4 @@ function Focus() {
       </div>
     </div>
   );
-}
-
-export default Focus;
+};

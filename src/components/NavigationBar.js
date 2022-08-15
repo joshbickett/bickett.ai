@@ -2,8 +2,21 @@ import codingImg from "../assets/coding.png";
 import styled from "@emotion/styled";
 
 export const NavigationBar = ({ active }) => {
-  const options = ["my focus", "projects", "github", "writing"];
+  const pages = [
+    { name: "my focus", url: "/" },
+    { name: "projects", url: "/projects" },
+    { name: "github", url: "https://github.com/joshbickett/" },
+    { name: "writing", url: "/writing" },
+  ];
 
+  const navClick = (url) => {
+    console.log(url);
+    if (url.includes("github")) {
+      window.location.href = "https://github.com/joshbickett/";
+    } else {
+      window.location.href = window.location.origin + url;
+    }
+  };
   return (
     <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -28,11 +41,17 @@ export const NavigationBar = ({ active }) => {
           alignItems: "center",
         }}
       >
-        {options.map((option) => {
-          if (option === active) {
-            return <ActiveNavButton key={option}>{option}</ActiveNavButton>;
+        {pages.map((page) => {
+          if (page.name === active) {
+            return (
+              <ActiveNavButton key={page.name}>{page.name}</ActiveNavButton>
+            );
           } else {
-            return <NavButton key={option}>{option}</NavButton>;
+            return (
+              <NavButton key={page.name} onClick={() => navClick(page.url)}>
+                {page.name}
+              </NavButton>
+            );
           }
         })}
       </div>
@@ -48,4 +67,13 @@ const ActiveNavButton = styled.div`
 `;
 const NavButton = styled.div`
   padding: 10px;
+  color: white;
+  border-radius: 40%;
+  cursor: pointer;
+  &:hover {
+    background-color: #63666a;
+  }
+  &:active {
+    background-color: #444444;
+  }
 `;
