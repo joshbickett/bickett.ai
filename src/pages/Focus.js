@@ -36,7 +36,7 @@ export const Focus = () => {
               textAlign: "center",
             }}
           >
-            This page still being worked on. More coming soon!
+            This page is still being worked on. More coming soon!
           </p>
           <div></div>
         </div>
