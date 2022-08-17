@@ -11,11 +11,11 @@ export const NavigationBar = ({ active }) => {
 
   const navClick = (url) => {
     console.log(url);
-    if (url.includes("github")) {
-      window.location.href = "https://github.com/joshbickett/";
-    } else {
-      window.location.href = window.location.origin + url;
-    }
+    // if (url.includes("github")) {
+    //   window.location.href = "https://github.com/joshbickett/";
+    // } else {
+    //   window.location.href = window.location.origin + url;
+    // }
   };
   return (
     <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
