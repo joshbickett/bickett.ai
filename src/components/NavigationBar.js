@@ -1,4 +1,4 @@
-import codingImg from "../assets/coding.png";
+import codingImg from "../assets/coding-4.png";
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 
@@ -66,19 +66,16 @@ export const NavigationBar = ({ active }) => {
 };
 
 const ActiveNavButton = styled.div`
-  background-color: white;
   color: black;
   border-radius: 40%;
   padding: 10px;
+  border: 1px solid black;
 `;
 const NavButton = styled.div`
   padding: 10px;
   border-radius: 40%;
   cursor: pointer;
   &:hover {
-    background-color: white;
-  }
-  &:active {
-    scale: 1.1;
+    border: 1px solid black;
   }
 `;
