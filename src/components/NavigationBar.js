@@ -1,5 +1,6 @@
 import codingImg from "../assets/coding.png";
 import styled from "@emotion/styled";
+import { useMediaQuery } from "react-responsive";
 
 export const NavigationBar = ({ active }) => {
   const pages = [
@@ -9,6 +10,8 @@ export const NavigationBar = ({ active }) => {
     { name: "writing", url: "/writing" },
   ];
 
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+
   const navClick = (url) => {
     console.log(url);
     // if (url.includes("github")) {
@@ -17,6 +20,7 @@ export const NavigationBar = ({ active }) => {
     //   window.location.href = window.location.origin + url;
     // }
   };
+
   return (
     <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -33,28 +37,30 @@ export const NavigationBar = ({ active }) => {
           Josh Bickett
         </div>
       </div>
-      <div
-        style={{
-          fontSize: "30px",
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        {pages.map((page) => {
-          if (page.name === active) {
-            return (
-              <ActiveNavButton key={page.name}>{page.name}</ActiveNavButton>
-            );
-          } else {
-            return (
-              <NavButton key={page.name} onClick={() => navClick(page.url)}>
-                {page.name}
-              </NavButton>
-            );
-          }
-        })}
-      </div>
+      {!isMobile && (
+        <div
+          style={{
+            fontSize: "30px",
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          {pages.map((page) => {
+            if (page.name === active) {
+              return (
+                <ActiveNavButton key={page.name}>{page.name}</ActiveNavButton>
+              );
+            } else {
+              return (
+                <NavButton key={page.name} onClick={() => navClick(page.url)}>
+                  {page.name}
+                </NavButton>
+              );
+            }
+          })}
+        </div>
+      )}
     </div>
   );
 };

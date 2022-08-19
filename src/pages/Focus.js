@@ -12,13 +12,14 @@ export const Focus = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr",
+            gridTemplateColumns: "1fr 1fr 1fr",
             margin: "30px 0",
+            border: "1px solid white",
           }}
         >
           <div></div>
 
-          {/* <div
+          <div
             style={{ display: "flex", alignItems: "center", fontSize: "30px" }}
           >
             Many industries have potential in the next decade, but what I am
@@ -28,17 +29,7 @@ export const Focus = () => {
             src={focusImg}
             alt="focus"
             style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-          /> */}
-          <p
-            style={{
-              fontSize: "30px",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            This page is still being worked on. More coming soon!
-          </p>
-          <div></div>
+          />
         </div>
       </div>
     </div>
