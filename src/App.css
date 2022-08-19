@@ -1,7 +1,7 @@
 body {
-  text-align: center;
   font-family: "Gill Sans", sans-serif;
-  color: #faf9ff;
+  color: black;
+  background-color: #f9f9f9;
 }
 
 .App-logo {

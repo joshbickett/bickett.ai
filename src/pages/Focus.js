@@ -7,7 +7,7 @@ import { NavigationBar } from "../components/NavigationBar";
 export const Focus = () => {
   return (
     <div>
-      <div style={{ backgroundColor: "black", height: "100vh" }}>
+      <div style={{ height: "100vh" }}>
         <NavigationBar active={"my focus"} />
         <div
           style={{

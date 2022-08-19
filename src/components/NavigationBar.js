@@ -73,13 +73,12 @@ const ActiveNavButton = styled.div`
 `;
 const NavButton = styled.div`
   padding: 10px;
-  color: white;
   border-radius: 40%;
   cursor: pointer;
   &:hover {
-    background-color: #63666a;
+    background-color: white;
   }
   &:active {
-    background-color: #444444;
+    scale: 1.1;
   }
 `;
