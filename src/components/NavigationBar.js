@@ -1,6 +1,5 @@
 import codingImg from "../assets/coding-4.png";
 import styled from "@emotion/styled";
-import { useMediaQuery } from "react-responsive";
 
 export const NavigationBar = ({ active, isMobile }) => {
   const pages = [
@@ -20,7 +19,7 @@ export const NavigationBar = ({ active, isMobile }) => {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
       <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src={codingImg}
@@ -40,7 +39,7 @@ export const NavigationBar = ({ active, isMobile }) => {
           style={{
             fontSize: "30px",
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "flex-end",
             alignItems: "center",
           }}
         >
@@ -68,11 +67,13 @@ const ActiveNavButton = styled.div`
   border-radius: 40%;
   padding: 10px;
   border: 1px solid black;
+  margin: 0 5px;
 `;
 const NavButton = styled.div`
   padding: 10px;
   border-radius: 40%;
   cursor: pointer;
+  margin: 0 5px;
   &:hover {
     border: 1px solid black;
   }
