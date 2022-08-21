@@ -8,12 +8,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Focus />}></Route>
-      <Route path="/projects" element={<Projects />}></Route>
-      <Route path="/writing" element={<Writing />}></Route>
+      <Route path="/" element={<Focus isMobile={isMobile} />}></Route>
+      <Route
+        path="/projects"
+        element={<Projects isMobile={isMobile} />}
+      ></Route>
+      <Route path="/writing" element={<Writing isMobile={isMobile} />}></Route>
     </Routes>
   </BrowserRouter>
 );

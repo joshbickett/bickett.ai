@@ -2,7 +2,7 @@ import codingImg from "../assets/coding-4.png";
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 
-export const NavigationBar = ({ active }) => {
+export const NavigationBar = ({ active, isMobile }) => {
   const pages = [
     { name: "my focus", url: "/" },
     { name: "projects", url: "/projects" },
@@ -10,15 +10,13 @@ export const NavigationBar = ({ active }) => {
     { name: "writing", url: "/writing" },
   ];
 
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-
   const navClick = (url) => {
     console.log(url);
-    // if (url.includes("github")) {
-    //   window.location.href = "https://github.com/joshbickett/";
-    // } else {
-    //   window.location.href = window.location.origin + url;
-    // }
+    if (url.includes("github")) {
+      window.location.href = "https://github.com/joshbickett/";
+    } else {
+      window.location.href = window.location.origin + url;
+    }
   };
 
   return (

@@ -6,11 +6,11 @@ import startupImage from "../assets/startups.png";
 
 import { NavigationBar } from "../components/NavigationBar";
 
-export const Focus = () => {
+export const Focus = ({ isMobile }) => {
   return (
     <div>
       <div style={{ height: "100vh" }}>
-        <NavigationBar active={"my focus"} />
+        <NavigationBar active={"my focus"} isMobile={isMobile} />
         <div
           style={{
             display: "flex",
