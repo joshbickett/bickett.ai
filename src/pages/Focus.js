@@ -5,8 +5,11 @@ import writingImg from "../assets/writing.png";
 import startupImage from "../assets/startups.png";
 
 import { NavigationBar } from "../components/NavigationBar";
+import { useMediaQuery } from "react-responsive";
 
-export const Focus = ({ isMobile }) => {
+export const Focus = () => {
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+
   return (
     <div>
       <div style={{ height: "100vh" }}>
