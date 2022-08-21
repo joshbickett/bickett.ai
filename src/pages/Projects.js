@@ -1,12 +1,13 @@
 import { NavigationBar } from "../components/NavigationBar";
 import memeImage from "../assets/meme.jpg";
 import musicImage from "../assets/music.png";
+import gaitImage from "../assets/gait-2.png";
 
 export const Projects = ({ isMobile }) => {
   return (
     <div>
       <div style={{ height: "100vh" }}>
-        <NavigationBar active={"my focus"} isMobile={isMobile} />
+        <NavigationBar active={"projects"} isMobile={isMobile} />
 
         <div
           style={{
@@ -54,7 +55,41 @@ export const Projects = ({ isMobile }) => {
             <h3>
               <a href="https://makesong.ai/">makesong.ai</a>
             </h3>
-            <p>This</p>
+            <p>
+              I am currently exploring what is possible with{" "}
+              <a href="https://jukebox.openai.com/">Jukebox</a> and working on a
+              simple app where users can create a song with AI in under 2
+              minutes.
+            </p>
+          </div>
+          <div></div>
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 2fr 1fr",
+          }}
+        >
+          <div></div>
+          <img
+            src={gaitImage}
+            alt="gait"
+            style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
+          />
+          <div>
+            <h3>
+              <a href="https://apps.apple.com/us/app/gait-a-driver-score-app/id1516971190">
+                Gait
+              </a>
+            </h3>
+            <p>
+              My cofounder and I started an insurance technology company called{" "}
+              <a href="https://gaitcar.com/">Gait, Inc.</a> that offered a
+              software development kit (SDK) to insurance companies to enable
+              their usage-based insurance products. We sold the company through{" "}
+              <a href="https://microacquire.com/">MicroAcquire</a> in 2022 and I
+              started focusing on AI.
+            </p>
           </div>
           <div></div>
         </div>
