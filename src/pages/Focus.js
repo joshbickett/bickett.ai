@@ -24,7 +24,7 @@ export const Focus = () => {
         >
           <div style={{ textAlign: "center", fontSize: "30px" }}>
             In the next decade, I am most excited about startups applying the
-            innovations in deep learning.
+            science of deep learning.
           </div>
         </div>
 
