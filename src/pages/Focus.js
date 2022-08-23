@@ -23,10 +23,9 @@ export const Focus = () => {
           }}
         >
           <div style={{ textAlign: "center", fontSize: "30px" }}>
-            Hello, I am a self-taught software engineer interested in building
-            technology that is both useful and fun. I am currently focused on
-            understanding the field of deep learning and applying it through
-            startups.
+            Hello, I am a self-taught software engineer interested in
+            understanding deep learning and applying it in useful ways through
+            technology.
           </div>
         </div>
 
