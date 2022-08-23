@@ -1,7 +1,11 @@
 import codingImg from "../assets/coding-4.png";
 import styled from "@emotion/styled";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import { useState } from "react";
 
 export const NavigationBar = ({ active, isMobile }) => {
+  const [mobileExpand, setMobileExpand] = useState(false);
   const pages = [
     { name: "my focus", url: "/" },
     { name: "projects", url: "/projects" },
@@ -20,18 +24,20 @@ export const NavigationBar = ({ active, isMobile }) => {
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img
-          src={codingImg}
-          alt="coding"
-          style={{ width: "100px", borderRadius: "50%", margin: "10px" }}
-        />
-        <div
-          style={{
-            fontSize: "30px",
-          }}
-        >
-          Josh Bickett
+      <div style={{ display: "flex", alignItems: "flex-start" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src={codingImg}
+            alt="coding"
+            style={{ width: "100px", borderRadius: "50%", margin: "10px" }}
+          />
+          <div
+            style={{
+              fontSize: "30px",
+            }}
+          >
+            Josh Bickett
+          </div>
         </div>
       </div>
       {!isMobile && (
@@ -58,6 +64,40 @@ export const NavigationBar = ({ active, isMobile }) => {
           })}
         </div>
       )}
+      {isMobile && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            margin: "20px",
+          }}
+        >
+          {mobileExpand && (
+            <div>
+              {pages.map((page) => {
+                if (page.name === active) {
+                  return (
+                    <ActiveNavButton key={page.name}>
+                      {page.name}
+                    </ActiveNavButton>
+                  );
+                } else {
+                  return (
+                    <NavButton
+                      key={page.name}
+                      onClick={() => navClick(page.url)}
+                    >
+                      {page.name}
+                    </NavButton>
+                  );
+                }
+              })}
+            </div>
+          )}
+          {!mobileExpand && <CloseMenu onClick={() => setMobileExpand(true)} />}
+          {mobileExpand && <OpenMenu onClick={() => setMobileExpand(false)} />}
+        </div>
+      )}
     </div>
   );
 };
@@ -77,5 +117,21 @@ const NavButton = styled.div`
   border: 1px solid #f9f9f9;
   &:hover {
     border: 1px solid black;
+  }
+`;
+
+const CloseMenu = styled(MenuIcon)`
+  cursor: pointer;
+  width: 30px;
+  scale: 1.2;
+  &:active {
+    scale: 1.4;
+  }
+`;
+const OpenMenu = styled(MenuOpenIcon)`
+  cursor: pointer;
+  scale: 1.2;
+  &:active {
+    scale: 1.4;
   }
 `;

@@ -64,10 +64,10 @@ export const Focus = () => {
                   it would be like to be alive in 1905 and read of entirely new
                   physical laws being discovered. As I studied the sciences in
                   college, each seemed mature and I was not sure if we'd have
-                  important and fundamental discoveries in my lifetime. When I
-                  discovered deep learning and I became hopeful that there was a
-                  young, important, and interesting science that would flourish
-                  in my lifetime.
+                  important and fundamental discoveries in the following
+                  decades. When I discovered deep learning, I became hopeful
+                  that there was a young, important, and interesting science
+                  that would flourish in my lifetime.
                 </p>
               </div>
             </div>
