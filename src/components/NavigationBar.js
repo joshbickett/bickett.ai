@@ -45,8 +45,7 @@ export const NavigationBar = ({ active, isMobile }) => {
           style={{
             fontSize: "30px",
             display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
+            alignItems: "flex-start",
           }}
         >
           {pages.map((page) => {
@@ -69,33 +68,55 @@ export const NavigationBar = ({ active, isMobile }) => {
           style={{
             display: "flex",
             justifyContent: "flex-end",
-            margin: "20px",
+            margin: "50px 10px",
           }}
         >
-          {mobileExpand && (
-            <div>
-              {pages.map((page) => {
-                if (page.name === active) {
-                  return (
-                    <ActiveNavButton key={page.name}>
-                      {page.name}
-                    </ActiveNavButton>
-                  );
-                } else {
-                  return (
-                    <NavButton
-                      key={page.name}
-                      onClick={() => navClick(page.url)}
-                    >
-                      {page.name}
-                    </NavButton>
-                  );
-                }
-              })}
-            </div>
-          )}
-          {!mobileExpand && <CloseMenu onClick={() => setMobileExpand(true)} />}
-          {mobileExpand && <OpenMenu onClick={() => setMobileExpand(false)} />}
+          <div>
+            {mobileExpand && (
+              <div
+                style={{
+                  fontSize: "25px",
+                  backgroundColor: "white",
+                  borderRadius: "25px",
+                  boxShadow: "0px 0px 5px rgba(0,0,0,0.5)",
+                  margin: "10px",
+                }}
+              >
+                {pages.map((page) => {
+                  if (page.name === active) {
+                    return (
+                      <ActiveNavButton key={page.name}>
+                        {page.name}
+                      </ActiveNavButton>
+                    );
+                  } else {
+                    return (
+                      <NavButton
+                        key={page.name}
+                        onClick={() => navClick(page.url)}
+                      >
+                        {page.name}
+                      </NavButton>
+                    );
+                  }
+                })}
+              </div>
+            )}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignContent: "center",
+              justifyContent: "center",
+            }}
+          >
+            {!mobileExpand && (
+              <CloseMenu onClick={() => setMobileExpand(true)} />
+            )}
+            {mobileExpand && (
+              <OpenMenu onClick={() => setMobileExpand(false)} />
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -122,16 +143,15 @@ const NavButton = styled.div`
 
 const CloseMenu = styled(MenuIcon)`
   cursor: pointer;
-  width: 30px;
-  scale: 1.2;
+  scale: 1.4;
   &:active {
-    scale: 1.4;
+    scale: 1.6;
   }
 `;
 const OpenMenu = styled(MenuOpenIcon)`
   cursor: pointer;
-  scale: 1.2;
+  scale: 1.4;
   &:active {
-    scale: 1.4;
+    scale: 1.6;
   }
 `;
