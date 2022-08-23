@@ -74,7 +74,7 @@ const NavButton = styled.div`
   border-radius: 40%;
   cursor: pointer;
   margin: 0 5px;
-  border: 1px solid white;
+  border: 1px solid #f9f9f9;
   &:hover {
     border: 1px solid black;
   }

@@ -49,7 +49,6 @@ export const Focus = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: "20px",
               }}
               className="content-container"
             >
