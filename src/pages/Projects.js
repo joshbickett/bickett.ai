@@ -26,11 +26,13 @@ export const Projects = ({ isMobile }) => {
           >
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 4fr 10fr 1fr",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "20px",
               }}
+              className="content-container"
             >
-              <div></div>
               <img
                 src={memeImage}
                 alt="writing"
@@ -55,15 +57,16 @@ export const Projects = ({ isMobile }) => {
                   the hood.
                 </p>
               </div>
-              <div></div>
             </div>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 4fr 10fr 1fr",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "20px",
               }}
+              className="content-container"
             >
-              <div></div>
               <img
                 src={musicImage}
                 alt="focus"
@@ -80,15 +83,16 @@ export const Projects = ({ isMobile }) => {
                   2 minutes.
                 </p>
               </div>
-              <div></div>
             </div>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 4fr 10fr 1fr",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "20px",
               }}
+              className="content-container"
             >
-              <div></div>
               <img
                 src={gaitImage}
                 alt="gait"
@@ -114,7 +118,6 @@ export const Projects = ({ isMobile }) => {
                   and I started focusing on AI.
                 </p>
               </div>
-              <div></div>
             </div>
           </div>
         </div>
