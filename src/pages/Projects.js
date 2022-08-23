@@ -52,7 +52,7 @@ export const Projects = ({ isMobile }) => {
                   is available on Github. I published{" "}
                   <a href="https://towardsdatascience.com/how-to-make-memes-with-ai-in-python-986944bce5b4">
                     How to Make Meme with AI in Python
-                  </a>
+                  </a>{" "}
                   in Toward Data Science to help understand how it works under
                   the hood.
                 </p>
