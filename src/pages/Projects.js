@@ -41,6 +41,12 @@ export const Projects = ({ isMobile }) => {
                 <h3>
                   <a href="https://makememe.ai/">makememe.ai</a>
                 </h3>
+                <h5 style={{ margin: 0, padding: 0, lineHeight: "2px" }}>
+                  Award:{" "}
+                  <a href="https://www.producthunt.com/products/makememe-ai">
+                    Product of the Day (Product Hunt)
+                  </a>
+                </h5>
                 <p>
                   This app is a text-to-meme generator that uses GPT-3 and
                   semantic search to create a meme based on user input in under
