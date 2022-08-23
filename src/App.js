@@ -19,6 +19,14 @@ export const App = () => {
           path="/writing"
           element={<Writing isMobile={isMobile} />}
         ></Route>
+        <Route
+          path="*"
+          element={
+            <div style={{ padding: "150px", marginTop: "250px" }}>
+              <p>There's nothing here!</p>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

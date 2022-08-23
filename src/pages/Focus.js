@@ -23,32 +23,13 @@ export const Focus = () => {
           }}
         >
           <div style={{ textAlign: "center", fontSize: "30px" }}>
-            In the next decade, I am most excited about startups applying the
-            science of deep learning.
+            Hello, I am a self-taught software engineer interested in building
+            technology that is both useful and fun. I am currently focused on
+            understanding the field of deep learning and applying it through
+            startups.
           </div>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 2fr 1fr",
-          }}
-        >
-          <div></div>
-          <img
-            src={startupImage}
-            alt="writing"
-            style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-          />
-          <div>
-            <h3>Startups</h3>
-            <p>
-              I am interested in startups and working on small teams to create
-              large impact through software.
-            </p>
-          </div>
-          <div></div>
-        </div>
         <div
           style={{
             display: "grid",
@@ -64,14 +45,19 @@ export const Focus = () => {
           <div>
             <h3>Deep learning and AI</h3>
             <p>
-              I am interested in the science and ensuring the technology created
-              are impactful in positive ways.
+              Before college, I was fascinated by physics and wondered what it
+              would be like to be alive in 1905 and read of entirely new
+              physical laws being discovered. As I studied the sciences in
+              college, each seemed mature and I was not sure if we'd have
+              important and fundamental discoveries in my lifetime. When I
+              discovered deep learning and I became hopeful that there was a
+              young, important, and interesting science that would flourish in
+              my lifetime.
             </p>
           </div>
           <div></div>
         </div>
-
-        {/* <div
+        <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr 2fr 1fr",
@@ -79,18 +65,20 @@ export const Focus = () => {
         >
           <div></div>
           <img
-            src={writingImg}
+            src={startupImage}
             alt="writing"
             style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
           />
           <div>
-            <h3>Writing</h3>
+            <h3>Startups</h3>
             <p>
-              I am interested in sharing my thoughts and ideas with the world.
+              Working on small teams can be both fun and effective. I am
+              interested in early stage startups and how small teams discover
+              useful innovations and applying them at scale.
             </p>
           </div>
           <div></div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
