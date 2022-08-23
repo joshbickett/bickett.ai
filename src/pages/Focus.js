@@ -88,9 +88,8 @@ export const Focus = () => {
               <div style={{ maxWidth: "600px" }}>
                 <h3>Startups</h3>
                 <p>
-                  Working on small teams can be both fun and effective. I am
-                  interested in early stage startups and how small teams
-                  discover useful innovations and applying them at scale.
+                  I like working on small teams and I am interested in building
+                  useful tools and applying them at scale.
                 </p>
               </div>
             </div>
