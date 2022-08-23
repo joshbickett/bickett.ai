@@ -9,21 +9,23 @@ export const NavigationBar = ({ active, isMobile }) => {
   const pages = [
     { name: "my focus", url: "/" },
     { name: "projects", url: "/projects" },
-    { name: "github", url: "https://github.com/joshbickett/" },
+
     { name: "writing", url: "/writing" },
+    { name: "github", url: "https://github.com/joshbickett/" },
+    { name: "twitter", url: "https://twitter.com/josh_bickett" },
   ];
 
   const navClick = (url) => {
     console.log(url);
-    if (url.includes("github")) {
-      window.location.href = "https://github.com/joshbickett/";
+    if (url.includes("github") || url.includes("twitter")) {
+      window.location.href = url;
     } else {
       window.location.href = window.location.origin + url;
     }
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "2fr 3fr" }}>
       <div style={{ display: "flex", alignItems: "flex-start" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
