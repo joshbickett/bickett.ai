@@ -45,7 +45,8 @@ export const NavigationBar = ({ active, isMobile }) => {
           style={{
             fontSize: "30px",
             display: "flex",
-            alignItems: "flex-start",
+            alignItems: "center",
+            justifyContent: "flex-end",
           }}
         >
           {pages.map((page) => {

@@ -38,9 +38,9 @@ export const Focus = () => {
               }}
             >
               <div style={{ textAlign: "center", fontSize: "30px" }}>
-                Hello, I am a self-taught software engineer interested in
-                understanding deep learning and applying it in useful ways
-                through technology.
+                Hello, I am a self-taught software engineer interested in the
+                science of deep learning and applying it in useful ways through
+                technology.
               </div>
             </div>
 
@@ -66,8 +66,8 @@ export const Focus = () => {
                   college, each seemed mature and I was not sure if we'd have
                   important and fundamental discoveries in the following
                   decades. When I discovered deep learning, I became hopeful
-                  that there was a young, important, and interesting science
-                  that would flourish in my lifetime.
+                  that there is a young, important, and interesting science that
+                  would flourish in my lifetime.
                 </p>
               </div>
             </div>
