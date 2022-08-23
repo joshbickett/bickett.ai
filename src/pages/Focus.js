@@ -46,17 +46,19 @@ export const Focus = () => {
 
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 2fr 1fr",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "20px",
               }}
+              className="content-container"
             >
-              <div></div>
               <img
                 src={scienceImg}
                 alt="focus"
                 style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
               />
-              <div>
+              <div style={{ maxWidth: "600px" }}>
                 <h3>Deep learning and AI</h3>
                 <p>
                   Before college, I was fascinated by physics and wondered what
@@ -69,21 +71,25 @@ export const Focus = () => {
                   in my lifetime.
                 </p>
               </div>
-              <div></div>
             </div>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 2fr 1fr",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
+              className="content-container"
             >
-              <div></div>
               <img
                 src={startupImage}
                 alt="writing"
-                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
+                style={{
+                  maxWidth: "200px",
+                  borderRadius: "30px",
+                  margin: "10px",
+                }}
               />
-              <div>
+              <div style={{ maxWidth: "600px" }}>
                 <h3>Startups</h3>
                 <p>
                   Working on small teams can be both fun and effective. I am
@@ -91,7 +97,6 @@ export const Focus = () => {
                   discover useful innovations and applying them at scale.
                 </p>
               </div>
-              <div></div>
             </div>
           </div>
           <div></div>
