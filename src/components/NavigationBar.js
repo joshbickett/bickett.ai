@@ -95,6 +95,7 @@ export const NavigationBar = ({ active, isMobile }) => {
                       <NavButton
                         key={page.name}
                         onClick={() => navClick(page.url)}
+                        style={{ borderColor: "white" }}
                       >
                         {page.name}
                       </NavButton>
