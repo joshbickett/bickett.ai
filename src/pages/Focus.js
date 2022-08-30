@@ -75,9 +75,8 @@ export const Focus = () => {
                   flourish in my lifetime.
                 </p> */}
                 <p>
-                  I am interested in the young and important science that will
-                  flourish in our lifetimes. I am interested in contributing to
-                  the engineering and science.
+                  I am interested in this young and important science that will
+                  flourish in our lifetimes.
                 </p>
               </div>
             </div>
