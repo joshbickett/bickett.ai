@@ -19,16 +19,15 @@ export const Projects = ({ isMobile }) => {
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               flexDirection: "column",
+              margin: "50px 0px",
             }}
           >
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
               }}
               className="content-container"
             >
@@ -66,7 +65,7 @@ export const Projects = ({ isMobile }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
               }}
               className="content-container"
             >
@@ -91,7 +90,7 @@ export const Projects = ({ isMobile }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
               }}
               className="content-container"
             >

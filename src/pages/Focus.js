@@ -24,9 +24,8 @@ export const Focus = () => {
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               flexDirection: "column",
+              alignContent: "center",
             }}
           >
             <div
@@ -34,10 +33,18 @@ export const Focus = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                flexDirection: "column",
                 margin: "50px 0px",
               }}
             >
-              <div style={{ textAlign: "center", fontSize: "30px" }}>
+              <h2>FOCUS</h2>
+              <div
+                style={{
+                  textAlign: "center",
+                  fontSize: "30px",
+                  margin: "0 20px",
+                }}
+              >
                 Hello, I am a self-taught software engineer interested in deep
                 learning and its applications.
               </div>
@@ -47,7 +54,8 @@ export const Focus = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
+                margin: "0 40px",
               }}
               className="content-container"
             >
@@ -56,7 +64,7 @@ export const Focus = () => {
                 alt="focus"
                 style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
               />
-              <div style={{ maxWidth: "600px" }}>
+              <div>
                 <h3>Deep learning and AI</h3>
                 {/* <p>
                   Before college, I was fascinated by physics and wondered what
@@ -67,8 +75,9 @@ export const Focus = () => {
                   flourish in my lifetime.
                 </p> */}
                 <p>
-                  I am interested in this young and important science that would
-                  flourish in my lifetime.
+                  I am interested in the young and important science that will
+                  flourish in our lifetimes. I am interested in contributing to
+                  the engineering and science.
                 </p>
               </div>
             </div>
@@ -76,7 +85,8 @@ export const Focus = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "flex-start",
+                margin: "0 40px",
               }}
               className="content-container"
             >
