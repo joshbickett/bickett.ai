@@ -1,4 +1,5 @@
 import codingImg from "../assets/coding-4.png";
+import me from "../assets/me.png";
 import styled from "@emotion/styled";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
@@ -29,7 +30,7 @@ export const NavigationBar = ({ active, isMobile }) => {
       <div style={{ display: "flex", alignItems: "flex-start" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
-            src={codingImg}
+            src={me}
             alt="coding"
             style={{ width: "100px", borderRadius: "50%", margin: "10px" }}
           />
