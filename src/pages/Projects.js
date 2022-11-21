@@ -64,7 +64,7 @@ export const Projects = ({ isMobile }) => {
                 <h3>
                   <a href="https://makememe.ai/">makememe.ai</a>
                 </h3>
-                <h5 style={{ margin: 0, padding: 0, lineHeight: "2px" }}>
+                <h5 style={{ margin: 0, padding: 0 }}>
                   <a href="https://www.producthunt.com/products/makememe-ai">
                     Product of the Day (Product Hunt)
                   </a>
