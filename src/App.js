@@ -16,7 +16,7 @@ export const App = () => {
       window.location.hostname === "joshbickett.com" ||
       window.location.hostname === "www.joshbickett.com"
     ) {
-      window.location.replace("https://bickett.com");
+      window.location.replace("https://bickett.ai");
     }
   }, []);
   return (
