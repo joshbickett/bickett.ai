@@ -13,7 +13,7 @@ export const Writing = ({ isMobile }) => {
           }}
         >
           <div style={{ textAlign: "center", fontSize: "30px" }}>
-            COMING SOON...
+            COMING NOT SO SOON...
           </div>
         </div>
       </div>
