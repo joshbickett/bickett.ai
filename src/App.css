@@ -8,6 +8,9 @@ body {
   height: 40vmin;
   pointer-events: none;
 }
+li {
+  list-style-type: none;
+}
 
 @media (max-width: 768px) {
   .content-container {
