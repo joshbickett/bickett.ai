@@ -50,8 +50,7 @@ export const Focus = () => {
                   margin: "0 20px",
                 }}
               >
-                Hello, I am a self-taught software engineer trying to stay
-                focused.
+                Hello, I am a software engineer currently working at <a href="https://othersideai.com/">OthersideAI</a> and exploring through side projects.
               </div>
             </div>
 
