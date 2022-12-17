@@ -139,8 +139,7 @@ export const Projects = ({ isMobile }) => {
                   offered a software development kit (SDK) to insurance
                   companies to enable their usage-based insurance products. We
                   sold the company through{" "}
-                  <a href="https://microacquire.com/">MicroAcquire</a> in 2022
-                  and I started focusing on AI.
+                  <a href="https://microacquire.com/">MicroAcquire</a>.
                 </p>
               </div>
             </div>
