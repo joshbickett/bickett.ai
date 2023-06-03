@@ -26,7 +26,9 @@ export const NavigationBar = ({ active, isMobile }) => {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "2fr 3fr" }}>
+    <div
+      style={{ display: "grid", gridTemplateColumns: "2fr 3fr", width: "100%" }}
+    >
       <div style={{ display: "flex", alignItems: "flex-start" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
