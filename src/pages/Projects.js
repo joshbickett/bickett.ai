@@ -3,7 +3,7 @@ import memeImage from "../assets/meme.jpg";
 import musicImage from "../assets/music.png";
 import gaitImage from "../assets/gait-2.png";
 import RobotImage from "../assets/robot.png";
-
+import MysteriesImage from "../assets/mysteries.jpg";
 export const Projects = ({ isMobile }) => {
   return (
     <div>
@@ -24,6 +24,29 @@ export const Projects = ({ isMobile }) => {
               margin: "50px 0px",
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+              className="content-container"
+            >
+              <img
+                src={MysteriesImage}
+                alt="writing"
+                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
+              />
+              <div>
+                <h3>
+                  <a href="https://www.mysteries.ai/">Mysteries.ai</a>
+                </h3>
+                <p>
+                  A mystery game where you play detective and chat with AI
+                  characters to solve the mystery
+                </p>
+              </div>
+            </div>
             <div
               style={{
                 display: "flex",
