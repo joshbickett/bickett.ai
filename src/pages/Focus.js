@@ -34,34 +34,35 @@ export const Focus = () => {
             through side projects.
           </div>
         </FocusContainer>
-
-        <ContentContainer>
-          <ProfileImages src={webImage} alt="writing" />
-          <div style={{ maxWidth: "600px" }}>
-            <h3>The Web</h3>
-            <p>
-              I am building web applications that leverage AI. Currently I'm
-              working on an agent that can complete actions on the web.
-            </p>
-          </div>
-        </ContentContainer>
-        <ContentContainer>
-          <ProfileImages src={startupImage} alt="writing" />
-          <div style={{ maxWidth: "600px" }}>
-            <h3>Startups</h3>
-            <p>
-              I enjoy working on small teams. I am interested in building useful
-              things that scale.
-            </p>
-          </div>
-        </ContentContainer>
-        <ContentContainer>
-          <ProfileImages src={scienceImg} alt="focus" />
-          <div>
-            <h3>Deep learning and AI</h3>
-            <p>I am beginner</p>
-          </div>
-        </ContentContainer>
+        <InnerContainer>
+          <ContentContainer>
+            <ProfileImages src={webImage} alt="writing" />
+            <div style={{ maxWidth: "600px" }}>
+              <h3>The Web</h3>
+              <p>
+                I am building web applications that leverage AI. Currently I'm
+                working on an agent that can complete actions on the web.
+              </p>
+            </div>
+          </ContentContainer>
+          <ContentContainer>
+            <ProfileImages src={startupImage} alt="writing" />
+            <div style={{ maxWidth: "600px" }}>
+              <h3>Startups</h3>
+              <p>
+                I enjoy working on small teams. I am interested in building
+                useful things that scale.
+              </p>
+            </div>
+          </ContentContainer>
+          <ContentContainer>
+            <ProfileImages src={scienceImg} alt="focus" />
+            <div>
+              <h3>Deep learning and AI</h3>
+              <p>I am beginner</p>
+            </div>
+          </ContentContainer>
+        </InnerContainer>
       </MainContainer>
     </div>
   );
@@ -81,7 +82,6 @@ const ContentContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin: 0 40px;
-  max-width: 500px;
   @media (max-width: 760px) {
     flex-direction: column;
     text-align: center;
@@ -101,4 +101,15 @@ const ProfileImages = styled.img`
   max-width: 150px;
   border-radius: 30px;
   margin: 10px;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  max-width: 500px;
+  @media (max-width: 760px) {
+    align-items: center;
+  }
 `;
