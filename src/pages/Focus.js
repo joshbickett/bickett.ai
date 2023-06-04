@@ -116,6 +116,6 @@ const InnerContainer = styled.div`
 
 const ContentTextContainer = styled.div`
   @media (max-width: 760px) {
-    max-width: 300px;
+    max-width: 400px;
   }
 `;
