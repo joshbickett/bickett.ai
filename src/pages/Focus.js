@@ -37,30 +37,30 @@ export const Focus = () => {
         <InnerContainer>
           <ContentContainer>
             <ProfileImages src={webImage} alt="writing" />
-            <div style={{ maxWidth: "600px" }}>
+            <ContentTextContainer>
               <h3>The Web</h3>
               <p>
                 I am building web applications that leverage AI. Currently I'm
                 working on an agent that can complete actions on the web.
               </p>
-            </div>
+            </ContentTextContainer>
           </ContentContainer>
           <ContentContainer>
             <ProfileImages src={startupImage} alt="writing" />
-            <div style={{ maxWidth: "600px" }}>
+            <ContentTextContainer>
               <h3>Startups</h3>
               <p>
                 I enjoy working on small teams. I am interested in building
                 useful things that scale.
               </p>
-            </div>
+            </ContentTextContainer>
           </ContentContainer>
           <ContentContainer>
             <ProfileImages src={scienceImg} alt="focus" />
-            <div>
+            <ContentTextContainer>
               <h3>Deep learning and AI</h3>
               <p>I am beginner</p>
-            </div>
+            </ContentTextContainer>
           </ContentContainer>
         </InnerContainer>
       </MainContainer>
@@ -108,8 +108,14 @@ const InnerContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 700px;
   @media (max-width: 760px) {
     align-items: center;
+  }
+`;
+
+const ContentTextContainer = styled.div`
+  @media (max-width: 760px) {
+    max-width: 300px;
   }
 `;
