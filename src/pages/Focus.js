@@ -59,7 +59,6 @@ export const Focus = () => {
             <ProfileImages src={scienceImg} alt="focus" />
             <ContentTextContainer>
               <h3>Deep learning and AI</h3>
-              <p>I am beginner</p>
             </ContentTextContainer>
           </ContentContainer>
         </InnerContainer>
