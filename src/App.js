@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
+import { Domains } from "./pages/Domains";
 
 export const App = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -39,6 +40,7 @@ export const App = () => {
             </div>
           }
         />
+        <Route path="/domains" element={<Domains />}></Route>
       </Routes>
     </BrowserRouter>
   );
