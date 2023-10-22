@@ -11,14 +11,21 @@ export const NavigationBar = ({ active, isMobile }) => {
     { name: "my focus", url: "/" },
     { name: "projects", url: "/projects" },
 
-    { name: "writing", url: "/writing" },
     { name: "github", url: "https://github.com/joshbickett/" },
     { name: "twitter", url: "https://twitter.com/josh_bickett" },
+    {
+      name: "youtube",
+      url: "https://www.youtube.com/channel/UC_GSUTfPfsjcWFg4GBjAnmw",
+    },
   ];
 
   const navClick = (url) => {
     console.log(url);
-    if (url.includes("github") || url.includes("twitter")) {
+    if (
+      url.includes("github") ||
+      url.includes("twitter") ||
+      url.includes("youtube")
+    ) {
       window.location.href = url;
     } else {
       window.location.href = window.location.origin + url;
