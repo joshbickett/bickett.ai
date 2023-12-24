@@ -4,6 +4,7 @@ import musicImage from "../assets/music.png";
 import gaitImage from "../assets/gait-2.png";
 import RobotImage from "../assets/robot.png";
 import MysteriesImage from "../assets/mysteries.jpg";
+import SelfOperatingComputerImage from "../assets/soc.png";
 export const Projects = ({ isMobile }) => {
   return (
     <div>
@@ -24,6 +25,38 @@ export const Projects = ({ isMobile }) => {
               margin: "50px 0px",
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+              className="content-container"
+            >
+              <img
+                src={SelfOperatingComputerImage}
+                alt="writing"
+                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
+              />
+              <div>
+                <h3>
+                  <a href="https://github.com/OthersideAI/self-operating-computer">
+                    The Self-Operating Computer Framework
+                  </a>
+                </h3>
+                <p>
+                  A framework to enable multimodal models to operate computers
+                  similar to how humans do. VentureBeat publish an{" "}
+                  <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
+                    article
+                  </a>{" "}
+                  about it. There are a few demos available on Youtube such as{" "}
+                  <a href="https://www.youtube.com/watch?v=UKRti40U8IA&t=6s">
+                    this one.
+                  </a>
+                </p>
+              </div>
+            </div>
             <div
               style={{
                 display: "flex",
