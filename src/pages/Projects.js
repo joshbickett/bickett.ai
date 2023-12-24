@@ -50,7 +50,7 @@ export const Projects = ({ isMobile }) => {
                   <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
                     article
                   </a>{" "}
-                  about it. There are a few demos available on Youtube such as{" "}
+                  about it. There are a few demos available on YouTube such as{" "}
                   <a href="https://www.youtube.com/watch?v=UKRti40U8IA&t=6s">
                     this one.
                   </a>
