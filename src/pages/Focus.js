@@ -36,31 +36,39 @@ export const Focus = () => {
         </FocusContainer>
         <InnerContainer>
           <ContentContainer>
-            <ProfileImages src={webImage} alt="writing" />
+            <ProfileImages src={webImage} />
             <ContentTextContainer>
-              <h3>The Web</h3>
+              <h3>Agents</h3>
               <p>
-                I am building web applications that leverage AI. Currently I'm
-                working on an agent that can complete actions on the web.
+                I am interested in AI agents that complete objectives. I
+                recently created the{" "}
+                <a href="https://github.com/OthersideAI/self-operating-computer">
+                  Self-Operating Computer Framework.
+                </a>
               </p>
             </ContentTextContainer>
           </ContentContainer>
           <ContentContainer>
-            <ProfileImages src={startupImage} alt="writing" />
+            <ProfileImages src={startupImage} />
             <ContentTextContainer>
-              <h3>Startups</h3>
+              <h3>Startups and Indie Hacking</h3>
               <p>
-                I enjoy working on small teams. I am interested in building
-                useful things that scale.
+                I enjoy working on small teams and building software products
               </p>
             </ContentTextContainer>
           </ContentContainer>
           <ContentContainer>
-            <ProfileImages src={scienceImg} alt="focus" />
+            <ProfileImages src={scienceImg} />
             <ContentTextContainer>
-              <h3>Deep learning and AI</h3>
+              <h3>Deep learning</h3>
             </ContentTextContainer>
           </ContentContainer>
+          {/* <ContentContainer>
+            <ProfileImages src={scienceImg} />
+            <ContentTextContainer>
+              <h3>Operating Systems</h3>
+            </ContentTextContainer>
+          </ContentContainer> */}
         </InnerContainer>
       </MainContainer>
     </div>
