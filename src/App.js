@@ -12,14 +12,6 @@ export const App = () => {
 
   // if domain is joshbickett.com redirect to bickett.com
 
-  useEffect(() => {
-    if (
-      window.location.hostname === "joshbickett.com" ||
-      window.location.hostname === "www.joshbickett.com"
-    ) {
-      window.location.replace("https://bickett.ai");
-    }
-  }, []);
   return (
     <BrowserRouter>
       <Routes>
