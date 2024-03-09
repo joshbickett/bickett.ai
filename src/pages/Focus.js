@@ -69,7 +69,9 @@ export const Focus = () => {
               <h3>Operating Systems</h3>
             </ContentTextContainer>
           </ContentContainer> */}
+          
         </InnerContainer>
+        <a href="https://www.buymeacoffee.com/joshbickett" style={{ margin: "20px 0", fontSize: "10px"}}>buy me coffee to drink while working on projects</a>
       </MainContainer>
     </div>
   );
