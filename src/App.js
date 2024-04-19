@@ -1,4 +1,4 @@
-import { Focus } from "./pages/Focus";
+import { About } from "./pages/About";
 import { Projects } from "./pages/Projects";
 import { Writing } from "./pages/Writing";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Focus isMobile={isMobile} />}></Route>
+        <Route path="/" element={<About isMobile={isMobile} />}></Route>
         <Route
           path="/projects"
           element={<Projects isMobile={isMobile} />}

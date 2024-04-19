@@ -1,23 +1,30 @@
+/* Including Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-  font-family: "Gill Sans", sans-serif;
+  font-family: 'Roboto', sans-serif; /* Updated font family */
   color: black;
-  background-color: #f9f9f9;
+}
+
+a { /* New style for links */
+  color: #FF6347; /* Soft warm orange color */
+  text-decoration: none; /* Removes underline */
+}
+
+a:hover {
+  color: #FF4500; /* Slightly darker orange on hover */
+  text-decoration: underline; /* Adds underline on hover */
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 li {
   list-style-type: none;
 }
 
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-    text-align: center;
-  }
-}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

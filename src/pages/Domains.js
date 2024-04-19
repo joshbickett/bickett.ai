@@ -7,7 +7,7 @@ export const Domains = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   return (
     <div>
-      <NavigationBar active={"my focus"} isMobile={isMobile} />
+      <NavigationBar active={"About"} isMobile={isMobile} />
       <div
         style={{
           dislay: "flex",

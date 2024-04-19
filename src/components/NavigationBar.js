@@ -4,19 +4,20 @@ import styled from "@emotion/styled";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { useState } from "react";
+import { NavigationBarContainer } from "../styles/pageStyles";
 
 export const NavigationBar = ({ active, isMobile }) => {
   const [mobileExpand, setMobileExpand] = useState(false);
   const pages = [
-    { name: "my focus", url: "/" },
-    { name: "projects", url: "/projects" },
-
-    { name: "github", url: "https://github.com/joshbickett/" },
-    { name: "twitter", url: "https://twitter.com/josh_bickett" },
-    {
-      name: "youtube",
-      url: "https://www.youtube.com/channel/UC_GSUTfPfsjcWFg4GBjAnmw",
-    },
+    { name: "About", url: "/" },
+    { name: "Projects", url: "/projects" },
+    { name: "Blog", url: "/blog" },
+    // { name: "GitHub", url: "https://github.com/joshbickett/" },
+    // { name: "Twitter", url: "https://twitter.com/josh_bickett" },
+    // {
+    //   name: "youtube",
+    //   url: "https://www.youtube.com/channel/UC_GSUTfPfsjcWFg4GBjAnmw",
+    // },
   ];
 
   const navClick = (url) => {
@@ -34,124 +35,58 @@ export const NavigationBar = ({ active, isMobile }) => {
 
   return (
     <div
-      style={{ display: "grid", gridTemplateColumns: "2fr 3fr", width: "100%" }}
+      style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}
     >
-      <div style={{ display: "flex", alignItems: "flex-start" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+        <div style={{ display: "flex", alignItems: "center", }}>
           <img
             src={me}
-            alt="coding"
-            style={{ width: "100px", borderRadius: "50%", margin: "10px" }}
+            alt="me"
+            style={{ width: "60px", borderRadius: "50%", margin: "10px" }}
           />
           <div
             style={{
-              fontSize: "30px",
+              fontSize: "25px",
             }}
           >
             Josh Bickett
           </div>
         </div>
       </div>
-      {!isMobile && (
-        <div
-          style={{
-            fontSize: "30px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          {pages.map((page) => {
-            if (page.name === active) {
-              return (
-                <ActiveNavButton key={page.name}>{page.name}</ActiveNavButton>
-              );
-            } else {
-              return (
-                <NavButton key={page.name} onClick={() => navClick(page.url)}>
-                  {page.name}
-                </NavButton>
-              );
-            }
-          })}
-        </div>
-      )}
-      {isMobile && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            margin: "50px 10px",
-          }}
-        >
-          <div>
-            {mobileExpand && (
-              <div
-                style={{
-                  fontSize: "25px",
-                  backgroundColor: "white",
-                  borderRadius: "25px",
-                  boxShadow: "0px 0px 5px rgba(0,0,0,0.5)",
-                  margin: "10px",
-                }}
-              >
-                {pages.map((page) => {
-                  if (page.name === active) {
-                    return (
-                      <ActiveNavButton key={page.name}>
-                        {page.name}
-                      </ActiveNavButton>
-                    );
-                  } else {
-                    return (
-                      <NavButton
-                        key={page.name}
-                        onClick={() => navClick(page.url)}
-                        style={{ borderColor: "white" }}
-                      >
-                        {page.name}
-                      </NavButton>
-                    );
-                  }
-                })}
-              </div>
-            )}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          >
-            {!mobileExpand && (
-              <CloseMenu onClick={() => setMobileExpand(true)} />
-            )}
-            {mobileExpand && (
-              <OpenMenu onClick={() => setMobileExpand(false)} />
-            )}
-          </div>
-        </div>
-      )}
+
+      <NavigationBarContainer>
+        {pages.map((page) => {
+          if (page.name === active) {
+            return (
+              <ActiveNavButton key={page.name}>{page.name}</ActiveNavButton>
+            );
+          } else {
+            return (
+              <NavButton key={page.name} onClick={() => navClick(page.url)}>
+                {page.name}
+              </NavButton>
+            );
+          }
+        })}
+      </NavigationBarContainer>
+
+      
     </div>
   );
 };
 
 const ActiveNavButton = styled.div`
   color: black;
-  border-radius: 40%;
   padding: 10px;
-  border: 1px solid black;
-  margin: 0 5px;
+  font-weight: bold;
+
 `;
+// add underline when hovered
 const NavButton = styled.div`
   padding: 10px;
-  border-radius: 40%;
   cursor: pointer;
-  margin: 0 5px;
-  border: 1px solid #f9f9f9;
   &:hover {
-    border: 1px solid black;
+    text-decoration: underline;
   }
 `;
 
