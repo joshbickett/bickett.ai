@@ -7,12 +7,12 @@ body {
 }
 
 a { /* New style for links */
-  color: #FF6347; /* Soft warm orange color */
+  color: #7CA0D3; /* Soft warm orange color */
   text-decoration: none; /* Removes underline */
 }
 
 a:hover {
-  color: #FF4500; /* Slightly darker orange on hover */
+  color: #557CA0; /* Slightly darker orange on hover */
   text-decoration: underline; /* Adds underline on hover */
 }
 

@@ -64,7 +64,7 @@ export const About = () => {
                 padding: !isMobile ?"0 10px" : "0", 
                 margin: 0,
               }}>
-                The easiest way to reach me is to message me on Twitter <a href="https://twitter.com/josh_bickett">@josh_bickett.</a> I am most likely to respond there. I am interested in hear research collaborations. 
+                The easiest way to reach me is to message me on Twitter <a href="https://twitter.com/josh_bickett">@josh_bickett.</a> I am interested in research collaborations, feel free to reach out if you have an interesting project.
             </p>
           </ContactSection>
           
