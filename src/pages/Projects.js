@@ -13,7 +13,7 @@ export const Projects = ({ isMobile }) => {
 
       <NavigationBar active={"Projects"} isMobile={isMobile} />
 
-      <MainContainer>
+      <MainContainer style={{ maxWidth: "700px"}}>
         <div
           style={{
             display: "flex",

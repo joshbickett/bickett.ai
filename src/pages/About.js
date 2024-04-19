@@ -8,7 +8,7 @@ import startupImage from "../assets/startups.png";
 import { NavigationBar } from "../components/NavigationBar";
 import { Footer } from "../components/Footer";
 import { useMediaQuery } from "react-responsive";
-import { MainContainer, PageContainer, ContentContainer, TileImages } from "../styles/pageStyles";
+import { MainContainer, PageContainer, ContentContainer, TileImages, AboutContainer, ContactSection } from "../styles/pageStyles";
 
 
 export const About = () => {
@@ -25,31 +25,48 @@ export const About = () => {
 
       <MainContainer>
         <AboutContainer>
-        
-          <h3 
-            style={{
-              padding: "10px 0", 
-              margin: 0,
-            }}>
-              Welcome
-          </h3>
-          <p
-            style={{
-              fontSize: "15px",
-              padding: 0, 
-              margin: 0,
-            }}
-          >
-            Hello, I am a software engineer at{" "}
-            <a href="https://www.hyperwriteai.com/">HyperWrite</a> building LLMs-based writing tools. In addition, we've explored automation of web tasks with an <a href="https://venturebeat.com/ai/hyperwrite-unveils-breakthrough-ai-agent-that-can-surf-the-web-like-a-human/">AI agent</a>. 
-            <br />
-            <br />
-            On the side, I am currently explorer VLMs ability to <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">operate computers</a> and <a href="https://www.yahoo.com/tech/youtuber-pits-chatgpt-against-super-104929439.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAACbC4ujPehyZUC373tgmv7VuaQXtRqURVVNNVpBZ9s_YwmfWoZcbQCgLC3b4GQiqsoF9mlh6rNpeBDU1aN_ZnBv3VcRKnXlq4BOSC460gu9KjahXaSAxP45cbR8_VP8Yf2rwur5gaipOBg1LuvoLNVwIZx7K-T-q2x2_1eZ5aU5B">play games</a>. 
-            <br />
-            <br />
-            I am finishing up the <a href="https://www.coursera.org/specializations/deep-learning?utm_medium=sem&utm_source=gg&utm_campaign=B2C_NAMER_deep-learning_deeplearning-ai_FTCOF_specializations_country-US-country-CA&campaignid=904733485&adgroupid=148411448815&device=c&keyword=&matchtype=&network=g&devicemodel=&adposition=&creativeid=654837734383&hide_mobile_promo&gad_source=1&gclid=CjwKCAjwrIixBhBbEiwACEqDJStkVMyMnnK8stellg5b7pdrCHPCNjwlcL-zDA6YR2CVSgLo2rXPghoC6d8QAvD_BwE">Deep Learning Specialization</a> through <a href="https://www.deeplearning.ai/">DeepLearning.ai</a> and I am interesting in collaborating on research projects exploring VLM's ability to reason and play games.  
+          <div>
+            <h3 
+              style={{
+                padding: "10px 0", 
+                margin: 0,
+              }}>
+                Welcome
+            </h3>
+            <p
+              style={{
+                fontSize: "15px",
+                padding: 0, 
+                margin: 0,
+              }}
+            >
+              Hello, I am a software engineer at{" "}
+              <a href="https://www.hyperwriteai.com/">HyperWrite</a> building LLMs-based writing tools. In addition, we've explored automation of web tasks with an <a href="https://venturebeat.com/ai/hyperwrite-unveils-breakthrough-ai-agent-that-can-surf-the-web-like-a-human/">AI agent</a>. 
+              <br />
+              <br />
+              On the side, I am currently explorer VLMs ability to <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">operate computers</a> and <a href="https://www.yahoo.com/tech/youtuber-pits-chatgpt-against-super-104929439.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAACbC4ujPehyZUC373tgmv7VuaQXtRqURVVNNVpBZ9s_YwmfWoZcbQCgLC3b4GQiqsoF9mlh6rNpeBDU1aN_ZnBv3VcRKnXlq4BOSC460gu9KjahXaSAxP45cbR8_VP8Yf2rwur5gaipOBg1LuvoLNVwIZx7K-T-q2x2_1eZ5aU5B">play games</a>. 
+              <br />
+              <br />
+              I am finishing up the <a href="https://www.coursera.org/specializations/deep-learning?utm_medium=sem&utm_source=gg&utm_campaign=B2C_NAMER_deep-learning_deeplearning-ai_FTCOF_specializations_country-US-country-CA&campaignid=904733485&adgroupid=148411448815&device=c&keyword=&matchtype=&network=g&devicemodel=&adposition=&creativeid=654837734383&hide_mobile_promo&gad_source=1&gclid=CjwKCAjwrIixBhBbEiwACEqDJStkVMyMnnK8stellg5b7pdrCHPCNjwlcL-zDA6YR2CVSgLo2rXPghoC6d8QAvD_BwE">Deep Learning Specialization</a> through <a href="https://www.deeplearning.ai/">DeepLearning.ai</a> and I am interesting in collaborating on research projects exploring VLM's ability to reason and play games.  
 
-          </p>
+            </p>
+          </div>
+          <ContactSection>
+            <h3
+              style={{
+                padding: !isMobile ? "10px": "10px 0", 
+                margin: 0,
+              }}>
+                Reaching out
+            </h3>
+            <p 
+              style={{
+                padding: !isMobile ?"0 10px" : "0", 
+                margin: 0,
+              }}>
+                The easiest way to reach me is to message me on Twitter <a href="https://twitter.com/josh_bickett">@josh_bickett.</a> I am most likely to respond there. I am interested in hear research collaborations. 
+            </p>
+          </ContactSection>
           
         </AboutContainer>
         <InnerContainer>
@@ -94,13 +111,6 @@ export const About = () => {
 
 
 
-const AboutContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%
-`;
 
 
 const InnerContainer = styled.div`

@@ -47,6 +47,27 @@ export const NavigationBarContainer = styled.div`
   }
 `;
 
+export const AboutContainer = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 2fr; // Defines two columns, first wider than the second
+  align-items: stretch; // Ensures that in mobile view, items also stretch if needed
+  gap: 20px; // Space between columns
+  width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Stack into a single column on mobile
+  }
+`;
+
+export const ContactSection = styled.div`
+  box-sizing: border-box;
+  border-left: 1px solid lightgray;
+  @media (max-width: 768px) {
+    border-left: None
+  }
+`;
+
+
 
 
 export const TileImages = styled.img`
