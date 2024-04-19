@@ -53,4 +53,17 @@ export const TileImages = styled.img`
   max-width: 100px;
   border-radius: 30px;
   margin: 10px;
+  @media (max-width: 760px) {
+    max-width: 75px;
+  }
+`;
+
+
+export const BigTileImages = styled.img`
+  max-width: 150px;
+  border-radius: 30px;
+  margin: 10px;
+  @media (max-width: 760px) {
+    max-width: 75px;
+  }
 `;

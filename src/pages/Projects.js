@@ -5,203 +5,131 @@ import gaitImage from "../assets/gait-2.png";
 import RobotImage from "../assets/robot.png";
 import MysteriesImage from "../assets/mysteries.jpg";
 import SelfOperatingComputerImage from "../assets/soc.png";
+import { ContentContainer } from "../styles/pageStyles";
+import { BigTileImages, PageContainer, MainContainer } from "../styles/pageStyles";
 export const Projects = ({ isMobile }) => {
   return (
-    <div>
-      <div style={{ height: "100vh" }}>
-        <NavigationBar active={"Projects"} isMobile={isMobile} />
+    <PageContainer>
 
+      <NavigationBar active={"Projects"} isMobile={isMobile} />
+
+      <MainContainer>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 4fr 2fr",
+            display: "flex",
+            flexDirection: "column",
+            margin: "50px 0px",
           }}
         >
-          <div></div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              margin: "50px 0px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-              }}
-              className="content-container"
-            >
-              <img
-                src={SelfOperatingComputerImage}
-                alt="writing"
-                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-              />
-              <div>
-                <h3>
-                  <a href="https://github.com/OthersideAI/self-operating-computer">
-                    The Self-Operating Computer Framework
-                  </a>
-                </h3>
-                <p>
-                  A framework to enable multimodal models to operate computers
-                  similar to how humans do. VentureBeat publish an{" "}
-                  <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
-                    article
-                  </a>{" "}
-                  about it. There are a few demos available on YouTube such as{" "}
-                  <a href="https://www.youtube.com/watch?v=UKRti40U8IA&t=6s">
-                    this one.
-                  </a>
-                </p>
-              </div>
+          <ContentContainer>
+            <BigTileImages
+              src={SelfOperatingComputerImage}
+              alt="writing"
+              style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
+            />
+            <div>
+              <h3>
+                <a href="https://github.com/OthersideAI/self-operating-computer">
+                  The Self-Operating Computer Framework
+                </a>
+              </h3>
+              <p>
+                A framework to enable multimodal models to operate computers
+                similar to how humans do. VentureBeat publish an{" "}
+                <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
+                  article
+                </a>{" "}
+                about it. There are a few demos available on YouTube such as{" "}
+                <a href="https://www.youtube.com/watch?v=UKRti40U8IA&t=6s">
+                  this one.
+                </a>
+              </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-              }}
-              className="content-container"
-            >
-              <img
-                src={MysteriesImage}
-                alt="writing"
-                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-              />
-              <div>
-                <h3>
-                  <a href="https://www.mysteries.ai/">Mysteries.ai</a>
-                </h3>
-                <p>
-                  A mystery game where you play detective and chat with AI
-                  characters to solve the mystery
-                </p>
-              </div>
+          </ContentContainer>
+          <ContentContainer>
+            <BigTileImages
+              src={MysteriesImage}
+              alt="writing"
+            />
+            <div>
+              <h3>
+                <a href="https://www.mysteries.ai/">Mysteries.ai</a>
+              </h3>
+              <p>
+                A mystery game where you play detective and chat with AI
+                characters to solve the mystery
+              </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-              }}
-              className="content-container"
-            >
-              <img
-                src={RobotImage}
-                alt="writing"
-                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-              />
-              <div>
-                <h3>
-                  <a href="http://whichisai.com/">WhichIsAI</a>
-                </h3>
-                <p>
-                  A simple game where the users tries to find which image is
-                  generated by AI
-                </p>
-              </div>
+          </ContentContainer>
+          <ContentContainer>
+            <BigTileImages
+              src={RobotImage}
+              alt="writing"
+            />
+            <div>
+              <h3>
+                <a href="http://whichisai.com/">WhichIsAI</a>
+              </h3>
+              <p>
+                A simple game where the users tries to find which image is
+                generated by AI
+              </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-              }}
-              className="content-container"
-            >
-              <img
-                src={memeImage}
-                alt="writing"
-                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-              />
-              <div>
-                <h3>
-                  <a href="https://makememe.ai/">makememe.ai</a>
-                </h3>
-                <h5 style={{ margin: 0, padding: 0 }}>
-                  <a href="https://www.producthunt.com/products/makememe-ai">
-                    Product of the Day (Product Hunt)
-                  </a>
-                </h5>
-                <p>
-                  This app is a text-to-meme generator that uses GPT-3 and
-                  semantic search to create a meme based on user input in under
-                  5 seconds.{" "}
-                  <a href="https://github.com/joshbickett/makememe_ai">
-                    The code
-                  </a>{" "}
-                  is available on Github. I published{" "}
-                  <a href="https://towardsdatascience.com/how-to-make-memes-with-ai-in-python-986944bce5b4">
-                    How to Make Meme with AI in Python
-                  </a>{" "}
-                  in Toward Data Science to help understand how it works under
-                  the hood.
-                </p>
-              </div>
+          </ContentContainer>
+          <ContentContainer>
+            <BigTileImages
+              src={memeImage}
+              alt="writing"
+            />
+            <div>
+              <h3>
+                <a href="https://makememe.ai/">makememe.ai</a>
+              </h3>
+              <h5 style={{ margin: 0, padding: 0 }}>
+                <a href="https://www.producthunt.com/products/makememe-ai">
+                  Product of the Day (Product Hunt)
+                </a>
+              </h5>
+              <p>
+                This app is a text-to-meme generator that uses GPT-3 and
+                semantic search to create a meme based on user input in under
+                5 seconds.{" "}
+                <a href="https://github.com/joshbickett/makememe_ai">
+                  The code
+                </a>{" "}
+                is available on Github. I published{" "}
+                <a href="https://towardsdatascience.com/how-to-make-memes-with-ai-in-python-986944bce5b4">
+                  How to Make Meme with AI in Python
+                </a>{" "}
+                in Toward Data Science to help understand how it works under
+                the hood.
+              </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-              }}
-              className="content-container"
-            >
-              <img
-                src={musicImage}
-                alt="focus"
-                style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-              />
-              <div>
-                <h3>
-                  <a href="https://makesong.ai/">makesong.ai</a>
-                </h3>
-                <p>
-                  I am currently exploring what is possible with{" "}
-                  <a href="https://jukebox.openai.com/">Jukebox</a> and working
-                  on a simple app where users can create a song with AI in under
-                  2 minutes.
-                </p>
-              </div>
+          </ContentContainer>
+
+          <ContentContainer>
+            <BigTileImages
+              src={gaitImage}
+              alt="gait"
+            />
+            <div>
+              <h3>
+                <a href="https://apps.apple.com/us/app/gait-a-driver-score-app/id1516971190">
+                  Gait
+                </a>
+              </h3>
+              <p>
+                My cofounder and I started an insurance technology company
+                called <a href="https://gaitcar.com/">Gait, Inc.</a> that
+                offered a software development kit (SDK) to insurance
+                companies to enable their usage-based insurance products. We
+                sold the company through{" "}
+                <a href="https://microacquire.com/">MicroAcquire</a>.
+              </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-              }}
-              className="content-container"
-            >
-              <img
-                src={gaitImage}
-                alt="gait"
-                style={{
-                  width: "200px",
-                  borderRadius: "30px",
-                  margin: "10px",
-                }}
-              />
-              <div>
-                <h3>
-                  <a href="https://apps.apple.com/us/app/gait-a-driver-score-app/id1516971190">
-                    Gait
-                  </a>
-                </h3>
-                <p>
-                  My cofounder and I started an insurance technology company
-                  called <a href="https://gaitcar.com/">Gait, Inc.</a> that
-                  offered a software development kit (SDK) to insurance
-                  companies to enable their usage-based insurance products. We
-                  sold the company through{" "}
-                  <a href="https://microacquire.com/">MicroAcquire</a>.
-                </p>
-              </div>
-            </div>
-          </div>
+          </ContentContainer>
         </div>
-      </div>
-    </div>
+      </MainContainer>
+    </PageContainer>
   );
 };
