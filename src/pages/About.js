@@ -44,7 +44,7 @@ export const About = () => {
               <a href="https://www.hyperwriteai.com/">HyperWrite</a> building LLM-based writing tools. In addition, we've explored the automation of web tasks with an <a href="https://venturebeat.com/ai/hyperwrite-unveils-breakthrough-ai-agent-that-can-surf-the-web-like-a-human/">AI agent</a>. 
               <br />
               <br />
-              On the side, I am currently exploring VLMs' ability to <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">operate computers</a> and <a href="https://www.youtube.com/watch?v=9Znt4dMAB7U&t=40s">play games</a>. 
+              On the side, I am currently exploring VLMs' ability to <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">operate computers</a> and <a href="https://www.youtube.com/watch?v=9Znt4dMAB7U">play games</a>. 
               <br />
               <br />
               I am finishing up the <a href="https://www.coursera.org/specializations/deep-learning?utm_medium=sem&utm_source=gg&utm_campaign=B2C_NAMER_deep-learning_deeplearning-ai_FTCOF_specializations_country-US-country-CA&campaignid=904733485&adgroupid=148411448815&device=c&keyword=&matchtype=&network=g&devicemodel=&adposition=&creativeid=654837734383&hide_mobile_promo&gad_source=1&gclid=CjwKCAjwrIixBhBbEiwACEqDJStkVMyMnnK8stellg5b7pdrCHPCNjwlcL-zDA6YR2CVSgLo2rXPghoC6d8QAvD_BwE">Deep Learning Specialization</a> through <a href="https://www.deeplearning.ai/">DeepLearning.ai</a> and I am interested in collaborating on research projects exploring VLMs' ability to reason and play games.  
