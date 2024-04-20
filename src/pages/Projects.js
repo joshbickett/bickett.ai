@@ -7,7 +7,12 @@ import MysteriesImage from "../assets/mysteries.jpg";
 import SelfOperatingComputerImage from "../assets/soc.png";
 import { ContentContainer } from "../styles/pageStyles";
 import { BigTileImages, PageContainer, MainContainer } from "../styles/pageStyles";
+import { useEffect } from "react";
 export const Projects = ({ isMobile }) => {
+  useEffect(() => {
+    document.title = "Projects";
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+  
   return (
     <PageContainer>
 
