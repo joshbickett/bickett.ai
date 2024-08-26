@@ -10,7 +10,7 @@ export const NavigationBar = ({ active, isMobile }) => {
   const [mobileExpand, setMobileExpand] = useState(false);
   const pages = [
     { name: "About", url: "/" },
-    { name: "Projects", url: "/projects" },
+    { name: "Side Projects", url: "/projects" },
     { name: "Blog", url: "/blog" },
     // { name: "GitHub", url: "https://github.com/joshbickett/" },
     // { name: "Twitter", url: "https://twitter.com/josh_bickett" },
