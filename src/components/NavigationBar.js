@@ -52,14 +52,15 @@ export const NavigationBar = ({ active, isMobile }) => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img
+          {/* <img
             src={me}
             alt="me"
             style={{ width: "60px", borderRadius: "50%", margin: "10px" }}
-          />
+          /> */}
           <div
             style={{
               fontSize: "25px",
+              padding: "10px",
             }}
           >
             Josh Bickett
