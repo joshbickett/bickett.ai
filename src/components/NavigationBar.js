@@ -10,7 +10,7 @@ export const NavigationBar = ({ active, isMobile }) => {
   const [mobileExpand, setMobileExpand] = useState(false);
   const pages = [
     { name: "About", url: "/" },
-    { name: "Side Projects", url: "/projects" },
+    { name: "Projects", url: "/projects" },
     { name: "Blog", url: "/blog" },
     // { name: "GitHub", url: "https://github.com/joshbickett/" },
     // { name: "Twitter", url: "https://twitter.com/josh_bickett" },
@@ -35,10 +35,23 @@ export const NavigationBar = ({ active, isMobile }) => {
 
   return (
     <div
-      style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}
+      style={{
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
     >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
-        <div style={{ display: "flex", alignItems: "center", }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
           <img
             src={me}
             alt="me"
@@ -69,8 +82,6 @@ export const NavigationBar = ({ active, isMobile }) => {
           }
         })}
       </NavigationBarContainer>
-
-      
     </div>
   );
 };
@@ -79,7 +90,6 @@ const ActiveNavButton = styled.div`
   color: black;
   padding: 10px;
   font-weight: bold;
-
 `;
 // add underline when hovered
 const NavButton = styled.div`
