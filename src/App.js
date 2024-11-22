@@ -1,11 +1,13 @@
 import { About } from "./pages/About";
 import { Projects } from "./pages/Projects";
 import { Writing } from "./pages/Writing";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
 import { Domains } from "./pages/Domains";
+import { Blog } from "./pages/Blog";
 
 export const App = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -20,10 +22,7 @@ export const App = () => {
           path="/projects"
           element={<Projects isMobile={isMobile} />}
         ></Route>
-        <Route
-          path="/writing"
-          element={<Writing isMobile={isMobile} />}
-        ></Route>
+        <Route path="/blog" element={<Blog />}></Route>
         <Route
           path="*"
           element={
