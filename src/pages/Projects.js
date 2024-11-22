@@ -14,12 +14,12 @@ import {
 import { useEffect } from "react";
 export const Projects = ({ isMobile }) => {
   useEffect(() => {
-    document.title = "Projects";
+    document.title = "Side Projects";
   }, []); // Empty dependency array ensures this runs only once when the component mounts
 
   return (
     <PageContainer>
-      <NavigationBar active={"Projects"} isMobile={isMobile} />
+      <NavigationBar active={"Side Projects"} isMobile={isMobile} />
 
       <MainContainer style={{ maxWidth: "700px" }}>
         <div
