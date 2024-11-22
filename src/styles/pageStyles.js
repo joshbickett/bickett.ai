@@ -1,6 +1,4 @@
-
 import styled from "@emotion/styled";
-
 
 export const MainContainer = styled.div`
   display: flex;
@@ -10,7 +8,8 @@ export const MainContainer = styled.div`
   width: 50%; // Default width for non-mobile devices
   gap: 20px;
 
-  @media (max-width: 768px) { // Adjusts for devices with a screen width of 768px or less
+  @media (max-width: 768px) {
+    // Adjusts for devices with a screen width of 768px or less
     width: 80%; // Full width on mobile
   }
 `;
@@ -53,6 +52,7 @@ export const AboutContainer = styled.div`
   align-items: stretch; // Ensures that in mobile view, items also stretch if needed
   gap: 20px; // Space between columns
   width: 100%;
+  border-bottom: 1px solid lightgray;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr; // Stack into a single column on mobile
@@ -63,12 +63,9 @@ export const ContactSection = styled.div`
   box-sizing: border-box;
   border-left: 1px solid lightgray;
   @media (max-width: 768px) {
-    border-left: None
+    border-left: None;
   }
 `;
-
-
-
 
 export const TileImages = styled.img`
   max-width: 100px;
@@ -78,7 +75,6 @@ export const TileImages = styled.img`
     max-width: 75px;
   }
 `;
-
 
 export const BigTileImages = styled.img`
   max-width: 150px;
