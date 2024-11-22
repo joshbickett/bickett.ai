@@ -26,6 +26,11 @@ export const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
   @media (max-width: 760px) {
     width: 100%;
     gap: 10px;
@@ -52,7 +57,6 @@ export const AboutContainer = styled.div`
   align-items: stretch; // Ensures that in mobile view, items also stretch if needed
   gap: 20px; // Space between columns
   width: 100%;
-  border-bottom: 1px solid lightgray;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr; // Stack into a single column on mobile

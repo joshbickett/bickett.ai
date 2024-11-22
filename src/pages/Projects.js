@@ -30,11 +30,14 @@ export const Projects = ({ isMobile }) => {
           }}
         >
           <ContentContainer>
-            <BigTileImages
-              src={SelfOperatingComputerImage}
-              alt="writing"
-              style={{ width: "200px", borderRadius: "30px", margin: "10px" }}
-            />
+            <div>
+              <h3>
+                <a href="https://www.speakwithbooks.com/">Speakwithbooks.com</a>
+              </h3>
+              <p>A voice-based learning platform.</p>
+            </div>
+          </ContentContainer>
+          <ContentContainer>
             <div>
               <h3>
                 <a href="https://github.com/OthersideAI/self-operating-computer">
@@ -55,7 +58,6 @@ export const Projects = ({ isMobile }) => {
             </div>
           </ContentContainer>
           <ContentContainer>
-            <BigTileImages src={memeImage} alt="writing" />
             <div>
               <h3>
                 <a href="https://makememe.ai/">makememe.ai</a>
@@ -82,7 +84,6 @@ export const Projects = ({ isMobile }) => {
             </div>
           </ContentContainer>
           <ContentContainer>
-            <BigTileImages src={gaitImage} alt="gait" />
             <div>
               <h3>
                 <a href="https://apps.apple.com/us/app/gait-a-driver-score-app/id1516971190">
@@ -100,7 +101,6 @@ export const Projects = ({ isMobile }) => {
             </div>
           </ContentContainer>
           <ContentContainer>
-            <BigTileImages src={MysteriesImage} alt="writing" />
             <div>
               <h3>
                 <a href="https://www.mysteries.ai/">Mysteries.ai</a>
@@ -112,7 +112,6 @@ export const Projects = ({ isMobile }) => {
             </div>
           </ContentContainer>
           <ContentContainer>
-            <BigTileImages src={RobotImage} alt="writing" />
             <div>
               <h3>
                 <a href="http://whichisai.com/">WhichIsAI</a>
