@@ -31,7 +31,7 @@ export const About = () => {
 
       <MainContainer>
         <AboutContainer>
-          <div style={{ padding: "10px" }}>
+          <div style={{ padding: "5px 10px" }}>
             <h3>Welcome</h3>
             <p>
               Hello, I am a software engineer at{" "}
