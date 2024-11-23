@@ -31,22 +31,9 @@ export const About = () => {
 
       <MainContainer>
         <AboutContainer>
-          <div>
-            <h3
-              style={{
-                padding: "20px 0",
-                margin: 0,
-              }}
-            >
-              Welcome
-            </h3>
-            <p
-              style={{
-                fontSize: "15px",
-                padding: 0,
-                margin: 0,
-              }}
-            >
+          <div style={{ padding: "10px 5px" }}>
+            <h3>Welcome</h3>
+            <p>
               Hello, I am a software engineer at{" "}
               <a href="https://www.hyperwriteai.com/">HyperWrite</a> building
               LLM-based writing tools. In addition, we've explored the
@@ -77,20 +64,8 @@ export const About = () => {
             </p>
           </div>
           <ContactSection>
-            <h3
-              style={{
-                padding: "20px 0",
-                margin: 0,
-              }}
-            >
-              Reaching out
-            </h3>
-            <p
-              style={{
-                padding: !isMobile ? "0 10px" : "0",
-                margin: 0,
-              }}
-            >
+            <h3>Reaching out</h3>
+            <p>
               The easiest way to reach me is to message me on Twitter{" "}
               <a href="https://twitter.com/josh_bickett">@josh_bickett.</a> I am
               interested in research collaborations, feel free to reach out if
