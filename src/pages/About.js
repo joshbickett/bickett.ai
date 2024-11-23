@@ -34,7 +34,7 @@ export const About = () => {
           <div>
             <h3
               style={{
-                padding: "10px 0",
+                padding: "20px 0",
                 margin: 0,
               }}
             >
@@ -79,7 +79,7 @@ export const About = () => {
           <ContactSection>
             <h3
               style={{
-                padding: !isMobile ? "10px" : "10px 0",
+                padding: "20px 0",
                 margin: 0,
               }}
             >

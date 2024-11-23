@@ -31,8 +31,8 @@ export const ContentContainer = styled.div`
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
+
   @media (max-width: 760px) {
-    width: 100%;
     gap: 10px;
   }
 `;
