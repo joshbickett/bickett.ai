@@ -168,13 +168,24 @@ export const Blog = ({ isMobile }) => {
               </p>
               <p>
                 It was worth mentioning that what I original envisioned as a
-                Self-Operating Computer with Llava-1.5 running locally was a bit
-                different in nature. The open-source community did eventually
+                Self-Operating Computer with Llava-1.5 running locally became
+                popular as a project that calls an external AI that operates the
+                computer. The open-source community did eventually
                 <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
                   {" "}
                   setup Llava to run locally
                 </a>{" "}
                 and fit the project to it's name.
+              </p>
+              <p>
+                A demo wasn't enough, I had to get an open-source project into
+                the communities hands so they could try it themselves. I hacked
+                on the project for a few more weeks and then about 20 days
+                later,{" "}
+                <a href="https://x.com/josh_bickett/status/1729163560713060546">
+                  we launched it to the open-source community
+                </a>{" "}
+                and the post went viral.
               </p>
             </div>
           </ContentContainer>
