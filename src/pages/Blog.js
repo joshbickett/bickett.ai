@@ -6,15 +6,11 @@ import RobotImage from "../assets/robot.png";
 import MysteriesImage from "../assets/mysteries.jpg";
 import SelfOperatingComputerImage from "../assets/soc.png";
 import { ContentContainer } from "../styles/pageStyles";
-import {
-  BigTileImages,
-  PageContainer,
-  MainContainer,
-} from "../styles/pageStyles";
+import { PageContainer, MainContainer } from "../styles/pageStyles";
 import { useEffect } from "react";
 export const Blog = ({ isMobile }) => {
   useEffect(() => {
-    document.title = "Projects";
+    document.title = "Blog";
   }, []); // Empty dependency array ensures this runs only once when the component mounts
 
   return (
