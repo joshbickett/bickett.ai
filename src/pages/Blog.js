@@ -122,7 +122,7 @@ export const Blog = ({ isMobile }) => {
                   Generalist Computer Agent
                 </a>{" "}
                 that would eventually become the{" "}
-                <a href="https://github.com/OthersideAI/self-operating-computer/issues/80">
+                <a href="https://github.com/OthersideAI/self-operating-computer/">
                   Self-Operating Computer Framework.
                 </a>
               </p>
