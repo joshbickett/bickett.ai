@@ -10,7 +10,7 @@ import { PageContainer, MainContainer } from "../styles/pageStyles";
 import { useEffect } from "react";
 export const Blog = ({ isMobile }) => {
   useEffect(() => {
-    document.title = "Blog";
+    document.title = "Blog | JoshBickett.com";
   }, []); // Empty dependency array ensures this runs only once when the component mounts
 
   return (
@@ -35,7 +35,7 @@ export const Blog = ({ isMobile }) => {
                 project? Create the first framework to enable multimodal models
                 to operate computers as humans, do with mouse and keyboard.{" "}
               </p>
-              <h4>The background</h4>
+              <h3>The background</h3>
               <p>
                 The first time a saw an AI agent was{" "}
                 <a href="https://x.com/sharifshameem/status/1405462642936799247">
@@ -97,7 +97,7 @@ export const Blog = ({ isMobile }) => {
                 the web. We had a lot of fun building it and did many novel
                 things, but that's for another post.
               </p>
-              <h4>A new type of AI agent</h4>
+              <h3>A new type of AI agent</h3>
               <p>
                 While building the LLM-based web browsing agent, our team
                 taggled some challenges with the LLM-only approach on the web.
@@ -126,7 +126,56 @@ export const Blog = ({ isMobile }) => {
                   Self-Operating Computer Framework.
                 </a>
               </p>
-              <p>...this blog is a work in progress...</p>
+              <p>
+                I played with the idea of a visual OS-level agent for a week.
+                What became clear is that if you give a multimodal model an
+                objective, passed it screenshots, and prompt it to output mouse
+                and keyboard actions, it can operate a computer. I formulated
+                the following architecture and built it. As far as I'm aware it
+                didn't exist prior.
+              </p>
+              <b>Architecture</b>
+              <ul>
+                <li>1. User passes objective</li>
+                <li>2. AI takes a screenshot</li>
+                <li>
+                  3. AI makes mouse or keyboard action toward the objective
+                </li>
+                <li>4. AI evaluates if it completed the objective</li>
+                <li>5. If not, go back to 2.</li>
+              </ul>
+              <p>
+                I tinkered and tinkered. I couldn't get it working with
+                Llava-1.5. Then...gpt-4-vision-preview was released. I hacked on
+                improving the project more and then hooked it up to
+                gpt-4-vision-preview. I gave it the objective: "write a poem in
+                the new note window."{" "}
+              </p>
+              <p>
+                It worked! When I took my hands of the keyboard and saw the
+                model output a mouse pixel movement. The mouse started moving
+                and moved over the new note pad. The model output a click event.
+                The model started typing a poem. It was one of the most surreal
+                moments I've experienced.
+              </p>
+              <p>
+                I was eager to share the results.{" "}
+                <a href="https://x.com/josh_bickett/status/1721975391047589934">
+                  I shared a post on Twitter.com
+                </a>{" "}
+                and the communities reaction was greater than I imaged. It was
+                the first time I had a tweet go viral.{" "}
+              </p>
+              <p>
+                It was worth mentioning that what I original envisioned as a
+                Self-Operating Computer with Llava-1.5 running locally was a bit
+                different in nature. The open-source community did eventually
+                <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
+                  {" "}
+                  setup Llava to run locally
+                </a>{" "}
+                and fit the project to it's name.
+              </p>
             </div>
           </ContentContainer>
         </div>
