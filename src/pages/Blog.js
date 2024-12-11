@@ -151,6 +151,13 @@ export const Blog = ({ isMobile }) => {
                 gpt-4-vision-preview. I gave it the objective: "write a poem in
                 the new note window."{" "}
               </p>
+              <p>
+                It worked! When I took my hands of the keyboard and saw the
+                model output a mouse pixel movement. The mouse started moving
+                and moved over the new note pad. The model output a click event.
+                The model started typing a poem. It was one of the most surreal
+                moments I've experienced.
+              </p>
               <b>Operation Details</b>
               <ul>
                 <li>
@@ -165,13 +172,7 @@ export const Blog = ({ isMobile }) => {
                   I'd convert it to pixels.
                 </li>
               </ul>
-              <p>
-                It worked! When I took my hands of the keyboard and saw the
-                model output a mouse pixel movement. The mouse started moving
-                and moved over the new note pad. The model output a click event.
-                The model started typing a poem. It was one of the most surreal
-                moments I've experienced.
-              </p>
+
               <p>
                 I was eager to share the results.{" "}
                 <a href="https://x.com/josh_bickett/status/1721975391047589934">
