@@ -151,6 +151,20 @@ export const Blog = ({ isMobile }) => {
                 gpt-4-vision-preview. I gave it the objective: "write a poem in
                 the new note window."{" "}
               </p>
+              <b>Operation Details</b>
+              <ul>
+                <li>
+                  - Keyboard operations: Doing key events is actually quite
+                  easy, you can just use the __ library
+                </li>
+                <li>
+                  - Mouse operations: This was a bit trickier, I had to figure
+                  out how to get the mouse to click on the right spot. I ended
+                  up using a grid system and sending the grid to the model. The
+                  model would guess the width and height in % of the total and
+                  I'd convert it to pixels.
+                </li>
+              </ul>
               <p>
                 It worked! When I took my hands of the keyboard and saw the
                 model output a mouse pixel movement. The mouse started moving
@@ -179,13 +193,54 @@ export const Blog = ({ isMobile }) => {
               </p>
               <p>
                 A demo wasn't enough, I had to get an open-source project into
-                the communities hands so they could try it themselves. I hacked
-                on the project for a few more weeks and then about 20 days
-                later,{" "}
+                the communities hands so they could try it themselves. I knew it
+                had some kinks to be worked out. Typically when I want to put
+                something in the hands of initial users, I don't setup some
+                ellaborate QA testing. Instead I sort by the most common use
+                cases in my head and then run those use cases to find bugs. Then
+                I go fix those bugs. I did that for a while until I felt that
+                the project was good enough to wow people when they tried it the
+                first time. 20 days later,{" "}
                 <a href="https://x.com/josh_bickett/status/1729163560713060546">
                   we launched it to the open-source community
                 </a>{" "}
-                and the post went viral.
+                and the post went viral. Shortly after it became the{" "}
+                <a href="https://x.com/josh_bickett/status/1730600095463399603">
+                  #1 trending project on GitHub.
+                </a>
+              </p>
+              <b>Architecture</b>
+              <p>
+                For the first time, I was figuring out how to run an open-source
+                project that many devs wanted to contribute to. That was a fun
+                and interesting challenge. For the first few weeks, I reviewed
+                new PRs the first day they were put up. Anyone who presented a
+                good PR was added to an email group. These contributors were a
+                great help and I was able to send issues into this group and
+                often someone would pick up the issue and go fix it.{" "}
+                <a href="https://github.com/michaelhhogue">@michahhogue</a>{" "}
+                provided high quality PRs and was very responsive so I added him
+                as a maintainer. In retrospect, one of my favorite parts was
+                witnessing an open-source community develop firsthand and
+                meeting collaborators who just show up and push valuable code.
+              </p>
+              <p>
+                The next project I saw use a vision model to operate the
+                computer was{" "}
+                <a href="https://x.com/hellokillian/status/1743418943120040109">
+                  Open Interpreter 0.2.0.{" "}
+                </a>
+                I built the capability into the existing Open Interpreter that
+                was already an established terminal-based agent with a large
+                GitHub following. A few things impressed me by their version:
+                <ul>
+                  <li>
+                    1. They hooked it up to Apples native modal UI library so
+                    the AI could display what it was doing at each step in the
+                    top right of the screen. 2.
+                  </li>
+                  <li>2. They used OCR to do precise clicking ...</li>
+                </ul>
               </p>
             </div>
           </ContentContainer>
