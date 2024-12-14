@@ -44,13 +44,13 @@ export const About = () => {
               .
               <br />
               <br />
-              On the side, I am currently exploring VLMs' ability to{" "}
+              I've explored VLMs' ability to{" "}
               <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
                 operate computers
               </a>{" "}
               and{" "}
               <a href="https://www.youtube.com/watch?v=9Znt4dMAB7U">
-                play games
+                play games.
               </a>
               .
               <br />
