@@ -30,6 +30,7 @@ export const Blog = ({ isMobile }) => {
               <h2>
                 A year since the launch of Self-Operating Computer Framework
               </h2>
+              <p>This is a work in progress...</p>
               <p>
                 November 3rd, 2023 was the “initial commit”. The goal of the
                 project? Create the first framework to enable multimodal models
