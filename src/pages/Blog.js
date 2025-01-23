@@ -290,13 +290,13 @@ export const Blog = ({ isMobile }) => {
                 </quote>
                 <br />
                 <br />
-                Looking ahead, there are discussions that OpenAI may launch a
-                similar agent called Operator.
+                Now, there are discussions that OpenAI may launch a similar
+                agent called Operator this week.
                 <br />
                 <br />
-                I'm excited to see what happens in the year to come. Meanwhile,
-                I will continue supporting the Self-Operating Computer
-                Framework.
+                I'm excited to see what the future holds. In the next five
+                years, I expect advanced multimodal models to fully operate
+                computers and handle long, complex tasks
               </p>
               <b>About the name</b>
               <p>
