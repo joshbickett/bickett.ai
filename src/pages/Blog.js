@@ -116,26 +116,60 @@ export const Blog = ({ isMobile }) => {
                   <ul>
                     <li>
                       <li>
-                        • Passed the objective, a screenshot, and a prompt to a
-                        Vision-language Model (VLM)
+                        <b>1.</b> Passed the objective, a screenshot, and a
+                        prompt to a Vision-language Model (VLM)
                       </li>
                       <li>
                         <ul>
-                          <li>• The prompt </li>
+                          <li>
+                            • The prompt could look something like the system
+                            prompt below{" "}
+                          </li>
                         </ul>
+                      </li>
+                      <li>
+                        <b>2.</b>
+                        Receive the LLM completion and evaluate if the objective
+                        is reached. If it is, then break out of loop.
+                      </li>
+                      <li>
+                        <b>3.</b> If not reached, parse the LLM completion and
+                        fire the keyboard or mouse commands with{" "}
+                        <code>pyautogui</code>
+                      </li>
+
+                      <li>
+                        <b>4.</b> Go back to step <b>1.</b>
                       </li>
                     </li>
                   </ul>
                 </li>
-
-                <li>2. AI takes a screenshot</li>
-                <li>
-                  3. AI makes mouse or keyboard action toward the objective
-                </li>
-                <li>4. AI evaluates if it completed the objective</li>
-                <li>5. If not, go back to 2.</li>
               </ul>
               <b>System Prompt</b>
+              <br />
+              <br />
+              <code>
+                You are operating a computer, using the same operating system as
+                a human. From looking at the screen, the objective, and your
+                previous actions, take the next best series of action. You have
+                4 possible operation actions available to you. The `pyautogui`
+                library will be used to execute your decision. Your output will
+                be used in a `json.loads` statement.
+                <br />
+                <br />
+                <b>1.</b> click - Move mouse and click - Look for text to click.
+                Try to find relevant text to click, but if there's nothing
+                relevant enough you can return `"nothing to click"` for the text
+                value and we'll try a different method.
+                <br />
+                2. write - Write with your keyboard
+                <br />
+                3. press - Use a hotkey or press key to operate the computer
+                <br />
+                4. done - The objective is completed
+              </code>
+              <br />
+              <br />
               <p>
                 I tinkered and tinkered. I couldn't get it working with
                 Llava-1.5. Then...gpt-4-vision-preview was released. I hacked on
