@@ -66,18 +66,18 @@ export const Blog = ({ isMobile }) => {
                 web-browsing agent and after a few months of our heads down we
                 launched what I understand to be the{" "}
                 <a href="https://venturebeat.com/ai/hyperwrite-unveils-breakthrough-ai-agent-that-can-surf-the-web-like-a-human/">
-                  first commercial available web-browsing agent.
+                  first commercially available web-browsing agent
                 </a>{" "}
               </p>
               <h3>A new type of AI agent</h3>
               <p>
                 While building a web browsing agent, we came to understand the
-                limitations of LLM-based web browsing agents. LLMs can't see the
+                limitations of LLM-based web-browsing agents. LLMs can't see the
                 visual representation of a page; they only process the HTML.
                 Understanding a page purely through HTML context is challenging
                 for LLMs. We anticipated multimodal agents that could interact
-                with computers more similarly to humans would help alleviate
-                some of these challenges.{" "}
+                with computers in a more human-like way would help address some
+                of these challenges.{" "}
               </p>
               <p>
                 Prior to GPT-4-vision-preview, Matt had shared an idea about
@@ -196,7 +196,7 @@ export const Blog = ({ isMobile }) => {
                 <li>
                   • Keyboard | <code>pyautogui.write</code>: <br />
                   <br />
-                  This operation is straight forward. The LLM completion is
+                  This operation is straightforward. The LLM completion is
                   simply passed to the <code>pyautogui</code> function.
                   <br />
                   <br />
@@ -220,7 +220,7 @@ export const Blog = ({ isMobile }) => {
                 <a href="https://x.com/josh_bickett/status/1721975391047589934">
                   I posted on Twitter
                 </a>{" "}
-                and the community's reaction was greater than I imaged.
+                and the community's reaction was greater than I imagined.
               </p>
 
               <p>
@@ -244,12 +244,12 @@ export const Blog = ({ isMobile }) => {
                 For the first time, I was learning how to manage an open-source
                 project that developers wanted to contribute to. That was a fun
                 and interesting challenge. For the first few weeks, I reviewed
-                new PRs the first day they were put up. Anyone who presented a
-                good PR was added to an email group. These contributors were a
+                new PRs the first day they were put up. Anyone who submitted a
+                strong PR was added to an email group. These contributors were a
                 great help and I was able to send issues into this group and
                 often someone would pick up the issue and go fix it.{" "}
                 <a href="https://github.com/michaelhhogue">@michahhogue</a>{" "}
-                provided high quality PRs and was very responsive so I added him
+                provided high-quality PRs and was very responsive so I added him
                 as a maintainer. In retrospect, one of my favorite parts was
                 witnessing an open-source community develop firsthand and
                 meeting collaborators who just show up and push valuable code.
@@ -275,7 +275,7 @@ export const Blog = ({ isMobile }) => {
                 More labs, more papers, more teams focused on this type of
                 framework. Namely, letting a VLM control a computer with a mouse
                 and a keyboard, like a human does. Most notably, Anthropic
-                unveiled their agent called{" "}
+                unveiled their agent, called{" "}
                 <a href="https://www.anthropic.com/news/3-5-models-and-computer-use">
                   Computer Use:
                 </a>
@@ -290,8 +290,8 @@ export const Blog = ({ isMobile }) => {
                 </quote>
                 <br />
                 <br />
-                Looking forward, there's talk that OpenAI is launching a similar
-                agent called Operator.
+                Looking ahead, there are discussions that OpenAI may launch a
+                similar agent called Operator.
                 <br />
                 <br />
                 I'm excited to see what happens in the year to come. Meanwhile,
@@ -301,12 +301,12 @@ export const Blog = ({ isMobile }) => {
               <b>About the name</b>
               <p>
                 {" "}
-                It is worth mentioning that what I originally envisioned as a
+                It is worth mentioning that my original vision of a
                 Self-Operating Computer with <code>Llava-1.5</code> running
-                locally became popular as a project that uses an external AI to
-                operate the computer. In reality, the project became popular
-                while using an external AI via OpenAI API. The open-source
-                community did eventually{" "}
+                locally evolved into a project that gained popularity for using
+                an external AI to operate the computer. In reality, the project
+                became popular while using an external AI via OpenAI API. The
+                open-source community did eventually{" "}
                 <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
                   integrate Llava.
                 </a>
