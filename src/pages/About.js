@@ -44,9 +44,7 @@ export const About = () => {
             <h3>Reaching out</h3>
             <p>
               The easiest way to reach me is to message me on Twitter{" "}
-              <a href="https://twitter.com/josh_bickett">@josh_bickett.</a> I am
-              interested in research collaborations, feel free to reach out if
-              you have an interesting project.
+              <a href="https://twitter.com/josh_bickett">@josh_bickett.</a>
             </p>
           </ContactSection>
         </AboutContainer>
