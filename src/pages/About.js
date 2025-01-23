@@ -36,7 +36,7 @@ export const About = () => {
             <p>
               Hello, I am a software engineer at{" "}
               <a href="https://www.hyperwriteai.com/">OthersideAI</a> building
-              AI products and indiehacking on side projects on nights &
+              AI products and indiehacking on side projects during nights &
               weekends.
             </p>
           </div>
