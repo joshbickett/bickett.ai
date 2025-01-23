@@ -304,9 +304,8 @@ export const Blog = ({ isMobile }) => {
                 It is worth mentioning that my original vision of a
                 Self-Operating Computer with <code>Llava-1.5</code> running
                 locally evolved into a project that gained popularity for using
-                an external AI to operate the computer. In reality, the project
-                became popular while using an external AI via OpenAI API. The
-                open-source community did eventually{" "}
+                an external AI to operate the computer. The open-source
+                community did eventually{" "}
                 <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
                   integrate Llava.
                 </a>
