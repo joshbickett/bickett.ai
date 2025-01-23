@@ -296,7 +296,7 @@ export const Blog = ({ isMobile }) => {
                 <br />
                 I'm excited to see what the future holds. In the next five
                 years, I expect advanced multimodal models to fully operate
-                computers and handle long, complex tasks
+                computers and handle long, complex tasks.
               </p>
               <b>About the name</b>
               <p>
