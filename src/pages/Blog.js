@@ -267,7 +267,7 @@ export const Blog = ({ isMobile }) => {
                     the AI could display what it was doing at each step in the
                     top right of the screen. 2.
                   </li>
-                  <li>2. They used OCR to do precise clicking ...</li>
+                  <li>2. They used OCR to do precise clicking </li>
                 </ul>
               </p>
               <p>
