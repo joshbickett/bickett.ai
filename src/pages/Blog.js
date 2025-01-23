@@ -71,7 +71,7 @@ export const Blog = ({ isMobile }) => {
               </p>
               <h3>A new type of AI agent</h3>
               <p>
-                While building a web browsing agent, we came to understand the
+                While building a web-browsing agent, we came to understand the
                 limitations of LLM-based web-browsing agents. LLMs can't see the
                 visual representation of a page; they only process the HTML.
                 Understanding a page purely through HTML context is challenging
