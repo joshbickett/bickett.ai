@@ -173,7 +173,7 @@ export const Blog = ({ isMobile }) => {
               <br />
               <br />
               <p>
-                After tinkering and tinkering I could not get it working with
+                After tinkering and tinkering I could not get it working with{" "}
                 <code>Llava-1.5</code>. Then on November 6,{" "}
                 <a href="https://openai.com/index/new-models-and-developer-products-announced-at-devday/">
                   gpt-4-vision-preview was released.
