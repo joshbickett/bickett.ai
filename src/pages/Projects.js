@@ -32,9 +32,9 @@ export const Projects = ({ isMobile }) => {
           <ContentContainer>
             <div>
               <h3>
-                <a href="https://www.speakwithbooks.com/">Speakwithbooks.com</a>
+                <a href="https://www.willpayforthis.com/">WillPayForThis.com</a>
               </h3>
-              <p>A voice-based learning platform.</p>
+              <p>A shortcut to market-validated ideas.</p>
             </div>
           </ContentContainer>
           <ContentContainer>
@@ -45,14 +45,15 @@ export const Projects = ({ isMobile }) => {
                 </a>
               </h3>
               <p>
-                A framework to enable multimodal models to operate computers
+                In Nov. 2023 I built the first Computer Use agent. It is a
+                framework to enable multimodal models to operate computers
                 similar to how humans do. VentureBeat publish an{" "}
                 <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
                   article
                 </a>{" "}
-                about it. There are a few demos available on YouTube such as{" "}
+                about it. There are a few demos available on{" "}
                 <a href="https://www.youtube.com/watch?v=UKRti40U8IA&t=6s">
-                  this one.
+                  YouTube
                 </a>
               </p>
             </div>
