@@ -30,14 +30,15 @@ export const Blog = ({ isMobile }) => {
               <h2>
                 A year since the launch of Self-Operating Computer Framework
               </h2>
+              <b>January 22, 2025</b>
               <p>
                 November 3rd, 2023 was the “initial commit”. The goal of the
                 project? Create the first framework to enable multimodal models
-                to operate computers as humans, with mouse and keyboard.{" "}
+                to operate computers like humans, using a mouse and keyboard.{" "}
               </p>
               <h3>The background</h3>
               <p>
-                The first time a saw an AI agent was{" "}
+                The first time I saw an AI agent was{" "}
                 <a href="https://x.com/sharifshameem/status/1405462642936799247">
                   Sharif's GPT-3 demo
                 </a>{" "}
@@ -56,8 +57,8 @@ export const Blog = ({ isMobile }) => {
                 Over a year later in September 2022, a similar web-browsing
                 agent project called{" "}
                 <a href="https://github.com/nat/natbot">Natbot</a> was
-                open-sourced and I got the chance to clone and try it. Nat threw
-                the project together in a weekend. He's a serious hacker.
+                open-sourced and I got the chance to clone and try it. Nat
+                completed the project in a weekend. He's a serious hacker.
               </p>
 
               <p>
@@ -70,13 +71,13 @@ export const Blog = ({ isMobile }) => {
               </p>
               <h3>A new type of AI agent</h3>
               <p>
-                While building an web browsing agent, we came to understand the
-                limitations with LLM-based web browsing agent. LLMs can't
-                actually see the page. They see the HTML. Understanding a page
-                purely by through HTML context is challenging for LLMs. We
-                anticipated multimodal agents that could iteract with computers
-                more similarly to humans would help alleviate some of these
-                challenges.{" "}
+                While building a web browsing agent, we came to understand the
+                limitations of LLM-based web browsing agents. LLMs can't see the
+                visual representation of a page; they only process the HTML.
+                Understanding a page purely through HTML context is challenging
+                for LLMs. We anticipated multimodal agents that could interact
+                with computers more similarly to humans would help alleviate
+                some of these challenges.{" "}
               </p>
               <p>
                 Prior to GPT-4-vision-preview, Matt had shared an idea about
@@ -103,7 +104,7 @@ export const Blog = ({ isMobile }) => {
               <p>
                 I played with the idea of a visual OS-level agent for a week.
                 What became clear is that if you give a multimodal model an
-                objective, passed it screenshots, and prompt it to output mouse
+                objective, pass it screenshots, and prompt it to output mouse
                 and keyboard actions, it could operate a computer. I formulated
                 an architecture and built it. As far as I'm aware it didn't
                 exist prior.
@@ -152,7 +153,8 @@ export const Blog = ({ isMobile }) => {
                 You are operating a computer, using the same operating system as
                 a human. From looking at the screen, the objective, and your
                 previous actions, take the next best series of action. You have
-                4 possible operation actions available to you. The `pyautogui`
+                4 possible operation actions available to you. The{" "}
+                <code>pyautogui</code>
                 library will be used to execute your decision. Your output will
                 be used in a `json.loads` statement.
                 <br />
@@ -171,75 +173,76 @@ export const Blog = ({ isMobile }) => {
               <br />
               <br />
               <p>
-                I tinkered and tinkered. I couldn't get it working with
-                Llava-1.5. Then...gpt-4-vision-preview was released. I hacked on
-                improving the project more and then hooked it up to
-                gpt-4-vision-preview. I gave it the objective: "write a poem in
-                the new note window."{" "}
+                After tinkering and tinkering I could not get it working with
+                <code>Llava-1.5</code>. Then on November 6,{" "}
+                <a href="https://openai.com/index/new-models-and-developer-products-announced-at-devday/">
+                  gpt-4-vision-preview was released.
+                </a>{" "}
+                I hooked up <code>gpt-4-vision-preview</code> and I gave it the
+                objective: "write a poem in the new note window."{" "}
               </p>
               <p>
-                It worked! When I took my hands of the keyboard and saw the
-                model output a mouse pixel movement. The mouse started moving
-                and moved over the new note pad. The model output a click event.
-                The model started typing a poem. It was one of the most surreal
-                moments I've experienced.
+                I took my hands off the keyboard and saw the model output a
+                mouse pixel. <code>pyautogui</code> read the pixel location. The
+                mouse moved over the new note pad. The model output a click
+                event. <code>pyautogui</code> fired the click event. The model
+                output a poem. <code>pyautogui</code> typed the poem. It
+                happened and I was left staring at the completed poem in the
+                Note. I realized that was probably the first time a VLM operated
+                a computer. It was a surreal moment.
               </p>
-              <b>Operation Details</b>
+              <b>Operating System Commands</b>
               <ul>
                 <li>
-                  - Keyboard operations: Doing key events is actually quite
-                  easy, you can just use the __ library
+                  • Keyboard | <code>pyautogui.write</code>: <br />
+                  <br />
+                  This operation is straight forward. The LLM completion is
+                  simply passed to the <code>pyautogui</code> function.
+                  <br />
+                  <br />
                 </li>
                 <li>
-                  - Mouse operations: This was a bit trickier, I had to figure
-                  out how to get the mouse to click on the right spot. I ended
-                  up using a grid system and sending the grid to the model. The
-                  model would guess the width and height in % of the total and
-                  I'd convert it to pixels.
+                  • Mouse Click | <code>pyautogui.moveTo</code> &{" "}
+                  <code>pyautogui.click</code>: <br />
+                  <br /> This is a bit trickier, I had to figure out how to get
+                  the mouse to click on the right spot. I ended up using a grid
+                  system and sending the grid to the model. The model would
+                  guess the width and height in % of the total and I'd convert
+                  it to pixels.
+                  <br />
+                  <br />
                 </li>
               </ul>
 
+              <b>Open-Sourcing</b>
               <p>
                 I was eager to share the results.{" "}
                 <a href="https://x.com/josh_bickett/status/1721975391047589934">
-                  I shared a post on Twitter.com
+                  I posted on Twitter
                 </a>{" "}
-                and the communities reaction was greater than I imaged. It was
-                the first time I had a tweet go viral.{" "}
+                and the community's reaction was greater than I imaged.
               </p>
+
               <p>
-                It was worth mentioning that what I original envisioned as a
-                Self-Operating Computer with Llava-1.5 running locally became
-                popular as a project that calls an external AI that operates the
-                computer. The open-source community did eventually
-                <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
-                  {" "}
-                  setup Llava to run locally
-                </a>{" "}
-                and fit the project to it's name.
-              </p>
-              <p>
-                A demo wasn't enough, I had to get an open-source project into
-                the communities hands so they could try it themselves. I knew it
-                had some kinks to be worked out. Typically when I want to put
-                something in the hands of initial users, I don't setup some
-                ellaborate QA testing. Instead I sort by the most common use
-                cases in my head and then run those use cases to find bugs. Then
-                I go fix those bugs. I did that for a while until I felt that
-                the project was good enough to wow people when they tried it the
-                first time. 20 days later,{" "}
+                A demo wasn't enough, I wanted to get an open-source project
+                into the community's hands so they could try it themselves. It
+                had some issues to be worked out. I sorted through the most
+                common use cases in my head and ran them to identify bugs. Then
+                I fixed those bugs. I did that for a while until I felt that the
+                project was good enough to wow people when they tried it the
+                first time. Twenty days later,{" "}
                 <a href="https://x.com/josh_bickett/status/1729163560713060546">
-                  we launched it to the open-source community
+                  I launched it to the open-source community
                 </a>{" "}
                 and the post went viral. Shortly after it became the{" "}
                 <a href="https://x.com/josh_bickett/status/1730600095463399603">
                   #1 trending project on GitHub.
                 </a>
               </p>
-              <b>Architecture</b>
+              <b>Fast forward</b>
               <p>
-                For the first time, I was figuring out how to run an open-source
-                project that many devs wanted to contribute to. That was a fun
+                For the first time, I was learning how to manage an open-source
+                project that developers wanted to contribute to. That was a fun
                 and interesting challenge. For the first few weeks, I reviewed
                 new PRs the first day they were put up. Anyone who presented a
                 good PR was added to an email group. These contributors were a
@@ -257,9 +260,7 @@ export const Blog = ({ isMobile }) => {
                 <a href="https://x.com/hellokillian/status/1743418943120040109">
                   Open Interpreter 0.2.0.{" "}
                 </a>
-                I built the capability into the existing Open Interpreter that
-                was already an established terminal-based agent with a large
-                GitHub following. A few things impressed me by their version:
+                A few things impressed me by their version:
                 <ul>
                   <li>
                     1. They hooked it up to Apples native modal UI library so
@@ -268,6 +269,47 @@ export const Blog = ({ isMobile }) => {
                   </li>
                   <li>2. They used OCR to do precise clicking ...</li>
                 </ul>
+              </p>
+              <p>
+                Computer-operating agents gained more traction over the year.
+                More labs, more papers, more teams focused on this type of
+                framework. Namely, letting a VLM control a computer with a mouse
+                and a keyboard, like a human does. Most notably, Anthropic
+                unveiled their agent called{" "}
+                <a href="https://www.anthropic.com/news/3-5-models-and-computer-use">
+                  Computer Use:
+                </a>
+                <br />
+                <br />
+                <quote>
+                  "We’re also introducing a groundbreaking new capability in
+                  public beta: computer use. Available today on the API,
+                  developers can direct Claude to use computers the way people
+                  do—by looking at a screen, moving a cursor, clicking buttons,
+                  and typing text."
+                </quote>
+                <br />
+                <br />
+                Looking forward, there's talk that OpenAI is launching a similar
+                agent called Operator.
+                <br />
+                <br />
+                I'm excited to see what happens in the year to come. Meanwhile,
+                I will continue supporting the Self-Operating Computer
+                Framework.
+              </p>
+              <b>About the name</b>
+              <p>
+                {" "}
+                It is worth mentioning that what I originally envisioned as a
+                Self-Operating Computer with <code>Llava-1.5</code> running
+                locally became popular as a project that uses an external AI to
+                operate the computer. In reality, the project became popular
+                while using an external AI via OpenAI API. The open-source
+                community did eventually{" "}
+                <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
+                  integrate Llava.
+                </a>
               </p>
             </div>
           </ContentContainer>
