@@ -80,16 +80,17 @@ export const Blog = ({ isMobile }) => {
                 of these challenges.{" "}
               </p>
               <p>
-                Prior to GPT-4-vision-preview, Matt had shared an idea about
-                overlaying a grid on a screenshot and sending that to a
-                multimodal model so it could estimate pixels to click on a
+                Prior to <code>GPT-4-vision-preview</code>, Matt had shared an
+                idea about overlaying a grid on a screenshot and sending that to
+                a multimodal model so it could estimate pixels to click on a
                 screen.
               </p>
               <p>
-                LLaVA-1.5 was released in October 2023. Matt Shumer hosted the
-                model and shared an endpoint with me. I started hacking around
-                with it. We knew that GPT-4-vision-preview would arrive in the
-                near future.
+                <code>LLaVA-1.5</code> was released in October 2023. Matt Shumer
+                hosted the model and shared an endpoint with me. I started
+                hacking around with it. We knew that{" "}
+                <code>GPT-4-vision-preview</code> would arrive in the near
+                future.
               </p>
               <p>
                 At first I called the project the{" "}
@@ -154,9 +155,8 @@ export const Blog = ({ isMobile }) => {
                 a human. From looking at the screen, the objective, and your
                 previous actions, take the next best series of action. You have
                 4 possible operation actions available to you. The{" "}
-                <code>pyautogui</code>
-                library will be used to execute your decision. Your output will
-                be used in a `json.loads` statement.
+                <code>pyautogui</code> library will be used to execute your
+                decision. Your output will be used in a `json.loads` statement.
                 <br />
                 <br />
                 <b>1.</b> click - Move mouse and click - Look for text to click.
