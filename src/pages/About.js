@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 
-// Assets - assuming these exist in your project
-// If not, replace with appropriate image paths
+// If you haven't installed react-icons, run:
+// npm install react-icons
+// or
+// yarn add react-icons
+import { FaTwitter, FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa";
+
+// Assets (replace with your actual paths)
 import scienceImg from "../assets/science.png";
 import webImage from "../assets/web2.png";
 import startupImage from "../assets/startups.png";
@@ -41,7 +46,7 @@ export const About = () => {
           />
           <HeroText>
             <Heading>Josh Bickett</Heading>
-            <Subheading>Developer and entrepreneur</Subheading>
+            <Subheading>Developer and Entrepreneur</Subheading>
           </HeroText>
         </HeroContent>
       </HeroSection>
@@ -85,7 +90,8 @@ export const About = () => {
                 />
                 <ExpertiseTitle>Software Engineering</ExpertiseTitle>
                 <ExpertiseDescription>
-                  Full-stack development with focus on AI-powered applications.
+                  Full-stack development with a focus on AI-powered
+                  applications.
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>
@@ -119,8 +125,12 @@ export const About = () => {
           </ExpertiseGrid>
         </Section>
 
+        {/*
+          Renamed section from "Get in Touch" to "Connect With Me"
+          and moved social links here
+        */}
         <Section id="contact">
-          <SectionHeading>Get in Touch</SectionHeading>
+          <SectionHeading>Connect With Me</SectionHeading>
           <SectionContent>
             <p>
               The easiest way to reach me is to message me on Twitter{" "}
@@ -132,6 +142,42 @@ export const About = () => {
               interesting ideas at the intersection of technology and science.
             </p>
           </SectionContent>
+
+          {/* Social links with icons */}
+          <SocialLinks>
+            <SocialIcon
+              href="https://twitter.com/josh_bickett"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <FaTwitter />
+            </SocialIcon>
+            <SocialIcon
+              href="https://github.com/joshbickett"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </SocialIcon>
+            <SocialIcon
+              href="https://www.linkedin.com/in/josh-bickett-4219b166/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </SocialIcon>
+            <SocialIcon
+              href="https://www.youtube.com/@joshbickett"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
+              <FaYoutube />
+            </SocialIcon>
+          </SocialLinks>
         </Section>
       </MainContainer>
 
@@ -140,20 +186,7 @@ export const About = () => {
           <FooterText>
             © {new Date().getFullYear()} Josh Bickett. All rights reserved.
           </FooterText>
-          <SocialLinks>
-            <SocialLink href="https://twitter.com/josh_bickett">
-              Twitter
-            </SocialLink>
-            <SocialLink href="https://github.com/joshbickett">
-              GitHub
-            </SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/josh-bickett-4219b166/">
-              LinkedIn
-            </SocialLink>
-            <SocialLink href="https://www.youtube.com/@joshbickett">
-              YouTube
-            </SocialLink>
-          </SocialLinks>
+          {/* Note: SocialLinks removed from footer */}
         </FooterContent>
       </Footer>
     </PageContainer>
@@ -386,6 +419,7 @@ const ExpertiseDescription = styled.p`
   margin: 0;
 `;
 
+/* Footer */
 const Footer = styled.footer`
   background-color: #1e293b;
   color: white;
@@ -416,19 +450,20 @@ const FooterText = styled.p`
   }
 `;
 
+/* Social Links in the new "Connect With Me" section */
 const SocialLinks = styled.div`
   display: flex;
   gap: 1.5rem;
+  margin-top: 2rem;
 `;
 
-const SocialLink = styled.a`
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 0.875rem;
+const SocialIcon = styled.a`
+  font-size: 1.75rem;
+  color: #475569;
   transition: color 0.2s ease;
 
   &:hover {
-    color: white;
+    color: #2563eb;
   }
 `;
 
