@@ -11,14 +11,26 @@ import profileImage from "../assets/me.jpeg"; // Placeholder for profile image
 export const About = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
 
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <PageContainer>
       <NavigationBar active="Home" isMobile={isMobile}>
-        <NavItem active>Home</NavItem>
-        <NavItem>Indie Hacking</NavItem>
-        <NavItem>Research</NavItem>
-        <NavItem>Blog</NavItem>
-        <NavItem>Contact</NavItem>
+        <NavItem active href="/">
+          Home
+        </NavItem>
+        <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
+        <NavItem href="/research">Research</NavItem>
+        <NavItem href="/blog">Blog</NavItem>
+        <NavItem href="#contact" onClick={handleContactClick}>
+          Contact
+        </NavItem>
       </NavigationBar>
 
       <HeroSection>
@@ -72,16 +84,21 @@ export const About = () => {
                 Full-stack development with focus on AI-powered applications.
               </ExpertiseDescription>
             </ExpertiseCard>
-            <ExpertiseCard>
-              <ExpertiseIcon
-                src={startupImage || "/placeholder.svg?height=80&width=80"}
-                alt="Startups"
-              />
-              <ExpertiseTitle>Indie Hacking</ExpertiseTitle>
-              <ExpertiseDescription>
-                I build, launch, and market side projects.
-              </ExpertiseDescription>
-            </ExpertiseCard>
+            <a
+              href="https://indiepa.ge/bickett"
+              style={{ textDecoration: "none" }}
+            >
+              <ExpertiseCard>
+                <ExpertiseIcon
+                  src={startupImage || "/placeholder.svg?height=80&width=80"}
+                  alt="Startups"
+                />
+                <ExpertiseTitle>Indie Hacking</ExpertiseTitle>
+                <ExpertiseDescription>
+                  I build, launch, and market side projects.
+                </ExpertiseDescription>
+              </ExpertiseCard>
+            </a>
             <ExpertiseCard>
               <ExpertiseIcon
                 src={scienceImg || "/placeholder.svg?height=80&width=80"}
@@ -95,7 +112,7 @@ export const About = () => {
           </ExpertiseGrid>
         </Section>
 
-        <Section>
+        <Section id="contact">
           <SectionHeading>Get in Touch</SectionHeading>
           <SectionContent>
             <p>
@@ -125,6 +142,9 @@ export const About = () => {
             </SocialLink>
             <SocialLink href="https://www.linkedin.com/in/josh-bickett-4219b166/">
               LinkedIn
+            </SocialLink>
+            <SocialLink href="https://www.youtube.com/@joshbickett">
+              YouTube
             </SocialLink>
           </SocialLinks>
         </FooterContent>
