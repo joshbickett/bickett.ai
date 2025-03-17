@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 import scienceImg from "../assets/science.png";
 import webImage from "../assets/web2.png";
 import startupImage from "../assets/startups.png";
-import profileImage from "../assets/me.png"; // Placeholder for profile image
+import profileImage from "../assets/me.jpeg"; // Placeholder for profile image
 
 export const About = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
