@@ -51,8 +51,8 @@ export const About = () => {
           <SectionHeading>About Me</SectionHeading>
           <SectionContent>
             <p>
-              I work at OthersideAI as a lead software engineer where we build
-              and scale AI products including ones like{" "}
+              I am the lead software engineer at OthersideAI where we build and
+              scale AI products such as{" "}
               <a
                 style={{ textDecoration: "none" }}
                 href="https://www.hyperwriteai.com/"
@@ -66,7 +66,7 @@ export const About = () => {
               >
                 indie hack
               </a>{" "}
-              or do independent AI research.
+              or do <a href="/research">independent research</a>.
             </p>
           </SectionContent>
         </Section>
@@ -74,16 +74,21 @@ export const About = () => {
         <Section>
           <SectionHeading>Areas of Focus</SectionHeading>
           <ExpertiseGrid>
-            <ExpertiseCard>
-              <ExpertiseIcon
-                src={webImage || "/placeholder.svg?height=80&width=80"}
-                alt="Web Development"
-              />
-              <ExpertiseTitle>Software Engineering</ExpertiseTitle>
-              <ExpertiseDescription>
-                Full-stack development with focus on AI-powered applications.
-              </ExpertiseDescription>
-            </ExpertiseCard>
+            <a
+              href="https://www.hyperwriteai.com/"
+              style={{ textDecoration: "none" }}
+            >
+              <ExpertiseCard>
+                <ExpertiseIcon
+                  src={webImage || "/placeholder.svg?height=80&width=80"}
+                  alt="Web Development"
+                />
+                <ExpertiseTitle>Software Engineering</ExpertiseTitle>
+                <ExpertiseDescription>
+                  Full-stack development with focus on AI-powered applications.
+                </ExpertiseDescription>
+              </ExpertiseCard>
+            </a>
             <a
               href="https://indiepa.ge/bickett"
               style={{ textDecoration: "none" }}
@@ -99,16 +104,18 @@ export const About = () => {
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>
-            <ExpertiseCard>
-              <ExpertiseIcon
-                src={scienceImg || "/placeholder.svg?height=80&width=80"}
-                alt="Science"
-              />
-              <ExpertiseTitle>Research</ExpertiseTitle>
-              <ExpertiseDescription>
-                I conduct research in AI and its applications in various fields.
-              </ExpertiseDescription>
-            </ExpertiseCard>
+            <a href="/research" style={{ textDecoration: "none" }}>
+              <ExpertiseCard>
+                <ExpertiseIcon
+                  src={scienceImg || "/placeholder.svg?height=80&width=80"}
+                  alt="Science"
+                />
+                <ExpertiseTitle>Research</ExpertiseTitle>
+                <ExpertiseDescription>
+                  I experiment and learn about software, AI, and more.
+                </ExpertiseDescription>
+              </ExpertiseCard>
+            </a>
           </ExpertiseGrid>
         </Section>
 
