@@ -15,8 +15,9 @@ export const About = () => {
     <PageContainer>
       <NavigationBar active="Home" isMobile={isMobile}>
         <NavItem active>Home</NavItem>
-        <NavItem>Research</NavItem>
         <NavItem>Indie Hacking</NavItem>
+        <NavItem>Research</NavItem>
+        <NavItem>Blog</NavItem>
         <NavItem>Contact</NavItem>
       </NavigationBar>
 
@@ -73,23 +74,22 @@ export const About = () => {
             </ExpertiseCard>
             <ExpertiseCard>
               <ExpertiseIcon
+                src={startupImage || "/placeholder.svg?height=80&width=80"}
+                alt="Startups"
+              />
+              <ExpertiseTitle>Indie Hacking</ExpertiseTitle>
+              <ExpertiseDescription>
+                I build, launch, and market side projects.
+              </ExpertiseDescription>
+            </ExpertiseCard>
+            <ExpertiseCard>
+              <ExpertiseIcon
                 src={scienceImg || "/placeholder.svg?height=80&width=80"}
                 alt="Science"
               />
               <ExpertiseTitle>Research</ExpertiseTitle>
               <ExpertiseDescription>
-                Applied research in machine learning and computational methods.
-              </ExpertiseDescription>
-            </ExpertiseCard>
-
-            <ExpertiseCard>
-              <ExpertiseIcon
-                src={startupImage || "/placeholder.svg?height=80&width=80"}
-                alt="Startups"
-              />
-              <ExpertiseTitle>Startups</ExpertiseTitle>
-              <ExpertiseDescription>
-                Building and scaling innovative startups and side projects.
+                I conduct research in AI and its applications in various fields.
               </ExpertiseDescription>
             </ExpertiseCard>
           </ExpertiseGrid>
