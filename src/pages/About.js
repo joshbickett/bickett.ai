@@ -92,7 +92,7 @@ export const About = () => {
                   src={webImage || "/placeholder.svg?height=80&width=80"}
                   alt="Web Development"
                 />
-                <ExpertiseTitle>Software Engineering</ExpertiseTitle>
+                <ExpertiseTitle>OthersideAI</ExpertiseTitle>
                 <ExpertiseDescription>
                   Full-stack development with a focus on AI-powered
                   applications.
