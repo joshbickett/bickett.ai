@@ -18,12 +18,10 @@ export const Projects = ({ isMobile }) => {
     document.title = "Projects";
   }, []);
 
+  // Update the handler so it navigates to About page with hash
   const handleContactClick = (e) => {
     e.preventDefault();
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+    window.location.href = "/#contact";
   };
 
   return (
@@ -64,6 +62,18 @@ export const Projects = ({ isMobile }) => {
                 <ProjectDescription>
                   A framework enabling multimodal models to operate computers
                   similarly to humans.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+            <a
+              href="https://github.com/joshbickett/multimodal-gamer"
+              style={{ textDecoration: "none" }}
+            >
+              <ProjectCard>
+                <ProjectTitle>Multimodal Gamer</ProjectTitle>
+                <ProjectDescription>
+                  A framework to enable multimodal models to play games on a
+                  computer.
                 </ProjectDescription>
               </ProjectCard>
             </a>
