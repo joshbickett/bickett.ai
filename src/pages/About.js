@@ -114,15 +114,15 @@ export const About = () => {
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>
-            <a href="/research" style={{ textDecoration: "none" }}>
+            <a href="/projects" style={{ textDecoration: "none" }}>
               <ExpertiseCard>
                 <ExpertiseIcon
                   src={scienceImg || "/placeholder.svg?height=80&width=80"}
                   alt="Science"
                 />
-                <ExpertiseTitle>Research</ExpertiseTitle>
+                <ExpertiseTitle>Research & Projects</ExpertiseTitle>
                 <ExpertiseDescription>
-                  I experiment and learn about software, AI, and more.
+                  I work on experiments, prototypes, and frameworks.
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>

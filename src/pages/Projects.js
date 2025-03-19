@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { FaStar } from "react-icons/fa"; // Import star icon
 
 // Project images
 import memeImage from "../assets/meme.jpg";
@@ -18,7 +19,7 @@ export const Projects = ({ isMobile }) => {
     document.title = "Projects";
   }, []);
 
-  // Update the handler so it navigates to About page with hash
+  // Navigate to About page with hash for lazy scrolling
   const handleContactClick = (e) => {
     e.preventDefault();
     window.location.href = "/#contact";
@@ -63,6 +64,10 @@ export const Projects = ({ isMobile }) => {
                   A framework enabling multimodal models to operate computers
                   similarly to humans.
                 </ProjectDescription>
+                <StarCount>
+                  <StarIcon />
+                  <span>9500</span>
+                </StarCount>
               </ProjectCard>
             </a>
             <a
@@ -75,6 +80,10 @@ export const Projects = ({ isMobile }) => {
                   A framework to enable multimodal models to play games on a
                   computer.
                 </ProjectDescription>
+                <StarCount>
+                  <StarIcon />
+                  <span>98</span>
+                </StarCount>
               </ProjectCard>
             </a>
           </ProjectsGrid>
@@ -92,7 +101,7 @@ export const Projects = ({ isMobile }) => {
   );
 };
 
-// Styled Components (Navigation, Hero, Layout, and Footer)
+// Styled Components
 
 const PageContainer = styled.div`
   display: flex;
@@ -261,6 +270,19 @@ const ProjectDescription = styled.p`
   color: #475569;
   margin: 0;
   flex: 1;
+`;
+
+const StarCount = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: #facc15; /* Golden color for stars */
+  font-weight: 500;
+  font-size: 1rem;
+`;
+
+const StarIcon = styled(FaStar)`
+  margin-right: 0.5rem;
 `;
 
 const Footer = styled.footer`
