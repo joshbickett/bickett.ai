@@ -31,7 +31,7 @@ export const About = () => {
           Home
         </NavItem>
         <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
-        <NavItem href="/research">Research</NavItem>
+        <NavItem href="/projects">Research & Projects</NavItem>
         <NavItem href="/blog">Blog</NavItem>
         <NavItem href="#contact" onClick={handleContactClick}>
           Contact
