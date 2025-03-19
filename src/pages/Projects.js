@@ -1,130 +1,361 @@
-import { NavigationBar } from "../components/NavigationBar";
+import styled from "@emotion/styled";
+import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
+
+// Project images
 import memeImage from "../assets/meme.jpg";
 import musicImage from "../assets/music.png";
 import gaitImage from "../assets/gait-2.png";
 import RobotImage from "../assets/robot.png";
 import MysteriesImage from "../assets/mysteries.jpg";
 import SelfOperatingComputerImage from "../assets/soc.png";
-import { ContentContainer } from "../styles/pageStyles";
-import {
-  BigTileImages,
-  PageContainer,
-  MainContainer,
-} from "../styles/pageStyles";
-import { useEffect } from "react";
+
 export const Projects = ({ isMobile }) => {
+  const isMobileDevice = useMediaQuery({ query: `(max-width: 768px)` });
+  isMobile = isMobile || isMobileDevice;
+
   useEffect(() => {
     document.title = "Projects";
-  }, []); // Empty dependency array ensures this runs only once when the component mounts
+  }, []);
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <PageContainer>
-      <NavigationBar active={"Projects"} isMobile={isMobile} />
+      <NavigationBar active="Projects" isMobile={isMobile}>
+        <NavItem href="/">Home</NavItem>
+        <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
+        <NavItem active href="/projects">
+          Projects
+        </NavItem>
+        <NavItem href="/blog">Blog</NavItem>
+        <NavItem href="#contact" onClick={handleContactClick}>
+          Contact
+        </NavItem>
+      </NavigationBar>
 
-      <MainContainer style={{ maxWidth: "700px" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            margin: "50px 0px",
-          }}
-        >
-          <ContentContainer>
-            <div>
-              <h3>
-                <a href="https://www.willpayforthis.com/">WillPayForThis.com</a>
-              </h3>
-              <p>A shortcut to market-validated ideas.</p>
-            </div>
-          </ContentContainer>
-          <ContentContainer>
-            <div>
-              <h3>
-                <a href="https://github.com/OthersideAI/self-operating-computer">
+      <HeroSection>
+        <HeroContent>
+          <Heading>Projects</Heading>
+          <Subheading>A showcase of my work and experiments</Subheading>
+        </HeroContent>
+      </HeroSection>
+
+      <MainContainer>
+        <Section>
+          <SectionHeading>Featured Projects</SectionHeading>
+          <ProjectsGrid>
+            <a
+              href="https://www.willpayforthis.com/"
+              style={{ textDecoration: "none" }}
+            >
+              <ProjectCard>
+                <ProjectImage
+                  src={memeImage || "/placeholder.svg?height=200&width=300"}
+                  alt="WillPayForThis.com"
+                />
+                <ProjectTitle>WillPayForThis.com</ProjectTitle>
+                <ProjectDescription>
+                  A shortcut to market-validated ideas.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+
+            <a
+              href="https://github.com/OthersideAI/self-operating-computer"
+              style={{ textDecoration: "none" }}
+            >
+              <ProjectCard>
+                <ProjectImage
+                  src={
+                    SelfOperatingComputerImage ||
+                    "/placeholder.svg?height=200&width=300"
+                  }
+                  alt="Self-Operating Computer Framework"
+                />
+                <ProjectTitle>
                   The Self-Operating Computer Framework
-                </a>
-              </h3>
-              <p>
-                In Nov. 2023 I built the first Computer Use agent. It is a
-                framework to enable multimodal models to operate computers
-                similar to how humans do. VentureBeat publish an{" "}
-                <a href="https://venturebeat.com/ai/the-self-operating-computer-emerges/">
-                  article
-                </a>{" "}
-                about it. There are a few demos available on{" "}
-                <a href="https://www.youtube.com/watch?v=UKRti40U8IA&t=6s">
-                  YouTube
-                </a>
-              </p>
-            </div>
-          </ContentContainer>
-          <ContentContainer>
-            <div>
-              <h3>
-                <a href="https://makememe.ai/">makememe.ai</a>
-              </h3>
-              <h5 style={{ margin: 0, padding: 0 }}>
-                <a href="https://www.producthunt.com/products/makememe-ai">
-                  Product of the Day (Product Hunt)
-                </a>
-              </h5>
-              <p>
-                This app is a text-to-meme generator that uses GPT-3 and
-                semantic search to create a meme based on user input in under 5
-                seconds.{" "}
-                <a href="https://github.com/joshbickett/makememe_ai">
-                  The code
-                </a>{" "}
-                is available on Github. I published{" "}
-                <a href="https://towardsdatascience.com/how-to-make-memes-with-ai-in-python-986944bce5b4">
-                  How to Make Meme with AI in Python
-                </a>{" "}
-                in Toward Data Science to help understand how it works under the
-                hood.
-              </p>
-            </div>
-          </ContentContainer>
-          <ContentContainer>
-            <div>
-              <h3>
-                <a href="https://www.mysteries.ai/">Mysteries.ai</a>
-              </h3>
-              <p>
-                A mystery game where you play detective and chat with AI
-                characters to solve the mystery
-              </p>
-            </div>
-          </ContentContainer>
-          <ContentContainer>
-            <div>
-              <h3>
-                <a href="http://whichisai.com/">WhichIsAI</a>
-              </h3>
-              <p>
-                A simple game where the users tries to find which image is
-                generated by AI
-              </p>
-            </div>
-          </ContentContainer>
-          <ContentContainer>
-            <div>
-              <h3>
-                <a href="https://apps.apple.com/us/app/gait-a-driver-score-app/id1516971190">
-                  Gait
-                </a>
-              </h3>
-              <p>
-                My cofounder and I started an insurance technology company
-                called <a href="https://gaitcar.com/">Gait, Inc.</a> that
-                offered a software development kit (SDK) to insurance companies
-                to enable their usage-based insurance products. We sold the
-                company through{" "}
-                <a href="https://microacquire.com/">MicroAcquire</a>.
-              </p>
-            </div>
-          </ContentContainer>
-        </div>
+                </ProjectTitle>
+                <ProjectDescription>
+                  A framework enabling multimodal models to operate computers
+                  similarly to humans.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+
+            <a href="https://makememe.ai/" style={{ textDecoration: "none" }}>
+              <ProjectCard>
+                <ProjectImage
+                  src={musicImage || "/placeholder.svg?height=200&width=300"}
+                  alt="makememe.ai"
+                />
+                <ProjectTitle>makememe.ai</ProjectTitle>
+                <ProjectDescription>
+                  A text-to-meme generator that creates memes in under 5 seconds
+                  using GPT-3 and semantic search.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+
+            <a
+              href="https://www.mysteries.ai/"
+              style={{ textDecoration: "none" }}
+            >
+              <ProjectCard>
+                <ProjectImage
+                  src={
+                    MysteriesImage || "/placeholder.svg?height=200&width=300"
+                  }
+                  alt="Mysteries.ai"
+                />
+                <ProjectTitle>Mysteries.ai</ProjectTitle>
+                <ProjectDescription>
+                  A mystery game where you chat with AI characters to solve
+                  intriguing puzzles.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+
+            <a href="http://whichisai.com/" style={{ textDecoration: "none" }}>
+              <ProjectCard>
+                <ProjectImage
+                  src={RobotImage || "/placeholder.svg?height=200&width=300"}
+                  alt="WhichIsAI"
+                />
+                <ProjectTitle>WhichIsAI</ProjectTitle>
+                <ProjectDescription>
+                  A game where users identify which image is generated by AI.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+
+            <a
+              href="https://apps.apple.com/us/app/gait-a-driver-score-app/id1516971190"
+              style={{ textDecoration: "none" }}
+            >
+              <ProjectCard>
+                <ProjectImage
+                  src={gaitImage || "/placeholder.svg?height=200&width=300"}
+                  alt="Gait"
+                />
+                <ProjectTitle>Gait</ProjectTitle>
+                <ProjectDescription>
+                  An insurance technology solution with an SDK for usage-based
+                  insurance products.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
+          </ProjectsGrid>
+        </Section>
       </MainContainer>
+
+      <Footer>
+        <FooterContent>
+          <FooterText>
+            © {new Date().getFullYear()} Josh Bickett. All rights reserved.
+          </FooterText>
+        </FooterContent>
+      </Footer>
     </PageContainer>
   );
 };
+
+// Styled Components (Navigation, Hero, Layout, and Footer)
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #333;
+  background-color: #f9fafb;
+`;
+
+const NavigationBar = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    flex-direction: column;
+  }
+`;
+
+const NavItem = styled.a`
+  margin: 0 1.5rem;
+  padding: 0.5rem 0;
+  color: ${(props) => (props.active ? "#2563eb" : "#64748b")};
+  font-weight: ${(props) => (props.active ? "600" : "500")};
+  text-decoration: none;
+  border-bottom: 2px solid
+    ${(props) => (props.active ? "#2563eb" : "transparent")};
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
+`;
+
+const HeroSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
+`;
+
+const HeroContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #1e293b;
+`;
+
+const Subheading = styled.h2`
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+  color: #64748b;
+`;
+
+const MainContainer = styled.main`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
+`;
+
+const Section = styled.section`
+  width: 100%;
+  margin-bottom: 4rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const SectionHeading = styled.h3`
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: #1e293b;
+  position: relative;
+  padding-bottom: 0.75rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #2563eb;
+  }
+`;
+
+const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+`;
+
+const ProjectCard = styled.div`
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const ProjectImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+`;
+
+const ProjectTitle = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+`;
+
+const ProjectDescription = styled.p`
+  font-size: 1.125rem;
+  color: #475569;
+  margin: 0;
+  flex: 1;
+`;
+
+const Footer = styled.footer`
+  background-color: #1e293b;
+  color: white;
+  padding: 2rem;
+`;
+
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const FooterText = styled.p`
+  margin: 0;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+`;
+
+export default Projects;
