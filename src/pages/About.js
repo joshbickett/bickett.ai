@@ -71,9 +71,9 @@ export const About = () => {
               >
                 indie hack
               </a>{" "}
-              or do{" "}
+              or work{" "}
               <a style={{ textDecoration: "none" }} href="/research">
-                independent research
+                research & projects.
               </a>
               .
             </p>
