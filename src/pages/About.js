@@ -46,7 +46,7 @@ export const About = () => {
           />
           <HeroText>
             <Heading>Josh Bickett</Heading>
-            <Subheading>AI Engineer and Entrepreneur</Subheading>
+            <Subheading>AI Engineer</Subheading>
           </HeroText>
         </HeroContent>
       </HeroSection>
