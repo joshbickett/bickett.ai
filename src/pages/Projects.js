@@ -86,6 +86,17 @@ export const Projects = ({ isMobile }) => {
                 </StarCount>
               </ProjectCard>
             </a>
+            <a
+              href="https://cookbook.openai.com/examples/stripe_model_eval/selecting_a_model_based_on_stripe_conversion"
+              style={{ textDecoration: "none" }}
+            >
+              <ProjectCard>
+                <ProjectTitle>Stripe Model Evaluation</ProjectTitle>
+                <ProjectDescription>
+                  OpenAI Cookbook post demonstrating how to select a model based on Stripe conversion data.
+                </ProjectDescription>
+              </ProjectCard>
+            </a>
           </ProjectsGrid>
         </Section>
       </MainContainer>
