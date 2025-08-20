@@ -6,6 +6,7 @@ import { useMediaQuery } from "react-responsive";
 // or
 // yarn add react-icons
 import { FaTwitter, FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { SiSubstack } from "react-icons/si";
 
 // Assets (replace with your actual paths)
 import scienceImg from "../assets/science.png";
@@ -180,6 +181,14 @@ export const About = () => {
               aria-label="YouTube"
             >
               <FaYoutube />
+            </SocialIcon>
+            <SocialIcon
+              href="https://silence.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Substack"
+            >
+              <SiSubstack />
             </SocialIcon>
           </SocialLinks>
         </Section>
