@@ -22,7 +22,7 @@ export const App = () => {
           path="/projects"
           element={<Projects isMobile={isMobile} />}
         ></Route>
-        <Route path="/blog" element={<Blog />}></Route>
+        <Route path="/blog" element={<Blog isMobile={isMobile} />}></Route>
         <Route
           path="*"
           element={

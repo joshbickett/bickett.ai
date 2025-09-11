@@ -1,319 +1,305 @@
+import styled from "@emotion/styled";
 import { NavigationBar } from "../components/NavigationBar";
-import memeImage from "../assets/meme.jpg";
-import musicImage from "../assets/music.png";
-import gaitImage from "../assets/gait-2.png";
-import RobotImage from "../assets/robot.png";
-import MysteriesImage from "../assets/mysteries.jpg";
-import SelfOperatingComputerImage from "../assets/soc.png";
-import { ContentContainer } from "../styles/pageStyles";
-import { PageContainer, MainContainer } from "../styles/pageStyles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ReactMarkdown from 'react-markdown';
+import { loadBlogPosts } from "../utils/blogLoader";
+
 export const Blog = ({ isMobile }) => {
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     document.title = "Blog | JoshBickett.com";
-  }, []); // Empty dependency array ensures this runs only once when the component mounts
+    
+    const loadPosts = () => {
+      try {
+        const posts = loadBlogPosts();
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadPosts();
+  }, []);
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <NavigationBar active={"Blog"} isMobile={isMobile} />
+        <MainContainer>
+          <BlogContent>
+            <LoadingMessage>Loading...</LoadingMessage>
+          </BlogContent>
+        </MainContainer>
+      </PageContainer>
+    );
+  }
 
   return (
     <PageContainer>
       <NavigationBar active={"Blog"} isMobile={isMobile} />
 
-      <MainContainer style={{ maxWidth: "700px" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            margin: "50px 0px",
-          }}
-        >
-          <ContentContainer>
-            <div>
-              <h2>
-                A year since the launch of Self-Operating Computer Framework
-              </h2>
-              <b>January 22, 2025</b>
-              <p>
-                November 3rd, 2023 was the “initial commit”. The goal of the
-                project? Create the first framework to enable multimodal models
-                to operate computers like humans, using a mouse and keyboard.{" "}
-              </p>
-              <h3>The background</h3>
-              <p>
-                The first time I saw an AI agent was{" "}
-                <a href="https://x.com/sharifshameem/status/1405462642936799247">
-                  Sharif's GPT-3 demo
-                </a>{" "}
-                in mid-2021. I was blown away. It browsed the web, clicked
-                buttons, and purchased Airpods, all autonomously.
-              </p>
-              {/* <p>
-                I was unaware of a long history of AI agents. I was unaware that
-                OpenAI created an computer-operating AI agent in 2016 called{" "}
-                <a href="">Universe</a> and "allows an AI agent to use a
-                computer like a human does: by looking at screen pixels and
-                operating a virtual keyboard and mouse."
-              </p> */}
-
-              <p>
-                Over a year later in September 2022, a similar web-browsing
-                agent project called{" "}
-                <a href="https://github.com/nat/natbot">Natbot</a> was
-                open-sourced and I got the chance to clone and try it. Nat
-                completed the project in a weekend. He's a serious hacker.
-              </p>
-
-              <p>
-                After Natbot, our team at HyperWrite started building a
-                web-browsing agent and after a few months of our heads down we
-                launched what I understand to be the{" "}
-                <a href="https://venturebeat.com/ai/hyperwrite-unveils-breakthrough-ai-agent-that-can-surf-the-web-like-a-human/">
-                  first commercially available web-browsing agent
-                </a>{" "}
-              </p>
-              <h3>A new type of AI agent</h3>
-              <p>
-                While building a web-browsing agent, we came to understand the
-                limitations of LLM-based web-browsing agents. LLMs can't see the
-                visual representation of a page; they only process the HTML.
-                Understanding a page purely through HTML context is challenging
-                for LLMs. We anticipated multimodal agents that could interact
-                with computers in a more human-like way would help address some
-                of these challenges.{" "}
-              </p>
-              <p>
-                Prior to <code>GPT-4-vision-preview</code>, Matt had shared an
-                idea about overlaying a grid on a screenshot and sending that to
-                a multimodal model so it could estimate pixels to click on a
-                screen.
-              </p>
-              <p>
-                <code>LLaVA-1.5</code> was released in October 2023. Matt Shumer
-                hosted the model and shared an endpoint with me. I started
-                hacking around with it. We knew that{" "}
-                <code>GPT-4-vision-preview</code> would arrive in the near
-                future.
-              </p>
-              <p>
-                At first I called the project the{" "}
-                <a href="https://x.com/josh_bickett/status/1716551556013924372">
-                  Generalist Computer Agent.
-                </a>{" "}
-                It would eventually become the{" "}
-                <a href="https://github.com/OthersideAI/self-operating-computer/">
-                  Self-Operating Computer Framework.
-                </a>
-              </p>
-              <p>
-                I played with the idea of a visual OS-level agent for a week.
-                What became clear is that if you give a multimodal model an
-                objective, pass it screenshots, and prompt it to output mouse
-                and keyboard actions, it could operate a computer. I formulated
-                an architecture and built it. As far as I'm aware it didn't
-                exist prior.
-              </p>
-              <b>Architecture</b>
-              <ul>
-                <li>• User provides an objective </li>
-                <li>• Create a loop</li>
-                <li>
-                  <ul>
-                    <li>
-                      <li>
-                        <b>1.</b> Passed the objective, a screenshot, and a
-                        prompt to a Vision-language Model (VLM)
-                      </li>
-                      <li>
-                        <ul>
-                          <li>
-                            • The prompt could look something like the system
-                            prompt below{" "}
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <b>2.</b>
-                        Receive the LLM completion and evaluate if the objective
-                        is reached. If it is, then break out of loop.
-                      </li>
-                      <li>
-                        <b>3.</b> If not reached, parse the LLM completion and
-                        fire the keyboard or mouse commands with{" "}
-                        <code>pyautogui</code>
-                      </li>
-
-                      <li>
-                        <b>4.</b> Go back to step <b>1.</b>
-                      </li>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              <b>System Prompt</b>
-              <br />
-              <br />
-              <code>
-                You are operating a computer, using the same operating system as
-                a human. From looking at the screen, the objective, and your
-                previous actions, take the next best series of action. You have
-                4 possible operation actions available to you. The{" "}
-                <code>pyautogui</code> library will be used to execute your
-                decision. Your output will be used in a `json.loads` statement.
-                <br />
-                <br />
-                <b>1.</b> click - Move mouse and click - Look for text to click.
-                Try to find relevant text to click, but if there's nothing
-                relevant enough you can return `"nothing to click"` for the text
-                value and we'll try a different method.
-                <br />
-                2. write - Write with your keyboard
-                <br />
-                3. press - Use a hotkey or press key to operate the computer
-                <br />
-                4. done - The objective is completed
-              </code>
-              <br />
-              <br />
-              <p>
-                After tinkering and tinkering I could not get it working with{" "}
-                <code>Llava-1.5</code>. Then on November 6,{" "}
-                <a href="https://openai.com/index/new-models-and-developer-products-announced-at-devday/">
-                  gpt-4-vision-preview was released.
-                </a>{" "}
-                I hooked up <code>gpt-4-vision-preview</code> and I gave it the
-                objective: "write a poem in the new note window."{" "}
-              </p>
-              <p>
-                I took my hands off the keyboard and saw the model output a
-                mouse pixel. <code>pyautogui</code> read the pixel location. The
-                mouse moved over the new note pad. The model output a click
-                event. <code>pyautogui</code> fired the click event. The model
-                output a poem. <code>pyautogui</code> typed the poem. It
-                happened and I was left staring at the completed poem in the
-                Note. I realized that was probably the first time a VLM operated
-                a computer. It was a surreal moment.
-              </p>
-              <b>Operating System Commands</b>
-              <ul>
-                <li>
-                  • Keyboard | <code>pyautogui.write</code>: <br />
-                  <br />
-                  This operation is straightforward. The LLM completion is
-                  simply passed to the <code>pyautogui</code> function.
-                  <br />
-                  <br />
-                </li>
-                <li>
-                  • Mouse Click | <code>pyautogui.moveTo</code> &{" "}
-                  <code>pyautogui.click</code>: <br />
-                  <br /> This is a bit trickier, I had to figure out how to get
-                  the mouse to click on the right spot. I ended up using a grid
-                  system and sending the grid to the model. The model would
-                  guess the width and height in % of the total and I'd convert
-                  it to pixels.
-                  <br />
-                  <br />
-                </li>
-              </ul>
-
-              <b>Open-Sourcing</b>
-              <p>
-                I was eager to share the results.{" "}
-                <a href="https://x.com/josh_bickett/status/1721975391047589934">
-                  I posted on Twitter
-                </a>{" "}
-                and the community's reaction was greater than I imagined.
-              </p>
-
-              <p>
-                A demo wasn't enough, I wanted to get an open-source project
-                into the community's hands so they could try it themselves. It
-                had some issues to be worked out. I sorted through the most
-                common use cases in my head and ran them to identify bugs. Then
-                I fixed those bugs. I did that for a while until I felt that the
-                project was good enough to wow people when they tried it the
-                first time. Twenty days later,{" "}
-                <a href="https://x.com/josh_bickett/status/1729163560713060546">
-                  I launched it to the open-source community
-                </a>{" "}
-                and the post went viral. Shortly after it became the{" "}
-                <a href="https://x.com/josh_bickett/status/1730600095463399603">
-                  #1 trending project on GitHub.
-                </a>
-              </p>
-              <b>Fast forward</b>
-              <p>
-                For the first time, I was learning how to manage an open-source
-                project that developers wanted to contribute to. That was a fun
-                and interesting challenge. For the first few weeks, I reviewed
-                new PRs the first day they were put up. Anyone who submitted a
-                strong PR was added to an email group. These contributors were a
-                great help and I was able to send issues into this group and
-                often someone would pick up the issue and go fix it.{" "}
-                <a href="https://github.com/michaelhhogue">@michahhogue</a>{" "}
-                provided high-quality PRs and was very responsive so I added him
-                as a maintainer. In retrospect, one of my favorite parts was
-                witnessing an open-source community develop firsthand and
-                meeting collaborators who just show up and push valuable code.
-              </p>
-              <p>
-                The next project I saw use a vision model to operate the
-                computer was{" "}
-                <a href="https://x.com/hellokillian/status/1743418943120040109">
-                  Open Interpreter 0.2.0.{" "}
-                </a>
-                A few things impressed me by their version:
-                <ul>
-                  <li>
-                    1. They hooked it up to Apples native modal UI library so
-                    the AI could display what it was doing at each step in the
-                    top right of the screen. 2.
-                  </li>
-                  <li>2. They used OCR to do precise clicking </li>
-                </ul>
-              </p>
-              <p>
-                Computer-operating agents gained more traction over the year.
-                More labs, more papers, more teams focused on this type of
-                framework. Namely, letting a VLM control a computer with a mouse
-                and a keyboard, like a human does. Most notably, Anthropic
-                unveiled their agent, called{" "}
-                <a href="https://www.anthropic.com/news/3-5-models-and-computer-use">
-                  Computer Use:
-                </a>
-                <br />
-                <br />
-                <quote>
-                  "We’re also introducing a groundbreaking new capability in
-                  public beta: computer use. Available today on the API,
-                  developers can direct Claude to use computers the way people
-                  do—by looking at a screen, moving a cursor, clicking buttons,
-                  and typing text."
-                </quote>
-                <br />
-                <br />
-                Now, there are discussions that OpenAI may launch a similar
-                agent called Operator this week.
-                <br />
-                <br />
-                I'm excited to see what the future holds. In the next five
-                years, I expect advanced multimodal models to fully operate
-                computers and handle long, complex tasks.
-              </p>
-              <b>About the name</b>
-              <p>
-                {" "}
-                It is worth mentioning that my original vision of a
-                Self-Operating Computer with <code>Llava-1.5</code> running
-                locally evolved into a project that gained popularity for using
-                an external AI to operate the computer. The open-source
-                community did eventually{" "}
-                <a href="https://github.com/OthersideAI/self-operating-computer?tab=readme-ov-file#try-llava-hosted-through-ollama--m-llava">
-                  integrate Llava.
-                </a>
-              </p>
-            </div>
-          </ContentContainer>
-        </div>
+      <MainContainer>
+        <BlogContent>
+          {blogPosts.length === 0 ? (
+            <NoBlogPosts>
+              <h2>No blog posts found</h2>
+              <p>Check back soon for new content!</p>
+            </NoBlogPosts>
+          ) : (
+            blogPosts.map((post) => (
+              <BlogPostContainer key={post.slug}>
+                <BlogPostHeader>
+                  <BlogPostTitle>{post.frontmatter.title}</BlogPostTitle>
+                  <BlogPostDate>{post.frontmatter.date}</BlogPostDate>
+                </BlogPostHeader>
+                <BlogPostContent>
+                  <ReactMarkdown
+                    components={{
+                      h1: ({ children }) => <MarkdownH1>{children}</MarkdownH1>,
+                      h2: ({ children }) => <MarkdownH2>{children}</MarkdownH2>,
+                      h3: ({ children }) => <MarkdownH3>{children}</MarkdownH3>,
+                      p: ({ children }) => <MarkdownP>{children}</MarkdownP>,
+                      a: ({ href, children }) => <MarkdownLink href={href}>{children}</MarkdownLink>,
+                      code: ({ children }) => <MarkdownCode>{children}</MarkdownCode>,
+                      pre: ({ children }) => <MarkdownPre>{children}</MarkdownPre>,
+                      ul: ({ children }) => <MarkdownUl>{children}</MarkdownUl>,
+                      li: ({ children }) => <MarkdownLi>{children}</MarkdownLi>,
+                      blockquote: ({ children }) => <MarkdownBlockquote>{children}</MarkdownBlockquote>,
+                      strong: ({ children }) => <MarkdownStrong>{children}</MarkdownStrong>,
+                    }}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
+                </BlogPostContent>
+              </BlogPostContainer>
+            ))
+          )}
+        </BlogContent>
       </MainContainer>
     </PageContainer>
   );
 };
+
+// Styled Components matching the About page style
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #333;
+  background-color: #f9fafb;
+`;
+
+const MainContainer = styled.main`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
+`;
+
+const BlogContent = styled.div`
+  width: 100%;
+  max-width: 800px;
+`;
+
+const LoadingMessage = styled.div`
+  text-align: center;
+  font-size: 1.125rem;
+  color: #64748b;
+  padding: 2rem;
+`;
+
+const NoBlogPosts = styled.div`
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #64748b;
+    font-size: 1.125rem;
+  }
+`;
+
+const BlogPostContainer = styled.article`
+  background-color: white;
+  border-radius: 8px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+const BlogPostHeader = styled.header`
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+`;
+
+const BlogPostTitle = styled.h1`
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.875rem;
+  }
+`;
+
+const BlogPostDate = styled.time`
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+`;
+
+const BlogPostContent = styled.div`
+  line-height: 1.7;
+  color: #374151;
+`;
+
+// Markdown component styles
+const MarkdownH1 = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1.5rem 0;
+  color: #1e293b;
+  line-height: 1.3;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+`;
+
+const MarkdownH2 = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  color: #1e293b;
+  position: relative;
+  padding-bottom: 0.5rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #2563eb;
+  }
+`;
+
+const MarkdownH3 = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  color: #1e293b;
+`;
+
+const MarkdownP = styled.p`
+  margin: 1.25rem 0;
+  font-size: 1.125rem;
+  line-height: 1.7;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
+
+const MarkdownLink = styled.a`
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+`;
+
+const MarkdownCode = styled.code`
+  background-color: #f1f5f9;
+  color: #e11d48;
+  padding: 0.25rem 0.375rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875em;
+`;
+
+const MarkdownPre = styled.pre`
+  background-color: #1e293b;
+  color: #f1f5f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+
+  code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+  }
+`;
+
+const MarkdownUl = styled.ul`
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+`;
+
+const MarkdownLi = styled.li`
+  margin: 0.5rem 0;
+  line-height: 1.6;
+`;
+
+const MarkdownBlockquote = styled.blockquote`
+  border-left: 4px solid #2563eb;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: #f8fafc;
+  font-style: italic;
+  color: #475569;
+
+  p {
+    margin: 0;
+  }
+`;
+
+const MarkdownStrong = styled.strong`
+  font-weight: 600;
+  color: #1e293b;
+`;
