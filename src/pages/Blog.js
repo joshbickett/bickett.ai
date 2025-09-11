@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { NavigationBar } from "../components/NavigationBar";
 import { useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { loadBlogPosts } from "../utils/blogLoader";
@@ -28,7 +27,13 @@ export const Blog = ({ isMobile }) => {
   if (loading) {
     return (
       <PageContainer>
-        <NavigationBar active={"Blog"} isMobile={isMobile} />
+        <NavigationBar active="Blog" isMobile={isMobile}>
+          <NavItem href="/">Home</NavItem>
+          <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
+          <NavItem href="/projects">Research & Projects</NavItem>
+          <NavItem active href="/blog">Blog</NavItem>
+          <NavItem href="/">Contact</NavItem>
+        </NavigationBar>
         <MainContainer>
           <BlogContent>
             <LoadingMessage>Loading...</LoadingMessage>
@@ -40,7 +45,16 @@ export const Blog = ({ isMobile }) => {
 
   return (
     <PageContainer>
-      <NavigationBar active={"Blog"} isMobile={isMobile} />
+      <NavigationBar active="Blog" isMobile={isMobile}>
+        <NavItem href="/">Home</NavItem>
+        <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
+        <NavItem href="/projects">Research & Projects</NavItem>
+        <NavItem active href="/blog">Blog</NavItem>
+        <NavItem href="#contact" onClick={(e) => {
+          e.preventDefault();
+          window.location.href = "/#contact";
+        }}>Contact</NavItem>
+      </NavigationBar>
 
       <MainContainer>
         <BlogContent>
@@ -302,4 +316,43 @@ const MarkdownBlockquote = styled.blockquote`
 const MarkdownStrong = styled.strong`
   font-weight: 600;
   color: #1e293b;
+`;
+
+// Navigation components matching About page
+const NavigationBar = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    flex-direction: column;
+  }
+`;
+
+const NavItem = styled.a`
+  margin: 0 1.5rem;
+  padding: 0.5rem 0;
+  color: ${(props) => (props.active ? "#2563eb" : "#64748b")};
+  font-weight: ${(props) => (props.active ? "600" : "500")};
+  text-decoration: none;
+  border-bottom: 2px solid
+    ${(props) => (props.active ? "#2563eb" : "transparent")};
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
 `;
