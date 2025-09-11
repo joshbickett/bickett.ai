@@ -38,28 +38,32 @@ const parseFrontmatter = (content) => {
 };
 
 export const loadBlogPosts = async () => {
+  const blogPosts = [];
+  const posts = [
+    '1000-for-brain-2025.md',
+    'self-operating-computer-framework.md'
+  ];
+
   try {
-    // Fetch from the actual markdown file
-    const response = await fetch('/blog/self-operating-computer-framework.md');
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const content = await response.text();
-    
-    // Parse frontmatter and content
-    const { data: frontmatter, content: markdown } = parseFrontmatter(content);
-    
-    const result = [
-      {
-        slug: "self-operating-computer-framework",
+    for (const postFile of posts) {
+      const response = await fetch(`/blog/${postFile}`);
+      
+      if (!response.ok) {
+        console.warn(`Failed to load ${postFile}: ${response.status}`);
+        continue;
+      }
+      
+      const content = await response.text();
+      const { data: frontmatter, content: markdown } = parseFrontmatter(content);
+      
+      blogPosts.push({
+        slug: postFile.replace('.md', ''),
         frontmatter,
         content: markdown,
-      },
-    ];
+      });
+    }
 
-    return result;
+    return blogPosts;
   } catch (error) {
     console.error("Error loading blog posts:", error);
     return [];
