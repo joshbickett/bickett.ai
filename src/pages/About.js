@@ -1,5 +1,8 @@
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
+import { useEffect, useState } from "react";
+import ReactMarkdown from 'react-markdown';
+import { loadBlogPosts } from "../utils/blogLoader";
 
 // If you haven't installed react-icons, run:
 // npm install react-icons
@@ -16,12 +19,37 @@ import profileImage from "../assets/me.jpeg"; // Placeholder for profile image
 
 export const About = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 768px)` });
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [blogLoading, setBlogLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        const posts = await loadBlogPosts();
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+      } finally {
+        setBlogLoading(false);
+      }
+    };
+    
+    loadPosts();
+  }, []);
 
   const handleContactClick = (e) => {
     e.preventDefault();
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleBlogClick = (e) => {
+    e.preventDefault();
+    const blogSection = document.getElementById("blog");
+    if (blogSection) {
+      blogSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -33,7 +61,7 @@ export const About = () => {
         </NavItem>
         <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
         <NavItem href="/projects">Research & Projects</NavItem>
-        <NavItem href="/blog">Blog</NavItem>
+        <NavItem href="#blog" onClick={handleBlogClick}>Blog</NavItem>
         <NavItem href="#contact" onClick={handleContactClick}>
           Contact
         </NavItem>
@@ -202,6 +230,48 @@ export const About = () => {
               <SiSubstack />
             </SocialIcon>
           </SocialLinks>
+        </Section>
+
+        {/* Blog Section - at the very bottom */}
+        <Section id="blog">
+          <SectionHeading>Blog</SectionHeading>
+          {blogLoading ? (
+            <SectionContent>
+              <p>Loading blog posts...</p>
+            </SectionContent>
+          ) : blogPosts.length === 0 ? (
+            <SectionContent>
+              <p>No blog posts found. Check back soon for new content!</p>
+            </SectionContent>
+          ) : (
+            blogPosts.map((post) => (
+              <BlogPostContainer key={post.slug}>
+                <BlogPostHeader>
+                  <BlogPostTitle>{post.frontmatter.title}</BlogPostTitle>
+                  <BlogPostDate>{post.frontmatter.date}</BlogPostDate>
+                </BlogPostHeader>
+                <BlogPostContent>
+                  <ReactMarkdown
+                    components={{
+                      h1: ({ children }) => <MarkdownH1>{children}</MarkdownH1>,
+                      h2: ({ children }) => <MarkdownH2>{children}</MarkdownH2>,
+                      h3: ({ children }) => <MarkdownH3>{children}</MarkdownH3>,
+                      p: ({ children }) => <MarkdownP>{children}</MarkdownP>,
+                      a: ({ href, children }) => <Link href={href}>{children}</Link>,
+                      code: ({ children }) => <MarkdownCode>{children}</MarkdownCode>,
+                      pre: ({ children }) => <MarkdownPre>{children}</MarkdownPre>,
+                      ul: ({ children }) => <MarkdownUl>{children}</MarkdownUl>,
+                      li: ({ children }) => <MarkdownLi>{children}</MarkdownLi>,
+                      blockquote: ({ children }) => <MarkdownBlockquote>{children}</MarkdownBlockquote>,
+                      strong: ({ children }) => <MarkdownStrong>{children}</MarkdownStrong>,
+                    }}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
+                </BlogPostContent>
+              </BlogPostContainer>
+            ))
+          )}
         </Section>
       </MainContainer>
 
@@ -489,6 +559,158 @@ const SocialIcon = styled.a`
   &:hover {
     color: #2563eb;
   }
+`;
+
+/* Blog Components */
+const BlogPostContainer = styled.article`
+  background-color: white;
+  border-radius: 8px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+const BlogPostHeader = styled.header`
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+`;
+
+const BlogPostTitle = styled.h1`
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.875rem;
+  }
+`;
+
+const BlogPostDate = styled.time`
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+`;
+
+const BlogPostContent = styled.div`
+  line-height: 1.7;
+  color: #374151;
+`;
+
+// Markdown component styles
+const MarkdownH1 = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1.5rem 0;
+  color: #1e293b;
+  line-height: 1.3;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+`;
+
+const MarkdownH2 = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  color: #1e293b;
+  position: relative;
+  padding-bottom: 0.5rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #2563eb;
+  }
+`;
+
+const MarkdownH3 = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  color: #1e293b;
+`;
+
+const MarkdownP = styled.p`
+  margin: 1.25rem 0;
+  font-size: 1.125rem;
+  line-height: 1.7;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
+
+const MarkdownCode = styled.code`
+  background-color: #f1f5f9;
+  color: #e11d48;
+  padding: 0.25rem 0.375rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875em;
+`;
+
+const MarkdownPre = styled.pre`
+  background-color: #1e293b;
+  color: #f1f5f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+
+  code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+  }
+`;
+
+const MarkdownUl = styled.ul`
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+`;
+
+const MarkdownLi = styled.li`
+  margin: 0.5rem 0;
+  line-height: 1.6;
+`;
+
+const MarkdownBlockquote = styled.blockquote`
+  border-left: 4px solid #2563eb;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: #f8fafc;
+  font-style: italic;
+  color: #475569;
+
+  p {
+    margin: 0;
+  }
+`;
+
+const MarkdownStrong = styled.strong`
+  font-weight: 600;
+  color: #1e293b;
 `;
 
 export default About;
