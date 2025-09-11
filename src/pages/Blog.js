@@ -10,9 +10,9 @@ export const Blog = ({ isMobile }) => {
   useEffect(() => {
     document.title = "Blog | JoshBickett.com";
     
-    const loadPosts = () => {
+    const loadPosts = async () => {
       try {
-        const posts = loadBlogPosts();
+        const posts = await loadBlogPosts();
         setBlogPosts(posts);
       } catch (error) {
         console.error('Error loading blog posts:', error);

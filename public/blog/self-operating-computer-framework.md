@@ -3,8 +3,6 @@ title: "A year since the launch of Self-Operating Computer Framework"
 date: "2025-01-22"
 ---
 
-# A year since the launch of Self-Operating Computer Framework
-
 **January 22, 2025**
 
 November 3rd, 2023 was the "initial commit". The goal of the project? Create the first framework to enable multimodal models to operate computers like humans, using a mouse and keyboard.
@@ -30,7 +28,8 @@ At first I called the project the [Generalist Computer Agent.](https://x.com/jos
 I played with the idea of a visual OS-level agent for a week. What became clear is that if you give a multimodal model an objective, pass it screenshots, and prompt it to output mouse and keyboard actions, it could operate a computer. I formulated an architecture and built it. As far as I'm aware it didn't exist prior.
 
 **Architecture**
-- User provides an objective 
+
+- User provides an objective
 - Create a loop
   - **1.** Passed the objective, a screenshot, and a prompt to a Vision-language Model (VLM)
     - The prompt could look something like the system prompt below
@@ -54,11 +53,12 @@ After tinkering and tinkering I could not get it working with `Llava-1.5`. Then 
 I took my hands off the keyboard and saw the model output a mouse pixel. `pyautogui` read the pixel location. The mouse moved over the new note pad. The model output a click event. `pyautogui` fired the click event. The model output a poem. `pyautogui` typed the poem. It happened and I was left staring at the completed poem in the Note. I realized that was probably the first time a VLM operated a computer. It was a surreal moment.
 
 **Operating System Commands**
-- Keyboard | `pyautogui.write`: 
+
+- Keyboard | `pyautogui.write`:
 
   This operation is straightforward. The LLM completion is simply passed to the `pyautogui` function.
 
-- Mouse Click | `pyautogui.moveTo` & `pyautogui.click`: 
+- Mouse Click | `pyautogui.moveTo` & `pyautogui.click`:
 
   This is a bit trickier, I had to figure out how to get the mouse to click on the right spot. I ended up using a grid system and sending the grid to the model. The model would guess the width and height in % of the total and I'd convert it to pixels.
 
@@ -73,6 +73,7 @@ A demo wasn't enough, I wanted to get an open-source project into the community'
 For the first time, I was learning how to manage an open-source project that developers wanted to contribute to. That was a fun and interesting challenge. For the first few weeks, I reviewed new PRs the first day they were put up. Anyone who submitted a strong PR was added to an email group. These contributors were a great help and I was able to send issues into this group and often someone would pick up the issue and go fix it. [@michahhogue](https://github.com/michaelhhogue) provided high-quality PRs and was very responsive so I added him as a maintainer. In retrospect, one of my favorite parts was witnessing an open-source community develop firsthand and meeting collaborators who just show up and push valuable code.
 
 The next project I saw use a vision model to operate the computer was [Open Interpreter 0.2.0.](https://x.com/hellokillian/status/1743418943120040109) A few things impressed me by their version:
+
 1. They hooked it up to Apples native modal UI library so the AI could display what it was doing at each step in the top right of the screen.
 2. They used OCR to do precise clicking
 
