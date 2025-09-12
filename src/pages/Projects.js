@@ -24,7 +24,6 @@ export const Projects = ({ isMobile }) => {
     <PageContainer>
       <NavigationBar active="Projects" isMobile={isMobile}>
         <NavItem href="/">Home</NavItem>
-        <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
         <NavItem active href="/projects">
           Research & Projects
         </NavItem>
@@ -88,7 +87,8 @@ export const Projects = ({ isMobile }) => {
               <ProjectCard>
                 <ProjectTitle>Stripe Model Evaluation</ProjectTitle>
                 <ProjectDescription>
-                  OpenAI Cookbook post demonstrating how to select a model based on Stripe conversion data.
+                  OpenAI Cookbook post demonstrating how to select a model based
+                  on Stripe conversion data.
                 </ProjectDescription>
               </ProjectCard>
             </a>
@@ -256,7 +256,6 @@ const ProjectCard = styled.div`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 `;
-
 
 const ProjectTitle = styled.h3`
   font-size: 1.5rem;

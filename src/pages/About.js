@@ -73,7 +73,6 @@ export const About = () => {
         <NavItem active href="/">
           Home
         </NavItem>
-        <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
         <NavItem href="/projects">Research & Projects</NavItem>
         <NavItem href="#blog" onClick={handleBlogClick}>
           Blog
@@ -308,9 +307,15 @@ export const About = () => {
                       img: ({ src, alt }) => (
                         <MarkdownImg src={src} alt={alt} />
                       ),
-                      table: ({ children }) => <MarkdownTable>{children}</MarkdownTable>,
-                      thead: ({ children }) => <MarkdownThead>{children}</MarkdownThead>,
-                      tbody: ({ children }) => <MarkdownTbody>{children}</MarkdownTbody>,
+                      table: ({ children }) => (
+                        <MarkdownTable>{children}</MarkdownTable>
+                      ),
+                      thead: ({ children }) => (
+                        <MarkdownThead>{children}</MarkdownThead>
+                      ),
+                      tbody: ({ children }) => (
+                        <MarkdownTbody>{children}</MarkdownTbody>
+                      ),
                       tr: ({ children }) => <MarkdownTr>{children}</MarkdownTr>,
                       th: ({ children }) => <MarkdownTh>{children}</MarkdownTh>,
                       td: ({ children }) => <MarkdownTd>{children}</MarkdownTd>,

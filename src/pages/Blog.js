@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import { loadBlogPosts } from "../utils/blogLoader";
 
 export const Blog = ({ isMobile }) => {
@@ -9,18 +9,18 @@ export const Blog = ({ isMobile }) => {
 
   useEffect(() => {
     document.title = "Blog | JoshBickett.com";
-    
+
     const loadPosts = async () => {
       try {
         const posts = await loadBlogPosts();
         setBlogPosts(posts);
       } catch (error) {
-        console.error('Error loading blog posts:', error);
+        console.error("Error loading blog posts:", error);
       } finally {
         setLoading(false);
       }
     };
-    
+
     loadPosts();
   }, []);
 
@@ -29,9 +29,10 @@ export const Blog = ({ isMobile }) => {
       <PageContainer>
         <NavigationBar active="Blog" isMobile={isMobile}>
           <NavItem href="/">Home</NavItem>
-          <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
           <NavItem href="/projects">Research & Projects</NavItem>
-          <NavItem active href="/blog">Blog</NavItem>
+          <NavItem active href="/blog">
+            Blog
+          </NavItem>
           <NavItem href="/">Contact</NavItem>
         </NavigationBar>
         <MainContainer>
@@ -47,13 +48,19 @@ export const Blog = ({ isMobile }) => {
     <PageContainer>
       <NavigationBar active="Blog" isMobile={isMobile}>
         <NavItem href="/">Home</NavItem>
-        <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
         <NavItem href="/projects">Research & Projects</NavItem>
-        <NavItem active href="/blog">Blog</NavItem>
-        <NavItem href="#contact" onClick={(e) => {
-          e.preventDefault();
-          window.location.href = "/#contact";
-        }}>Contact</NavItem>
+        <NavItem active href="/blog">
+          Blog
+        </NavItem>
+        <NavItem
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/#contact";
+          }}
+        >
+          Contact
+        </NavItem>
       </NavigationBar>
 
       <MainContainer>
@@ -77,13 +84,23 @@ export const Blog = ({ isMobile }) => {
                       h2: ({ children }) => <MarkdownH2>{children}</MarkdownH2>,
                       h3: ({ children }) => <MarkdownH3>{children}</MarkdownH3>,
                       p: ({ children }) => <MarkdownP>{children}</MarkdownP>,
-                      a: ({ href, children }) => <MarkdownLink href={href}>{children}</MarkdownLink>,
-                      code: ({ children }) => <MarkdownCode>{children}</MarkdownCode>,
-                      pre: ({ children }) => <MarkdownPre>{children}</MarkdownPre>,
+                      a: ({ href, children }) => (
+                        <MarkdownLink href={href}>{children}</MarkdownLink>
+                      ),
+                      code: ({ children }) => (
+                        <MarkdownCode>{children}</MarkdownCode>
+                      ),
+                      pre: ({ children }) => (
+                        <MarkdownPre>{children}</MarkdownPre>
+                      ),
                       ul: ({ children }) => <MarkdownUl>{children}</MarkdownUl>,
                       li: ({ children }) => <MarkdownLi>{children}</MarkdownLi>,
-                      blockquote: ({ children }) => <MarkdownBlockquote>{children}</MarkdownBlockquote>,
-                      strong: ({ children }) => <MarkdownStrong>{children}</MarkdownStrong>,
+                      blockquote: ({ children }) => (
+                        <MarkdownBlockquote>{children}</MarkdownBlockquote>
+                      ),
+                      strong: ({ children }) => (
+                        <MarkdownStrong>{children}</MarkdownStrong>
+                      ),
                     }}
                   >
                     {post.content}
@@ -267,7 +284,7 @@ const MarkdownCode = styled.code`
   color: #e11d48;
   padding: 0.25rem 0.375rem;
   border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 0.875em;
 `;
 
@@ -278,7 +295,7 @@ const MarkdownPre = styled.pre`
   border-radius: 8px;
   overflow-x: auto;
   margin: 1.5rem 0;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 0.875rem;
   line-height: 1.6;
 
