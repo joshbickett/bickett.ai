@@ -143,6 +143,19 @@ export const About = () => {
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>
+
+            <a href="/projects" style={{ textDecoration: "none" }}>
+              <ExpertiseCard>
+                <ExpertiseIcon
+                  src={scienceImg || "/placeholder.svg?height=80&width=80"}
+                  alt="Science"
+                />
+                <ExpertiseTitle>Research & Projects</ExpertiseTitle>
+                <ExpertiseDescription>
+                  I work on experiments, prototypes, and frameworks.
+                </ExpertiseDescription>
+              </ExpertiseCard>
+            </a>
             <a
               href="https://indiepa.ge/bickett"
               style={{ textDecoration: "none" }}
@@ -155,18 +168,6 @@ export const About = () => {
                 <ExpertiseTitle>Indie Hacking</ExpertiseTitle>
                 <ExpertiseDescription>
                   I build, launch, and market side projects.
-                </ExpertiseDescription>
-              </ExpertiseCard>
-            </a>
-            <a href="/projects" style={{ textDecoration: "none" }}>
-              <ExpertiseCard>
-                <ExpertiseIcon
-                  src={scienceImg || "/placeholder.svg?height=80&width=80"}
-                  alt="Science"
-                />
-                <ExpertiseTitle>Research & Projects</ExpertiseTitle>
-                <ExpertiseDescription>
-                  I work on experiments, prototypes, and frameworks.
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>
