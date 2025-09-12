@@ -90,7 +90,7 @@ export const About = () => {
           />
           <HeroText>
             <Heading>Josh Bickett</Heading>
-            <Subheading>Writing about AI</Subheading>
+            <Subheading>Writing about AI and exponential growth</Subheading>
           </HeroText>
         </HeroContent>
       </HeroSection>
