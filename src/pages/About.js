@@ -335,6 +335,8 @@ const PageContainer = styled.div`
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #333;
   background-color: #f9fafb;
+  overflow-x: hidden;
+  width: 100%;
 `;
 
 const NavigationBar = styled.nav`
@@ -384,7 +386,11 @@ const HeroSection = styled.div`
   border-bottom: 1px solid #e5e7eb;
 
   @media (max-width: 768px) {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 0.75rem;
   }
 `;
 
@@ -411,7 +417,15 @@ const ProfileImage = styled.img`
 
   @media (max-width: 768px) {
     margin-right: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    width: 120px;
+    height: 120px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 1.25rem;
+    width: 100px;
+    height: 100px;
   }
 `;
 
@@ -424,6 +438,14 @@ const Heading = styled.h1`
   font-weight: 700;
   margin: 0 0 0.5rem 0;
   color: #1e293b;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+  }
 `;
 
 const Subheading = styled.h2`
@@ -442,18 +464,32 @@ const MainContainer = styled.main`
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 0.75rem;
   }
 `;
 
 const Section = styled.section`
   width: 100%;
   margin-bottom: 4rem;
+  box-sizing: border-box;
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 2.5rem;
   }
 `;
 
@@ -509,6 +545,12 @@ const ExpertiseGrid = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 `;
 
@@ -518,10 +560,20 @@ const ExpertiseCard = styled.div`
   padding: 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem;
   }
 `;
 
@@ -604,6 +656,15 @@ const BlogPostContainer = styled.article`
   @media (max-width: 768px) {
     padding: 2rem 1.5rem;
     margin-bottom: 2rem;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
   }
 `;
 
@@ -622,6 +683,13 @@ const BlogPostTitle = styled.h1`
 
   @media (max-width: 768px) {
     font-size: 1.875rem;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
   }
 `;
 
@@ -647,6 +715,16 @@ const MarkdownH1 = styled.h1`
   &:first-of-type {
     margin-top: 0;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+    margin: 2rem 0 1.25rem 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
+  }
 `;
 
 const MarkdownH2 = styled.h2`
@@ -665,6 +743,16 @@ const MarkdownH2 = styled.h2`
     width: 40px;
     height: 2px;
     background-color: #2563eb;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.375rem;
+    margin: 1.75rem 0 0.875rem 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
   }
 `;
 
@@ -686,6 +774,18 @@ const MarkdownP = styled.p`
 
   &:last-of-type {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    line-height: 1.9;
+    margin: 0.875rem 0;
   }
 `;
 
@@ -715,6 +815,21 @@ const MarkdownPre = styled.pre`
     padding: 0;
     border-radius: 0;
   }
+
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+    font-size: 0.8125rem;
+    margin: 1.25rem 0;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+    font-size: 0.75rem;
+    margin: 1rem -1rem;
+    border-radius: 4px;
+    line-height: 1.7;
+  }
 `;
 
 const MarkdownUl = styled.ul`
@@ -737,6 +852,19 @@ const MarkdownBlockquote = styled.blockquote`
 
   p {
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.875rem 1.25rem;
+    margin: 1.25rem 0;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    font-size: 0.9375rem;
+    border-left-width: 3px;
   }
 `;
 
