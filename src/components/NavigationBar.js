@@ -1,13 +1,7 @@
-import codingImg from "../assets/coding-4.png";
-import me from "../assets/me.png";
 import styled from "@emotion/styled";
-import MenuIcon from "@mui/icons-material/Menu";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import { useState } from "react";
 import { NavigationBarContainer } from "../styles/pageStyles";
 
 export const NavigationBar = ({ active, isMobile }) => {
-  const [mobileExpand, setMobileExpand] = useState(false);
   const pages = [
     { name: "About", url: "/" },
     { name: "Projects", url: "/projects" },
@@ -101,17 +95,3 @@ const NavButton = styled.div`
   }
 `;
 
-const CloseMenu = styled(MenuIcon)`
-  cursor: pointer;
-  scale: 1.4;
-  &:active {
-    scale: 1.6;
-  }
-`;
-const OpenMenu = styled(MenuOpenIcon)`
-  cursor: pointer;
-  scale: 1.4;
-  &:active {
-    scale: 1.6;
-  }
-`;

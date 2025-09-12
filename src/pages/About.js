@@ -394,12 +394,6 @@ const Subheading = styled.h2`
   color: #64748b;
 `;
 
-const HeroParagraph = styled.p`
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: #475569;
-  margin: 0;
-`;
 
 const MainContainer = styled.main`
   flex: 1;

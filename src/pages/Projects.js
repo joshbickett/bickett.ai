@@ -4,11 +4,6 @@ import { useMediaQuery } from "react-responsive";
 import { FaStar } from "react-icons/fa"; // Import star icon
 
 // Project images
-import memeImage from "../assets/meme.jpg";
-import musicImage from "../assets/music.png";
-import gaitImage from "../assets/gait-2.png";
-import RobotImage from "../assets/robot.png";
-import MysteriesImage from "../assets/mysteries.jpg";
 import SelfOperatingComputerImage from "../assets/soc.png";
 
 export const Projects = ({ isMobile }) => {
@@ -262,12 +257,6 @@ const ProjectCard = styled.div`
   }
 `;
 
-const ProjectImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-`;
 
 const ProjectTitle = styled.h3`
   font-size: 1.5rem;

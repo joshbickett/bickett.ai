@@ -1,11 +1,9 @@
 import { About } from "./pages/About";
 import { Projects } from "./pages/Projects";
-import { Writing } from "./pages/Writing";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useMediaQuery } from "react-responsive";
-import { useEffect } from "react";
 import { Domains } from "./pages/Domains";
 import { Blog } from "./pages/Blog";
 

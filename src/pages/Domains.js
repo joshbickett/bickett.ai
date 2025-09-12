@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { NavigationBar } from "../components/NavigationBar";
 import { useMediaQuery } from "react-responsive";
 
