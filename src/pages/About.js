@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import { loadBlogPosts } from "../utils/blogLoader";
 
 // If you haven't installed react-icons, run:
@@ -23,17 +23,30 @@ export const About = () => {
   const [blogLoading, setBlogLoading] = useState(true);
 
   useEffect(() => {
+    // Set page title and meta description
+    document.title =
+      "Josh Bickett - self-taught engineer interested in AI | Creator of Self-Operating Computer Framework";
+
+    // Add meta description dynamically
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Lead software engineer at OthersideAI building AI products like HyperWrite. Creator of Self-Operating Computer Framework. Writing about AI, computer vision, and indie hacking."
+      );
+    }
+
     const loadPosts = async () => {
       try {
         const posts = await loadBlogPosts();
         setBlogPosts(posts);
       } catch (error) {
-        console.error('Error loading blog posts:', error);
+        console.error("Error loading blog posts:", error);
       } finally {
         setBlogLoading(false);
       }
     };
-    
+
     loadPosts();
   }, []);
 
@@ -61,7 +74,9 @@ export const About = () => {
         </NavItem>
         <NavItem href="https://indiepa.ge/bickett">Indie Hacking</NavItem>
         <NavItem href="/projects">Research & Projects</NavItem>
-        <NavItem href="#blog" onClick={handleBlogClick}>Blog</NavItem>
+        <NavItem href="#blog" onClick={handleBlogClick}>
+          Blog
+        </NavItem>
         <NavItem href="#contact" onClick={handleContactClick}>
           Contact
         </NavItem>
@@ -233,8 +248,8 @@ export const About = () => {
         </Section>
 
         {/* Blog Section - at the very bottom */}
-        <Section id="blog">
-          <SectionHeading>Blog</SectionHeading>
+        <Section id="blog" as="section" aria-labelledby="blog-heading">
+          <SectionHeading id="blog-heading">Blog</SectionHeading>
           {blogLoading ? (
             <SectionContent>
               <p>Loading blog posts...</p>
@@ -245,25 +260,49 @@ export const About = () => {
             </SectionContent>
           ) : (
             blogPosts.map((post) => (
-              <BlogPostContainer key={post.slug}>
+              <BlogPostContainer
+                key={post.slug}
+                as="article"
+                itemScope
+                itemType="https://schema.org/BlogPosting"
+              >
                 <BlogPostHeader>
-                  <BlogPostTitle>{post.frontmatter.title}</BlogPostTitle>
-                  <BlogPostDate>{post.frontmatter.date}</BlogPostDate>
+                  <BlogPostTitle itemProp="headline">
+                    {post.frontmatter.title}
+                  </BlogPostTitle>
+                  <BlogPostDate
+                    itemProp="datePublished"
+                    dateTime={post.frontmatter.date}
+                  >
+                    {post.frontmatter.date}
+                  </BlogPostDate>
+                  <meta itemProp="author" content="Josh Bickett" />
+                  <meta itemProp="publisher" content="Josh Bickett" />
                 </BlogPostHeader>
-                <BlogPostContent>
+                <BlogPostContent itemProp="articleBody">
                   <ReactMarkdown
                     components={{
                       h1: ({ children }) => <MarkdownH1>{children}</MarkdownH1>,
                       h2: ({ children }) => <MarkdownH2>{children}</MarkdownH2>,
                       h3: ({ children }) => <MarkdownH3>{children}</MarkdownH3>,
                       p: ({ children }) => <MarkdownP>{children}</MarkdownP>,
-                      a: ({ href, children }) => <Link href={href}>{children}</Link>,
-                      code: ({ children }) => <MarkdownCode>{children}</MarkdownCode>,
-                      pre: ({ children }) => <MarkdownPre>{children}</MarkdownPre>,
+                      a: ({ href, children }) => (
+                        <Link href={href}>{children}</Link>
+                      ),
+                      code: ({ children }) => (
+                        <MarkdownCode>{children}</MarkdownCode>
+                      ),
+                      pre: ({ children }) => (
+                        <MarkdownPre>{children}</MarkdownPre>
+                      ),
                       ul: ({ children }) => <MarkdownUl>{children}</MarkdownUl>,
                       li: ({ children }) => <MarkdownLi>{children}</MarkdownLi>,
-                      blockquote: ({ children }) => <MarkdownBlockquote>{children}</MarkdownBlockquote>,
-                      strong: ({ children }) => <MarkdownStrong>{children}</MarkdownStrong>,
+                      blockquote: ({ children }) => (
+                        <MarkdownBlockquote>{children}</MarkdownBlockquote>
+                      ),
+                      strong: ({ children }) => (
+                        <MarkdownStrong>{children}</MarkdownStrong>
+                      ),
                     }}
                   >
                     {post.content}
@@ -393,7 +432,6 @@ const Subheading = styled.h2`
   margin: 0 0 1rem 0;
   color: #64748b;
 `;
-
 
 const MainContainer = styled.main`
   flex: 1;
@@ -656,7 +694,7 @@ const MarkdownCode = styled.code`
   color: #e11d48;
   padding: 0.25rem 0.375rem;
   border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 0.875em;
 `;
 
@@ -667,7 +705,7 @@ const MarkdownPre = styled.pre`
   border-radius: 8px;
   overflow-x: auto;
   margin: 1.5rem 0;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 0.875rem;
   line-height: 1.6;
 

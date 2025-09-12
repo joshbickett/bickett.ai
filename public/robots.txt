@@ -1,3 +1,19 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://joshbickett.com/sitemap.xml
+
+# Allow crawling of blog posts and assets
+Allow: /blog/
+Allow: /static/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+
+# Disallow crawling of build files
+Disallow: /build/
+Disallow: /node_modules/
