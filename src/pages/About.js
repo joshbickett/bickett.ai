@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { loadBlogPosts } from "../utils/blogLoader";
 
 // If you haven't installed react-icons, run:
@@ -281,6 +282,7 @@ export const About = () => {
                 </BlogPostHeader>
                 <BlogPostContent itemProp="articleBody">
                   <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
                     components={{
                       h1: ({ children }) => <MarkdownH1>{children}</MarkdownH1>,
                       h2: ({ children }) => <MarkdownH2>{children}</MarkdownH2>,
@@ -303,6 +305,12 @@ export const About = () => {
                       strong: ({ children }) => (
                         <MarkdownStrong>{children}</MarkdownStrong>
                       ),
+                      table: ({ children }) => <MarkdownTable>{children}</MarkdownTable>,
+                      thead: ({ children }) => <MarkdownThead>{children}</MarkdownThead>,
+                      tbody: ({ children }) => <MarkdownTbody>{children}</MarkdownTbody>,
+                      tr: ({ children }) => <MarkdownTr>{children}</MarkdownTr>,
+                      th: ({ children }) => <MarkdownTh>{children}</MarkdownTh>,
+                      td: ({ children }) => <MarkdownTd>{children}</MarkdownTd>,
                     }}
                   >
                     {post.content}
@@ -871,6 +879,80 @@ const MarkdownBlockquote = styled.blockquote`
 const MarkdownStrong = styled.strong`
   font-weight: 600;
   color: #1e293b;
+`;
+
+const MarkdownTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  display: block;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    margin: 1.25rem 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    margin: 1rem -1rem;
+    border-radius: 0;
+  }
+`;
+
+const MarkdownThead = styled.thead`
+  background-color: #f8fafc;
+`;
+
+const MarkdownTbody = styled.tbody`
+  background-color: white;
+`;
+
+const MarkdownTr = styled.tr`
+  border-bottom: 1px solid #e2e8f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:nth-of-type(even) {
+    background-color: #f8fafc;
+  }
+`;
+
+const MarkdownTh = styled.th`
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #1e293b;
+  border-bottom: 2px solid #e2e8f0;
+  background-color: #f1f5f9;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.7rem;
+  }
+`;
+
+const MarkdownTd = styled.td`
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #374151;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.7rem;
+  }
 `;
 
 export default About;
