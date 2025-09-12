@@ -3,6 +3,10 @@ title: "Selecting a Model Based on Stripe Conversion: A Practical Eval for Start
 date: "2025-06-02"
 ---
 
+*Originally published in the [OpenAI Cookbook](https://cookbook.openai.com/examples/stripe_model_eval/selecting_a_model_based_on_stripe_conversion). Co-authored with Shyamal Anadkat and Lucie Lozinski.*
+
+---
+
 ## Overview
 
 The best model for you depends on your business goal. Many startups choose large language models (LLMs) based on offline evaluations and public benchmarks. However, a model that achieves high scores on a benchmark may not necessarily lead your users to pay, subscribe, or continue using your product. Models that look strong on paper can underperform when measured against actual business outcomes.
