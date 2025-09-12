@@ -3,7 +3,7 @@ title: "Selecting a Model Based on Stripe Conversion: A Practical Eval for Start
 date: "2025-06-02"
 ---
 
-*Originally published in the [OpenAI Cookbook](https://cookbook.openai.com/examples/stripe_model_eval/selecting_a_model_based_on_stripe_conversion). Co-authored with Shyamal Anadkat and Lucie Lozinski.*
+_Originally published in the [OpenAI Cookbook](https://cookbook.openai.com/examples/stripe_model_eval/selecting_a_model_based_on_stripe_conversion). Co-authored with Shyamal Anadkat and Lucie Lozinski._
 
 ---
 
