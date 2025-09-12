@@ -43,6 +43,7 @@ export const loadBlogPosts = async () => {
     "selecting_a_model_based_on_stripe_conversion.md",
     "1000-for-brain-2025.md",
     "self-operating-computer-framework.md",
+    "older-medium-posts.md",
   ];
 
   try {
