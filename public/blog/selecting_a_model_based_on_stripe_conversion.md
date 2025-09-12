@@ -194,7 +194,7 @@ To perform this analysis, you need a system that links user behavior to Stripe p
 
 The following sequence diagram outlines the process:
 
-![Process diagram](../../images/stripe_eval_diagram.png)
+![Process diagram](https://raw.githubusercontent.com/openai/openai-cookbook/7433ba1e4e86213915cb4f6e81af08aaac8cab7e/images/stripe_eval_diagram.png)
 
 #### User workflow
 

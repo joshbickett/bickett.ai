@@ -305,6 +305,9 @@ export const About = () => {
                       strong: ({ children }) => (
                         <MarkdownStrong>{children}</MarkdownStrong>
                       ),
+                      img: ({ src, alt }) => (
+                        <MarkdownImg src={src} alt={alt} />
+                      ),
                       table: ({ children }) => <MarkdownTable>{children}</MarkdownTable>,
                       thead: ({ children }) => <MarkdownThead>{children}</MarkdownThead>,
                       tbody: ({ children }) => <MarkdownTbody>{children}</MarkdownTbody>,
@@ -879,6 +882,28 @@ const MarkdownBlockquote = styled.blockquote`
 const MarkdownStrong = styled.strong`
   font-weight: 600;
   color: #1e293b;
+`;
+
+const MarkdownImg = styled.img`
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) {
+    margin: 1.25rem 0;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 480px) {
+    margin: 1rem 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const MarkdownTable = styled.table`
