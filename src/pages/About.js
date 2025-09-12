@@ -11,6 +11,7 @@ import { loadBlogPosts } from "../utils/blogLoader";
 // yarn add react-icons
 import { FaTwitter, FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { SiSubstack } from "react-icons/si";
+import { SubstackSubscribe } from "../components/SubstackSubscribe";
 
 // Assets (replace with your actual paths)
 import scienceImg from "../assets/science.png";
@@ -247,6 +248,8 @@ export const About = () => {
             </SocialIcon>
           </SocialLinks>
         </Section>
+
+        <SubstackSubscribe />
 
         {/* Blog Section - at the very bottom */}
         <Section id="blog" as="section" aria-labelledby="blog-heading">
