@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import React, { useState } from "react";
+import styled from "@emotion/styled";
 
 export const SubstackSubscribe = () => {
   const [showWidget, setShowWidget] = useState(false);
@@ -15,7 +15,8 @@ export const SubstackSubscribe = () => {
       {!showWidget ? (
         <SectionContent>
           <p>
-            Get insights about AI agents, cost-compute optimization, exponential growth, and the future of technology delivered to your inbox.
+            Get insights about AI agents, cost-compute trends, exponential
+            growth, and the future of technology delivered to your inbox.
           </p>
           <p>
             <Link href="#" onClick={handleSubscribeClick}>
@@ -26,22 +27,20 @@ export const SubstackSubscribe = () => {
         </SectionContent>
       ) : (
         <WidgetContainer>
-          <iframe 
-            src="https://silence.substack.com/embed" 
-            width="100%" 
-            height="320" 
+          <iframe
+            src="https://silence.substack.com/embed"
+            width="100%"
+            height="320"
             style={{
-              border: '1px solid #e5e7eb',
-              background: 'white',
-              borderRadius: '8px'
+              border: "1px solid #e5e7eb",
+              background: "white",
+              borderRadius: "8px",
             }}
-            frameBorder="0" 
+            frameBorder="0"
             scrolling="no"
             title="Substack Subscribe Widget"
           />
-          <BackButton onClick={() => setShowWidget(false)}>
-            ← Back
-          </BackButton>
+          <BackButton onClick={() => setShowWidget(false)}>← Back</BackButton>
         </WidgetContainer>
       )}
     </Section>
