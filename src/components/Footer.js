@@ -24,7 +24,7 @@ export const Footer = () => {
         ></i>
       </a>
       <a
-        href="https://twitter.com/josh_bickett"
+        href="https://x.com/intent/follow?screen_name=josh_bickett"
         target="_blank"
         rel="noopener noreferrer"
         style={{ margin: "0 10px" }}

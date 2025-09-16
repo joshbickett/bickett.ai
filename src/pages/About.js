@@ -91,7 +91,7 @@ export const About = () => {
           />
           <HeroText>
             <Heading>Josh Bickett</Heading>
-            <Subheading>Writing about AI and exponential growth</Subheading>
+            <Subheading>AI Engineer</Subheading>
           </HeroText>
         </HeroContent>
       </HeroSection>
@@ -184,7 +184,9 @@ export const About = () => {
           <SectionContent>
             <p>
               The easiest way to reach me is to message me on Twitter{" "}
-              <Link href="https://twitter.com/josh_bickett">@josh_bickett</Link>
+              <Link href="https://x.com/intent/follow?screen_name=josh_bickett">
+                @josh_bickett
+              </Link>
               .
             </p>
             <p>
@@ -207,7 +209,7 @@ export const About = () => {
           {/* Social links with icons */}
           <SocialLinks>
             <SocialIcon
-              href="https://twitter.com/josh_bickett"
+              href="https://x.com/intent/follow?screen_name=josh_bickett"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter"
