@@ -7,6 +7,7 @@ export const Blog = ({ isMobile }) => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isExplorerOpen, setExplorerOpen] = useState(!isMobile);
 
   useEffect(() => {
     document.title = "Blog | JoshBickett.com";
@@ -26,10 +27,15 @@ export const Blog = ({ isMobile }) => {
     loadPosts();
   }, []);
 
+  useEffect(() => {
+    setExplorerOpen(!isMobile);
+  }, [isMobile]);
+
   const handleSelectPost = (post) => {
     setSelectedPost(post);
 
     if (isMobile) {
+      setExplorerOpen(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -87,62 +93,128 @@ export const Blog = ({ isMobile }) => {
       </NavigationBar>
 
       <MainContainer>
-        <ExplorerContainer>
-          <PostList>
-            <ListHeading>Blog Posts</ListHeading>
-            {blogPosts.length === 0 ? (
-              <EmptyState>No blog posts found right now.</EmptyState>
-            ) : (
-              blogPosts.map((post) => {
-                const formattedDate = post.frontmatter.date
-                  ? new Date(post.frontmatter.date).toLocaleDateString(
-                      undefined,
-                      {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      }
-                    )
-                  : "";
+        {isMobile ? (
+          <MobileLayout>
+            <MobileExplorerToggle
+              type="button"
+              onClick={() => setExplorerOpen((open) => !open)}
+            >
+              {isExplorerOpen ? "Hide post explorer" : "Browse blog posts"}
+            </MobileExplorerToggle>
+            {isExplorerOpen && (
+              <MobilePostList>
+                {blogPosts.length === 0 ? (
+                  <EmptyState>No blog posts found right now.</EmptyState>
+                ) : (
+                  blogPosts.map((post) => {
+                    const formattedDate = post.frontmatter.date
+                      ? new Date(post.frontmatter.date).toLocaleDateString(
+                          undefined,
+                          {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          }
+                        )
+                      : "";
 
-                return (
-                  <PostListItem
-                    key={post.slug}
-                    onClick={() => handleSelectPost(post)}
-                    $isActive={selectedPost?.slug === post.slug}
-                  >
-                    <PostTitle>{post.frontmatter.title}</PostTitle>
-                    {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
-                  </PostListItem>
-                );
-              })
+                    return (
+                      <PostListItem
+                        key={post.slug}
+                        onClick={() => handleSelectPost(post)}
+                        $isActive={selectedPost?.slug === post.slug}
+                      >
+                        <PostTitle>{post.frontmatter.title}</PostTitle>
+                        {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
+                      </PostListItem>
+                    );
+                  })
+                )}
+              </MobilePostList>
             )}
-          </PostList>
-          <PostDetail>
-            {selectedPost ? (
-              <DetailContent>
-                <DetailHeader>
-                  <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
-                  {selectedPost.frontmatter.date && (
-                    <DetailMeta>
-                      {new Date(selectedPost.frontmatter.date).toLocaleDateString(
+            <PostDetail $isMobile={isMobile}>
+              {selectedPost ? (
+                <DetailContent>
+                  <DetailHeader>
+                    <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
+                    {selectedPost.frontmatter.date && (
+                      <DetailMeta>
+                        {new Date(selectedPost.frontmatter.date).toLocaleDateString(
+                          undefined,
+                          {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          }
+                        )}
+                      </DetailMeta>
+                    )}
+                  </DetailHeader>
+                  <MarkdownRenderer content={selectedPost.content} />
+                </DetailContent>
+              ) : (
+                <EmptyDetail>Select a post to start reading.</EmptyDetail>
+              )}
+            </PostDetail>
+          </MobileLayout>
+        ) : (
+          <ExplorerContainer>
+            <PostList>
+              <ListHeading>Blog Posts</ListHeading>
+              {blogPosts.length === 0 ? (
+                <EmptyState>No blog posts found right now.</EmptyState>
+              ) : (
+                blogPosts.map((post) => {
+                  const formattedDate = post.frontmatter.date
+                    ? new Date(post.frontmatter.date).toLocaleDateString(
                         undefined,
                         {
-                          month: "long",
+                          month: "short",
                           day: "numeric",
                           year: "numeric",
                         }
-                      )}
-                    </DetailMeta>
-                  )}
-                </DetailHeader>
-                <MarkdownRenderer content={selectedPost.content} />
-              </DetailContent>
-            ) : (
-              <EmptyDetail>Select a post to start reading.</EmptyDetail>
-            )}
-          </PostDetail>
-        </ExplorerContainer>
+                      )
+                    : "";
+
+                  return (
+                    <PostListItem
+                      key={post.slug}
+                      onClick={() => handleSelectPost(post)}
+                      $isActive={selectedPost?.slug === post.slug}
+                    >
+                      <PostTitle>{post.frontmatter.title}</PostTitle>
+                      {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
+                    </PostListItem>
+                  );
+                })
+              )}
+            </PostList>
+            <PostDetail>
+              {selectedPost ? (
+                <DetailContent>
+                  <DetailHeader>
+                    <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
+                    {selectedPost.frontmatter.date && (
+                      <DetailMeta>
+                        {new Date(selectedPost.frontmatter.date).toLocaleDateString(
+                          undefined,
+                          {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          }
+                        )}
+                      </DetailMeta>
+                    )}
+                  </DetailHeader>
+                  <MarkdownRenderer content={selectedPost.content} />
+                </DetailContent>
+              ) : (
+                <EmptyDetail>Select a post to start reading.</EmptyDetail>
+              )}
+            </PostDetail>
+          </ExplorerContainer>
+        )}
       </MainContainer>
     </PageContainer>
   );
@@ -193,6 +265,8 @@ const PostList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-height: 80vh;
+  overflow-y: auto;
 `;
 
 const ListHeading = styled.h2`
@@ -242,6 +316,15 @@ const PostDetail = styled.section`
   padding: 2rem;
   min-height: 480px;
   display: flex;
+  width: 100%;
+
+  ${({ $isMobile }) =>
+    $isMobile &&
+    `
+      padding: 1.5rem;
+      box-shadow: none;
+      border-radius: 10px;
+    `}
 
   @media (max-width: 900px) {
     min-height: auto;
@@ -300,6 +383,36 @@ const LoadingMessage = styled.div`
   text-align: center;
   padding: 3rem;
   color: #64748b;
+`;
+
+const MobileLayout = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const MobileExplorerToggle = styled.button`
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  color: #1f2937;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+  }
+`;
+
+const MobilePostList = styled(PostList)`
+  padding: 1rem;
+  gap: 0.5rem;
+  max-height: 60vh;
 `;
 
 // Navigation components matching About page

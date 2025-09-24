@@ -7,6 +7,7 @@ export const Todos = ({ isMobile }) => {
   const [todos, setTodos] = useState([]);
   const [selectedTodo, setSelectedTodo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isExplorerOpen, setExplorerOpen] = useState(!isMobile);
 
   useEffect(() => {
     document.title = "Public TODOs | JoshBickett.com";
@@ -32,7 +33,11 @@ export const Todos = ({ isMobile }) => {
     fetchTodos();
   }, []);
 
-  const { formattedTodos, activeTodos, doneTodos } = useMemo(() => {
+  useEffect(() => {
+    setExplorerOpen(!isMobile);
+  }, [isMobile]);
+
+  const { activeTodos, doneTodos } = useMemo(() => {
     const formatted = todos.map((todo) => {
       const date = todo.frontmatter?.date
         ? new Date(todo.frontmatter.date)
@@ -55,11 +60,15 @@ export const Todos = ({ isMobile }) => {
     const active = formatted.filter((todo) => todo.normalizedStatus !== "done");
     const done = formatted.filter((todo) => todo.normalizedStatus === "done");
 
-    return { formattedTodos: formatted, activeTodos: active, doneTodos: done };
+    return { activeTodos: active, doneTodos: done };
   }, [todos]);
 
   const handleSelectTodo = (todo) => {
     setSelectedTodo(todo);
+    if (isMobile) {
+      setExplorerOpen(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   if (loading) {
@@ -105,86 +114,178 @@ export const Todos = ({ isMobile }) => {
         </NavItem>
       </NavigationBar>
       <MainContainer>
-        <ExplorerContainer>
-          <TodoList>
-            <ListHeading>Active TODOs</ListHeading>
-            {activeTodos.length === 0 ? (
-              <EmptyState>No active todos right now.</EmptyState>
-            ) : (
-              activeTodos.map((todo) => (
-                <TodoListItem
-                  key={todo.slug}
-                  onClick={() => handleSelectTodo(todo)}
-                  $isActive={selectedTodo?.slug === todo.slug}
-                  $isDone={false}
-                >
-                  <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
-                  <TodoItemMeta>
-                    {todo.formattedDate && (
-                      <TodoDate>{todo.formattedDate}</TodoDate>
-                    )}
-                    {todo.frontmatter.status && (
-                      <TodoStatus>{todo.frontmatter.status}</TodoStatus>
-                    )}
-                  </TodoItemMeta>
-                </TodoListItem>
-              ))
+        {isMobile ? (
+          <MobileLayout>
+            <MobileExplorerToggle
+              type="button"
+              onClick={() => setExplorerOpen((open) => !open)}
+            >
+              {isExplorerOpen ? "Hide todo explorer" : "Browse todos"}
+            </MobileExplorerToggle>
+            {isExplorerOpen && (
+              <MobileTodoList>
+                <ListHeading>Active TODOs</ListHeading>
+                {activeTodos.length === 0 ? (
+                  <EmptyState>No active todos right now.</EmptyState>
+                ) : (
+                  activeTodos.map((todo) => (
+                    <TodoListItem
+                      key={todo.slug}
+                      onClick={() => handleSelectTodo(todo)}
+                      $isActive={selectedTodo?.slug === todo.slug}
+                      $isDone={false}
+                    >
+                      <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
+                      <TodoItemMeta>
+                        {todo.formattedDate && (
+                          <TodoDate>{todo.formattedDate}</TodoDate>
+                        )}
+                        {todo.frontmatter.status && (
+                          <TodoStatus>{todo.frontmatter.status}</TodoStatus>
+                        )}
+                      </TodoItemMeta>
+                    </TodoListItem>
+                  ))
+                )}
+
+                {doneTodos.length > 0 && <ListDivider />}
+
+                {doneTodos.length > 0 && <ListHeading>Done</ListHeading>}
+                {doneTodos.length > 0 &&
+                  doneTodos.map((todo) => (
+                    <TodoListItem
+                      key={todo.slug}
+                      onClick={() => handleSelectTodo(todo)}
+                      $isActive={selectedTodo?.slug === todo.slug}
+                      $isDone
+                    >
+                      <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
+                      <TodoItemMeta>
+                        {todo.formattedDate && (
+                          <TodoDate>{todo.formattedDate}</TodoDate>
+                        )}
+                        {todo.frontmatter.status && (
+                          <TodoStatus>{todo.frontmatter.status}</TodoStatus>
+                        )}
+                      </TodoItemMeta>
+                    </TodoListItem>
+                  ))}
+              </MobileTodoList>
             )}
 
-            {doneTodos.length > 0 && <ListDivider />}
+            <TodoDetail $isMobile={isMobile}>
+              {selectedTodo ? (
+                <DetailContent>
+                  <DetailHeader>
+                    <DetailTitle>{selectedTodo.frontmatter.title}</DetailTitle>
+                    <DetailMeta>
+                      {selectedTodo.frontmatter.date && (
+                        <DetailMetaItem>
+                          {new Date(
+                            selectedTodo.frontmatter.date
+                          ).toLocaleDateString(undefined, {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </DetailMetaItem>
+                      )}
+                      {selectedTodo.frontmatter.status && (
+                        <DetailMetaItem>
+                          Status: {selectedTodo.frontmatter.status}
+                        </DetailMetaItem>
+                      )}
+                    </DetailMeta>
+                  </DetailHeader>
+                  <MarkdownRenderer content={selectedTodo.content} />
+                </DetailContent>
+              ) : (
+                <EmptyDetail>Select a todo to view details.</EmptyDetail>
+              )}
+            </TodoDetail>
+          </MobileLayout>
+        ) : (
+          <ExplorerContainer>
+            <TodoList>
+              <ListHeading>Active TODOs</ListHeading>
+              {activeTodos.length === 0 ? (
+                <EmptyState>No active todos right now.</EmptyState>
+              ) : (
+                activeTodos.map((todo) => (
+                  <TodoListItem
+                    key={todo.slug}
+                    onClick={() => handleSelectTodo(todo)}
+                    $isActive={selectedTodo?.slug === todo.slug}
+                    $isDone={false}
+                  >
+                    <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
+                    <TodoItemMeta>
+                      {todo.formattedDate && (
+                        <TodoDate>{todo.formattedDate}</TodoDate>
+                      )}
+                      {todo.frontmatter.status && (
+                        <TodoStatus>{todo.frontmatter.status}</TodoStatus>
+                      )}
+                    </TodoItemMeta>
+                  </TodoListItem>
+                ))
+              )}
 
-            {doneTodos.length > 0 && <ListHeading>Done</ListHeading>}
-            {doneTodos.length > 0 &&
-              doneTodos.map((todo) => (
-                <TodoListItem
-                  key={todo.slug}
-                  onClick={() => handleSelectTodo(todo)}
-                  $isActive={selectedTodo?.slug === todo.slug}
-                  $isDone
-                >
-                  <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
-                  <TodoItemMeta>
-                    {todo.formattedDate && (
-                      <TodoDate>{todo.formattedDate}</TodoDate>
-                    )}
-                    {todo.frontmatter.status && (
-                      <TodoStatus>{todo.frontmatter.status}</TodoStatus>
-                    )}
-                  </TodoItemMeta>
-                </TodoListItem>
-              ))}
-          </TodoList>
-          <TodoDetail>
-            {selectedTodo ? (
-              <DetailContent>
-                <DetailHeader>
-                  <DetailTitle>{selectedTodo.frontmatter.title}</DetailTitle>
-                  <DetailMeta>
-                    {selectedTodo.frontmatter.date && (
-                      <DetailMetaItem>
-                        {new Date(
-                          selectedTodo.frontmatter.date
-                        ).toLocaleDateString(undefined, {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </DetailMetaItem>
-                    )}
-                    {selectedTodo.frontmatter.status && (
-                      <DetailMetaItem>
-                        Status: {selectedTodo.frontmatter.status}
-                      </DetailMetaItem>
-                    )}
-                  </DetailMeta>
-                </DetailHeader>
-                <MarkdownRenderer content={selectedTodo.content} />
-              </DetailContent>
-            ) : (
-              <EmptyDetail>Select a todo to view details.</EmptyDetail>
-            )}
-          </TodoDetail>
-        </ExplorerContainer>
+              {doneTodos.length > 0 && <ListDivider />}
+
+              {doneTodos.length > 0 && <ListHeading>Done</ListHeading>}
+              {doneTodos.length > 0 &&
+                doneTodos.map((todo) => (
+                  <TodoListItem
+                    key={todo.slug}
+                    onClick={() => handleSelectTodo(todo)}
+                    $isActive={selectedTodo?.slug === todo.slug}
+                    $isDone
+                  >
+                    <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
+                    <TodoItemMeta>
+                      {todo.formattedDate && (
+                        <TodoDate>{todo.formattedDate}</TodoDate>
+                      )}
+                      {todo.frontmatter.status && (
+                        <TodoStatus>{todo.frontmatter.status}</TodoStatus>
+                      )}
+                    </TodoItemMeta>
+                  </TodoListItem>
+                ))}
+            </TodoList>
+            <TodoDetail>
+              {selectedTodo ? (
+                <DetailContent>
+                  <DetailHeader>
+                    <DetailTitle>{selectedTodo.frontmatter.title}</DetailTitle>
+                    <DetailMeta>
+                      {selectedTodo.frontmatter.date && (
+                        <DetailMetaItem>
+                          {new Date(
+                            selectedTodo.frontmatter.date
+                          ).toLocaleDateString(undefined, {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </DetailMetaItem>
+                      )}
+                      {selectedTodo.frontmatter.status && (
+                        <DetailMetaItem>
+                          Status: {selectedTodo.frontmatter.status}
+                        </DetailMetaItem>
+                      )}
+                    </DetailMeta>
+                  </DetailHeader>
+                  <MarkdownRenderer content={selectedTodo.content} />
+                </DetailContent>
+              ) : (
+                <EmptyDetail>Select a todo to view details.</EmptyDetail>
+              )}
+            </TodoDetail>
+          </ExplorerContainer>
+        )}
       </MainContainer>
     </PageContainer>
   );
@@ -235,6 +336,8 @@ const TodoList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-height: 80vh;
+  overflow-y: auto;
 `;
 
 const ListHeading = styled.h2`
@@ -304,6 +407,15 @@ const TodoDetail = styled.section`
   padding: 2rem;
   min-height: 480px;
   display: flex;
+  width: 100%;
+
+  ${({ $isMobile }) =>
+    $isMobile &&
+    `
+      padding: 1.5rem;
+      box-shadow: none;
+      border-radius: 10px;
+    `}
 `;
 
 const DetailContent = styled.div`
@@ -403,4 +515,34 @@ const NavItem = styled.a`
   @media (max-width: 768px) {
     margin: 0.5rem 0;
   }
+`;
+
+const MobileLayout = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const MobileExplorerToggle = styled.button`
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  color: #1f2937;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+  }
+`;
+
+const MobileTodoList = styled(TodoList)`
+  padding: 1rem;
+  gap: 0.5rem;
+  max-height: 60vh;
 `;
