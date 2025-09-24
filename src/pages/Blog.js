@@ -285,9 +285,10 @@ const PostDetail = styled.section`
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
-  padding: 2rem;
+  padding: 2rem 3rem;
   min-height: 480px;
   display: flex;
+  justify-content: center;
   width: 100%;
   overflow: hidden;
 
@@ -301,18 +302,16 @@ const PostDetail = styled.section`
 
   @media (max-width: 900px) {
     min-height: auto;
+    padding: 2rem;
   }
 `;
 
 const DetailContent = styled.div`
   width: 100%;
+  max-width: 800px;
   color: #1f2937;
   overflow-wrap: anywhere;
-
-  @media (min-width: 901px) {
-    max-width: 720px;
-    margin: 0;
-  }
+  margin: 0 auto;
 
   .markdown-content {
     line-height: 1.7;
