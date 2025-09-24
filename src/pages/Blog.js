@@ -40,6 +40,59 @@ export const Blog = ({ isMobile }) => {
     }
   };
 
+  const listContent =
+    blogPosts.length === 0 ? (
+      <EmptyState>No blog posts found right now.</EmptyState>
+    ) : (
+      blogPosts.map((post) => {
+        const formattedDate = post.frontmatter.date
+          ? new Date(post.frontmatter.date).toLocaleDateString(undefined, {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          : "";
+
+        return (
+          <PostListItem
+            key={post.slug}
+            onClick={() => handleSelectPost(post)}
+            $isActive={selectedPost?.slug === post.slug}
+          >
+            <PostTitle>{post.frontmatter.title}</PostTitle>
+            {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
+          </PostListItem>
+        );
+      })
+    );
+
+  const detailSection = (
+    <PostDetail $isMobile={isMobile}>
+      {selectedPost ? (
+        <DetailContent>
+          <DetailHeader>
+            <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
+            {selectedPost.frontmatter.date && (
+              <DetailMeta>
+                {new Date(selectedPost.frontmatter.date).toLocaleDateString(
+                  undefined,
+                  {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  }
+                )}
+              </DetailMeta>
+            )}
+          </DetailHeader>
+          <MarkdownRenderer content={selectedPost.content} />
+        </DetailContent>
+      ) : (
+        <EmptyDetail>Select a post to start reading.</EmptyDetail>
+      )}
+    </PostDetail>
+  );
+
   if (loading) {
     return (
       <PageContainer>
@@ -103,116 +156,19 @@ export const Blog = ({ isMobile }) => {
             </MobileExplorerToggle>
             {isExplorerOpen && (
               <MobilePostList>
-                {blogPosts.length === 0 ? (
-                  <EmptyState>No blog posts found right now.</EmptyState>
-                ) : (
-                  blogPosts.map((post) => {
-                    const formattedDate = post.frontmatter.date
-                      ? new Date(post.frontmatter.date).toLocaleDateString(
-                          undefined,
-                          {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          }
-                        )
-                      : "";
-
-                    return (
-                      <PostListItem
-                        key={post.slug}
-                        onClick={() => handleSelectPost(post)}
-                        $isActive={selectedPost?.slug === post.slug}
-                      >
-                        <PostTitle>{post.frontmatter.title}</PostTitle>
-                        {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
-                      </PostListItem>
-                    );
-                  })
-                )}
+                <ListHeading>Blog Posts</ListHeading>
+                {listContent}
               </MobilePostList>
             )}
-            <PostDetail $isMobile={isMobile}>
-              {selectedPost ? (
-                <DetailContent>
-                  <DetailHeader>
-                    <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
-                    {selectedPost.frontmatter.date && (
-                      <DetailMeta>
-                        {new Date(selectedPost.frontmatter.date).toLocaleDateString(
-                          undefined,
-                          {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                          }
-                        )}
-                      </DetailMeta>
-                    )}
-                  </DetailHeader>
-                  <MarkdownRenderer content={selectedPost.content} />
-                </DetailContent>
-              ) : (
-                <EmptyDetail>Select a post to start reading.</EmptyDetail>
-              )}
-            </PostDetail>
+            {detailSection}
           </MobileLayout>
         ) : (
           <ExplorerContainer>
             <PostList>
               <ListHeading>Blog Posts</ListHeading>
-              {blogPosts.length === 0 ? (
-                <EmptyState>No blog posts found right now.</EmptyState>
-              ) : (
-                blogPosts.map((post) => {
-                  const formattedDate = post.frontmatter.date
-                    ? new Date(post.frontmatter.date).toLocaleDateString(
-                        undefined,
-                        {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        }
-                      )
-                    : "";
-
-                  return (
-                    <PostListItem
-                      key={post.slug}
-                      onClick={() => handleSelectPost(post)}
-                      $isActive={selectedPost?.slug === post.slug}
-                    >
-                      <PostTitle>{post.frontmatter.title}</PostTitle>
-                      {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
-                    </PostListItem>
-                  );
-                })
-              )}
+              {listContent}
             </PostList>
-            <PostDetail>
-              {selectedPost ? (
-                <DetailContent>
-                  <DetailHeader>
-                    <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
-                    {selectedPost.frontmatter.date && (
-                      <DetailMeta>
-                        {new Date(selectedPost.frontmatter.date).toLocaleDateString(
-                          undefined,
-                          {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                          }
-                        )}
-                      </DetailMeta>
-                    )}
-                  </DetailHeader>
-                  <MarkdownRenderer content={selectedPost.content} />
-                </DetailContent>
-              ) : (
-                <EmptyDetail>Select a post to start reading.</EmptyDetail>
-              )}
-            </PostDetail>
+            {detailSection}
           </ExplorerContainer>
         )}
       </MainContainer>
@@ -234,11 +190,17 @@ const MainContainer = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 3rem 2rem;
-  max-width: 1100px;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 3.5rem 3rem 3.5rem 1.75rem;
+  max-width: 1280px;
   margin: 0 auto;
   width: 100%;
+
+  @media (max-width: 1024px) {
+    padding: 3rem 2rem 3rem 1.5rem;
+    max-width: 1180px;
+  }
 
   @media (max-width: 768px) {
     padding: 2rem 1rem;
@@ -247,19 +209,26 @@ const MainContainer = styled.main`
 
 const ExplorerContainer = styled.div`
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 2rem;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 3.25rem;
   width: 100%;
+  align-items: flex-start;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 2rem;
+  }
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 `;
 
 const PostList = styled.div`
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
   padding: 1.5rem;
   height: fit-content;
   display: flex;
@@ -267,6 +236,9 @@ const PostList = styled.div`
   gap: 0.75rem;
   max-height: 80vh;
   overflow-y: auto;
+  width: 100%;
+  min-width: 240px;
+  margin: 0;
 `;
 
 const ListHeading = styled.h2`
@@ -312,11 +284,12 @@ const PostMeta = styled.time`
 const PostDetail = styled.section`
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
   padding: 2rem;
   min-height: 480px;
   display: flex;
   width: 100%;
+  overflow: hidden;
 
   ${({ $isMobile }) =>
     $isMobile &&
@@ -334,6 +307,12 @@ const PostDetail = styled.section`
 const DetailContent = styled.div`
   width: 100%;
   color: #1f2937;
+  overflow-wrap: anywhere;
+
+  @media (min-width: 901px) {
+    max-width: 720px;
+    margin: 0;
+  }
 
   .markdown-content {
     line-height: 1.7;
@@ -420,9 +399,11 @@ const NavigationBar = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  gap: 1.5rem;
+  padding: 1.25rem 2rem;
+  background-color: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -430,26 +411,26 @@ const NavigationBar = styled.nav`
   @media (max-width: 768px) {
     padding: 1rem;
     flex-direction: column;
+    gap: 0.75rem;
   }
 `;
 
 const NavItem = styled.a`
-  margin: 0 1.5rem;
-  padding: 0.5rem 0;
-  color: ${(props) => (props.active ? "#2563eb" : "#64748b")};
+  padding: 0.4rem 0.25rem;
+  color: ${(props) => (props.active ? "#1f2937" : "#64748b")};
   font-weight: ${(props) => (props.active ? "600" : "500")};
   text-decoration: none;
   border-bottom: 2px solid
-    ${(props) => (props.active ? "#2563eb" : "transparent")};
-  transition: all 0.2s ease;
+    ${(props) => (props.active ? "#1f2937" : "transparent")};
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    color: #2563eb;
-    border-bottom-color: #2563eb;
+    color: #1f2937;
+    border-bottom-color: rgba(30, 41, 59, 0.4);
   }
 
   @media (max-width: 768px) {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
   }
 `;
