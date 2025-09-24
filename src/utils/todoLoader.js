@@ -1,6 +1,7 @@
 import { parseFrontmatter } from "./markdown";
 
 const TODO_FILES = [
+  "gemini-cli-contribution-push.md",
   "share-open-agent-showcase.md",
   "publish-public-todos.md",
 ];
