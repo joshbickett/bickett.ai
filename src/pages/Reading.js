@@ -1,51 +1,51 @@
 import styled from "@emotion/styled";
 import { useEffect, useMemo, useState } from "react";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
-import { loadTodos } from "../utils/todoLoader";
+import { loadReadingList } from "../utils/readingLoader";
 
-export const Todos = ({ isMobile }) => {
-  const [todos, setTodos] = useState([]);
-  const [selectedTodo, setSelectedTodo] = useState(null);
+export const Reading = ({ isMobile }) => {
+  const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isExplorerOpen, setExplorerOpen] = useState(!isMobile);
 
   useEffect(() => {
-    document.title = "Public TODOs | JoshBickett.com";
+    document.title = "Reading Stack | JoshBickett.com";
 
-    const fetchTodos = async () => {
+    const fetchReadingList = async () => {
       try {
-        const loadedTodos = await loadTodos();
-        setTodos(loadedTodos);
+        const loaded = await loadReadingList();
+        setItems(loaded);
 
-        const firstActive = loadedTodos.find((todo) => {
-          const status = todo.frontmatter?.status?.toLowerCase();
-          return status !== "done";
+        const firstReading = loaded.find((entry) => {
+          const status = entry.frontmatter?.status?.toLowerCase();
+          return status === "reading";
         });
 
-        setSelectedTodo(firstActive ?? loadedTodos[0] ?? null);
+        setSelectedItem(firstReading ?? loaded[0] ?? null);
       } catch (error) {
-        console.error("Error loading todos:", error);
+        console.error("Error loading reading list:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchTodos();
+    fetchReadingList();
   }, []);
 
   useEffect(() => {
     setExplorerOpen(!isMobile);
   }, [isMobile]);
 
-  const { activeTodos, doneTodos } = useMemo(() => {
-    const formatted = todos.map((todo) => {
-      const date = todo.frontmatter?.date
-        ? new Date(todo.frontmatter.date)
+  const { readingNow, pending, archived } = useMemo(() => {
+    const formatted = items.map((item) => {
+      const date = item.frontmatter?.date
+        ? new Date(item.frontmatter.date)
         : null;
-      const status = todo.frontmatter?.status?.toLowerCase() ?? "";
+      const status = item.frontmatter?.status?.toLowerCase() ?? "";
 
       return {
-        ...todo,
+        ...item,
         normalizedStatus: status,
         formattedDate: date
           ? date.toLocaleDateString(undefined, {
@@ -57,14 +57,17 @@ export const Todos = ({ isMobile }) => {
       };
     });
 
-    const active = formatted.filter((todo) => todo.normalizedStatus !== "done");
-    const done = formatted.filter((todo) => todo.normalizedStatus === "done");
+    return {
+      readingNow: formatted.filter((item) => item.normalizedStatus === "reading"),
+      pending: formatted.filter((item) => item.normalizedStatus === "pending"),
+      archived: formatted.filter((item) =>
+        !["reading", "pending"].includes(item.normalizedStatus)
+      ),
+    };
+  }, [items]);
 
-    return { activeTodos: active, doneTodos: done };
-  }, [todos]);
-
-  const handleSelectTodo = (todo) => {
-    setSelectedTodo(todo);
+  const handleSelect = (item) => {
+    setSelectedItem(item);
     if (isMobile) {
       setExplorerOpen(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -73,62 +76,83 @@ export const Todos = ({ isMobile }) => {
 
   const listContent = (
     <>
-      <ListHeading>Active TODOs</ListHeading>
-      {activeTodos.length === 0 ? (
-        <EmptyState>No active todos right now.</EmptyState>
+      <SectionHeading>Currently Reading</SectionHeading>
+      {readingNow.length === 0 ? (
+        <EmptyState>Nothing in flight right now.</EmptyState>
       ) : (
-        activeTodos.map((todo) => (
-          <TodoListItem
-            key={todo.slug}
-            onClick={() => handleSelectTodo(todo)}
-            $isActive={selectedTodo?.slug === todo.slug}
-            $isDone={false}
+        readingNow.map((item) => (
+          <ListItem
+            key={item.slug}
+            onClick={() => handleSelect(item)}
+            $isActive={selectedItem?.slug === item.slug}
           >
-            <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
-            <TodoItemMeta>
-              {todo.formattedDate && <TodoDate>{todo.formattedDate}</TodoDate>}
-              {todo.frontmatter.status && (
-                <TodoStatus>{todo.frontmatter.status}</TodoStatus>
+            <ItemTitle>{item.frontmatter.title}</ItemTitle>
+            <ItemMeta>
+              {item.formattedDate && <ItemDate>{item.formattedDate}</ItemDate>}
+              {item.frontmatter.status && (
+                <ItemStatus>{item.frontmatter.status}</ItemStatus>
               )}
-            </TodoItemMeta>
-          </TodoListItem>
+            </ItemMeta>
+          </ListItem>
         ))
       )}
 
-      {doneTodos.length > 0 && <ListDivider />}
+      <ListDivider />
 
-      {doneTodos.length > 0 && <ListHeading>Done</ListHeading>}
-      {doneTodos.length > 0 &&
-        doneTodos.map((todo) => (
-          <TodoListItem
-            key={todo.slug}
-            onClick={() => handleSelectTodo(todo)}
-            $isActive={selectedTodo?.slug === todo.slug}
-            $isDone
+      <SectionHeading>Pending</SectionHeading>
+      {pending.length === 0 ? (
+        <EmptyState>The reading queue is empty.</EmptyState>
+      ) : (
+        pending.map((item) => (
+          <ListItem
+            key={item.slug}
+            onClick={() => handleSelect(item)}
+            $isActive={selectedItem?.slug === item.slug}
           >
-            <TodoItemTitle>{todo.frontmatter.title}</TodoItemTitle>
-            <TodoItemMeta>
-              {todo.formattedDate && <TodoDate>{todo.formattedDate}</TodoDate>}
-              {todo.frontmatter.status && (
-                <TodoStatus>{todo.frontmatter.status}</TodoStatus>
+            <ItemTitle>{item.frontmatter.title}</ItemTitle>
+            <ItemMeta>
+              {item.formattedDate && <ItemDate>{item.formattedDate}</ItemDate>}
+              {item.frontmatter.status && (
+                <ItemStatus>{item.frontmatter.status}</ItemStatus>
               )}
-            </TodoItemMeta>
-          </TodoListItem>
+            </ItemMeta>
+          </ListItem>
+        ))
+      )}
+
+      {archived.length > 0 && <ListDivider />}
+
+      {archived.length > 0 && <SectionHeading>Archived</SectionHeading>}
+      {archived.length > 0 &&
+        archived.map((item) => (
+          <ListItem
+            key={item.slug}
+            onClick={() => handleSelect(item)}
+            $isActive={selectedItem?.slug === item.slug}
+          >
+            <ItemTitle>{item.frontmatter.title}</ItemTitle>
+            <ItemMeta>
+              {item.formattedDate && <ItemDate>{item.formattedDate}</ItemDate>}
+              {item.frontmatter.status && (
+                <ItemStatus>{item.frontmatter.status}</ItemStatus>
+              )}
+            </ItemMeta>
+          </ListItem>
         ))}
     </>
   );
 
   const detailSection = (
-    <TodoDetail $isMobile={isMobile}>
-      {selectedTodo ? (
+    <DetailPanel $isMobile={isMobile}>
+      {selectedItem ? (
         <DetailContent>
           <DetailHeader>
-            <DetailTitle>{selectedTodo.frontmatter.title}</DetailTitle>
+            <DetailTitle>{selectedItem.frontmatter.title}</DetailTitle>
             <DetailMeta>
-              {selectedTodo.frontmatter.date && (
+              {selectedItem.frontmatter.date && (
                 <DetailMetaItem>
                   {new Date(
-                    selectedTodo.frontmatter.date
+                    selectedItem.frontmatter.date
                   ).toLocaleDateString(undefined, {
                     month: "long",
                     day: "numeric",
@@ -136,19 +160,30 @@ export const Todos = ({ isMobile }) => {
                   })}
                 </DetailMetaItem>
               )}
-              {selectedTodo.frontmatter.status && (
+              {selectedItem.frontmatter.status && (
                 <DetailMetaItem>
-                  Status: {selectedTodo.frontmatter.status}
+                  Status: {selectedItem.frontmatter.status}
+                </DetailMetaItem>
+              )}
+              {selectedItem.frontmatter.link && (
+                <DetailMetaItem>
+                  <a
+                    href={selectedItem.frontmatter.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open source
+                  </a>
                 </DetailMetaItem>
               )}
             </DetailMeta>
           </DetailHeader>
-          <MarkdownRenderer content={selectedTodo.content} />
+          <MarkdownRenderer content={selectedItem.content} />
         </DetailContent>
       ) : (
-        <EmptyDetail>Select a todo to view details.</EmptyDetail>
+        <EmptyDetail>Select a reading note to view context.</EmptyDetail>
       )}
-    </TodoDetail>
+    </DetailPanel>
   );
 
   if (loading) {
@@ -158,10 +193,7 @@ export const Todos = ({ isMobile }) => {
           <NavItem href="/">Home</NavItem>
           <NavItem href="/projects">Research & Projects</NavItem>
           <NavItem href="/blog">Blog</NavItem>
-          <NavItem href="/todos" active>
-            Public TODOs
-          </NavItem>
-          <NavItem href="/reading">Reading</NavItem>
+          <NavItem href="/todos">Public TODOs</NavItem>
           <NavItem
             href="#contact"
             onClick={(e) => {
@@ -173,9 +205,9 @@ export const Todos = ({ isMobile }) => {
           </NavItem>
         </NavigationBar>
         <MainContainer>
-          <ExplorerContainer>
-            <LoadingMessage>Loading todos…</LoadingMessage>
-          </ExplorerContainer>
+          <ExplorerShell>
+            <LoadingMessage>Loading reading list…</LoadingMessage>
+          </ExplorerShell>
         </MainContainer>
       </PageContainer>
     );
@@ -187,10 +219,10 @@ export const Todos = ({ isMobile }) => {
         <NavItem href="/">Home</NavItem>
         <NavItem href="/projects">Research & Projects</NavItem>
         <NavItem href="/blog">Blog</NavItem>
-        <NavItem href="/todos" active>
-          Public TODOs
+        <NavItem href="/todos">Public TODOs</NavItem>
+        <NavItem href="/reading" active>
+          Reading
         </NavItem>
-        <NavItem href="/reading">Reading</NavItem>
         <NavItem
           href="#contact"
           onClick={(e) => {
@@ -208,19 +240,16 @@ export const Todos = ({ isMobile }) => {
               type="button"
               onClick={() => setExplorerOpen((open) => !open)}
             >
-              {isExplorerOpen ? "Hide todo explorer" : "Browse todos"}
+              {isExplorerOpen ? "Hide reading explorer" : "Browse reading list"}
             </MobileExplorerToggle>
-            {isExplorerOpen && (
-              <MobileTodoList>{listContent}</MobileTodoList>
-            )}
-
+            {isExplorerOpen && <MobileList>{listContent}</MobileList>}
             {detailSection}
           </MobileLayout>
         ) : (
-          <ExplorerContainer>
-            <TodoList>{listContent}</TodoList>
+          <ExplorerShell>
+            <ListContainer>{listContent}</ListContainer>
             {detailSection}
-          </ExplorerContainer>
+          </ExplorerShell>
         )}
       </MainContainer>
     </PageContainer>
@@ -263,7 +292,7 @@ const MainContainer = styled.main`
   }
 `;
 
-const ExplorerContainer = styled.div`
+const ExplorerShell = styled.div`
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   gap: 3.25rem;
@@ -281,7 +310,7 @@ const ExplorerContainer = styled.div`
   }
 `;
 
-const TodoList = styled.div`
+const ListContainer = styled.div`
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
@@ -297,14 +326,14 @@ const TodoList = styled.div`
   margin: 0;
 `;
 
-const ListHeading = styled.h2`
+const SectionHeading = styled.h2`
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #0f172a;
 `;
 
-const TodoListItem = styled.button`
+const ListItem = styled.button`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -314,11 +343,7 @@ const TodoListItem = styled.button`
   border: none;
   background-color: ${({ $isActive }) =>
     $isActive ? "#2563eb" : "transparent"};
-  color: ${({ $isActive, $isDone }) => {
-    if ($isActive) return "#f8fafc";
-    if ($isDone) return "#64748b";
-    return "#1f2937";
-  }};
+  color: ${({ $isActive }) => ($isActive ? "#f8fafc" : "#1f2937")};
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
   text-align: left;
@@ -330,26 +355,26 @@ const TodoListItem = styled.button`
   }
 `;
 
-const TodoItemTitle = styled.span`
+const ItemTitle = styled.span`
   font-weight: 600;
   font-size: 1rem;
 `;
 
-const TodoItemMeta = styled.div`
+const ItemMeta = styled.div`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   font-size: 0.85rem;
 `;
 
-const TodoDate = styled.span`
+const ItemDate = styled.span`
   color: inherit;
   opacity: 0.85;
 `;
 
-const TodoStatus = styled.span`
-  background-color: rgba(15, 118, 110, 0.15);
-  color: #0f766e;
+const ItemStatus = styled.span`
+  background-color: rgba(14, 116, 144, 0.18);
+  color: #0e7490;
   padding: 0.1rem 0.5rem;
   border-radius: 12px;
   text-transform: uppercase;
@@ -357,7 +382,7 @@ const TodoStatus = styled.span`
   font-weight: 600;
 `;
 
-const TodoDetail = styled.section`
+const DetailPanel = styled.section`
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
@@ -409,13 +434,13 @@ const DetailContent = styled.div`
   @media (max-width: 768px) {
     max-width: 100%;
     padding: 0;
-    
+
     * {
       max-width: 100%;
       word-break: break-word;
       box-sizing: border-box;
     }
-    
+
     pre {
       overflow-x: auto;
       max-width: calc(100vw - 4rem);
@@ -436,8 +461,16 @@ const DetailContent = styled.div`
       overflow-x: auto;
       max-width: 100%;
     }
-    
-    p, h1, h2, h3, h4, h5, h6, li, blockquote {
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    li,
+    blockquote {
       word-wrap: break-word;
       overflow-wrap: break-word;
       hyphens: auto;
@@ -476,6 +509,15 @@ const DetailMetaItem = styled.span`
   display: flex;
   align-items: center;
   gap: 0.3rem;
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const EmptyState = styled.div`
@@ -574,7 +616,7 @@ const MobileExplorerToggle = styled.button`
   }
 `;
 
-const MobileTodoList = styled(TodoList)`
+const MobileList = styled(ListContainer)`
   padding: 1rem;
   gap: 0.5rem;
   max-height: 60vh;
