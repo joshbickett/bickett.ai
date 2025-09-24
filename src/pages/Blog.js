@@ -184,6 +184,8 @@ const PageContainer = styled.div`
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #333;
   background-color: #f9fafb;
+  overflow-x: hidden;
+  max-width: 100vw;
 `;
 
 const MainContainer = styled.main`
@@ -196,6 +198,7 @@ const MainContainer = styled.main`
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 1024px) {
     padding: 3rem 2rem 3rem 1.5rem;
@@ -203,7 +206,9 @@ const MainContainer = styled.main`
   }
 
   @media (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -291,18 +296,29 @@ const PostDetail = styled.section`
   justify-content: center;
   width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 
   ${({ $isMobile }) =>
     $isMobile &&
     `
-      padding: 1.5rem;
+      padding: 1rem;
       box-shadow: none;
       border-radius: 10px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 100%;
+      max-width: calc(100vw - 2rem);
     `}
 
   @media (max-width: 900px) {
     min-height: auto;
     padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    margin: 0 auto;
   }
 `;
 
@@ -310,11 +326,61 @@ const DetailContent = styled.div`
   width: 100%;
   max-width: 800px;
   color: #1f2937;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   margin: 0 auto;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
 
   .markdown-content {
     line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0;
+    
+    * {
+      max-width: 100%;
+      word-break: break-word;
+      box-sizing: border-box;
+    }
+    
+    pre {
+      overflow-x: auto;
+      max-width: calc(100vw - 4rem);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+      padding: 1rem 0.5rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    table {
+      display: block;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    
+    p, h1, h2, h3, h4, h5, h6, li, blockquote {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      max-width: 100%;
+    }
+
+    a {
+      word-break: break-all;
+      overflow-wrap: anywhere;
+    }
   }
 `;
 
@@ -368,6 +434,8 @@ const MobileLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-x: hidden;
+  max-width: 100vw;
 `;
 
 const MobileExplorerToggle = styled.button`

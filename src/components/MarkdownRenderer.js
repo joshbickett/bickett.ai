@@ -61,6 +61,8 @@ const MarkdownP = styled.p`
   margin: 1.25rem 0;
   font-size: 1.125rem;
   line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   &:first-of-type {
     margin-top: 0;
@@ -69,6 +71,11 @@ const MarkdownP = styled.p`
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    hyphens: auto;
+  }
 `;
 
 const MarkdownLink = styled.a`
@@ -76,10 +83,16 @@ const MarkdownLink = styled.a`
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   &:hover {
     color: #1d4ed8;
     text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    word-break: break-all;
   }
 `;
 
@@ -102,12 +115,18 @@ const MarkdownPre = styled.pre`
   font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 0.875rem;
   line-height: 1.6;
+  max-width: 100%;
 
   code {
     background-color: transparent;
     color: inherit;
     padding: 0;
     border-radius: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    font-size: 0.8rem;
   }
 `;
 
