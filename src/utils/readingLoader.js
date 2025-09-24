@@ -1,6 +1,9 @@
 import { parseFrontmatter } from "./markdown";
 
-const READING_FILES = ["founder-market-fit-syhw.md"];
+const READING_FILES = [
+  "swe-bench-pro.md",
+  "founder-market-fit-syhw.md",
+];
 
 export const loadReadingList = async () => {
   const items = [];
