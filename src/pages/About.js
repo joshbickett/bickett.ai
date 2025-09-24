@@ -60,14 +60,6 @@ export const About = () => {
     }
   };
 
-  const handleBlogClick = (e) => {
-    e.preventDefault();
-    const blogSection = document.getElementById("blog");
-    if (blogSection) {
-      blogSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <PageContainer>
       <NavigationBar active="Home" isMobile={isMobile}>
@@ -75,9 +67,7 @@ export const About = () => {
           Home
         </NavItem>
         <NavItem href="/projects">Research & Projects</NavItem>
-        <NavItem href="#blog" onClick={handleBlogClick}>
-          Blog
-        </NavItem>
+        <NavItem href="/blog">Blog</NavItem>
         <NavItem href="#contact" onClick={handleContactClick}>
           Contact
         </NavItem>
