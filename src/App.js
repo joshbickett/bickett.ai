@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { Domains } from "./pages/Domains";
 import { Blog } from "./pages/Blog";
+import { Todos } from "./pages/Todos";
 
 export const App = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -21,6 +22,7 @@ export const App = () => {
           element={<Projects isMobile={isMobile} />}
         ></Route>
         <Route path="/blog" element={<Blog isMobile={isMobile} />}></Route>
+        <Route path="/todos" element={<Todos isMobile={isMobile} />}></Route>
         <Route
           path="*"
           element={
