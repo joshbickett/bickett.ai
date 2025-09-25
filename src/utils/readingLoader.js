@@ -1,6 +1,7 @@
 import { parseFrontmatter } from "./markdown";
 
 const READING_FILES = [
+  "re-bench.md",
   "swe-bench-pro.md",
   "founder-market-fit-syhw.md",
 ];
