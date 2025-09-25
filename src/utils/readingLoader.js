@@ -4,6 +4,8 @@ const READING_FILES = [
   "re-bench.md",
   "swe-bench-pro.md",
   "founder-market-fit-syhw.md",
+  "dmkrash-thread.md",
+  "openai-gdpval-report.md",
 ];
 
 export const loadReadingList = async () => {
