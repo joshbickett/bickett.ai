@@ -17,12 +17,12 @@ export const Reading = ({ isMobile }) => {
         const loaded = await loadReadingList();
         setItems(loaded);
 
-        const firstReading = loaded.find((entry) => {
+        const firstPending = loaded.find((entry) => {
           const status = entry.frontmatter?.status?.toLowerCase();
-          return status === "reading";
+          return status !== "completed";
         });
 
-        setSelectedItem(firstReading ?? loaded[0] ?? null);
+        setSelectedItem(firstPending ?? loaded[0] ?? null);
       } catch (error) {
         console.error("Error loading reading list:", error);
       } finally {
@@ -37,7 +37,7 @@ export const Reading = ({ isMobile }) => {
     setExplorerOpen(!isMobile);
   }, [isMobile]);
 
-  const { readingNow, pending, archived } = useMemo(() => {
+  const { pending, completed } = useMemo(() => {
     const formatted = items.map((item) => {
       const date = item.frontmatter?.date
         ? new Date(item.frontmatter.date)
@@ -58,10 +58,9 @@ export const Reading = ({ isMobile }) => {
     });
 
     return {
-      readingNow: formatted.filter((item) => item.normalizedStatus === "reading"),
-      pending: formatted.filter((item) => item.normalizedStatus === "pending"),
-      archived: formatted.filter((item) =>
-        !["reading", "pending"].includes(item.normalizedStatus)
+      pending: formatted.filter((item) => item.normalizedStatus !== "completed"),
+      completed: formatted.filter(
+        (item) => item.normalizedStatus === "completed"
       ),
     };
   }, [items]);
@@ -76,29 +75,6 @@ export const Reading = ({ isMobile }) => {
 
   const listContent = (
     <>
-      <SectionHeading>Currently Reading</SectionHeading>
-      {readingNow.length === 0 ? (
-        <EmptyState>Nothing in flight right now.</EmptyState>
-      ) : (
-        readingNow.map((item) => (
-          <ListItem
-            key={item.slug}
-            onClick={() => handleSelect(item)}
-            $isActive={selectedItem?.slug === item.slug}
-          >
-            <ItemTitle>{item.frontmatter.title}</ItemTitle>
-            <ItemMeta>
-              {item.formattedDate && <ItemDate>{item.formattedDate}</ItemDate>}
-              {item.frontmatter.status && (
-                <ItemStatus>{item.frontmatter.status}</ItemStatus>
-              )}
-            </ItemMeta>
-          </ListItem>
-        ))
-      )}
-
-      <ListDivider />
-
       <SectionHeading>Pending</SectionHeading>
       {pending.length === 0 ? (
         <EmptyState>The reading queue is empty.</EmptyState>
@@ -120,21 +96,24 @@ export const Reading = ({ isMobile }) => {
         ))
       )}
 
-      {archived.length > 0 && <ListDivider />}
+      {pending.length > 0 && completed.length > 0 && <ListDivider />}
 
-      {archived.length > 0 && <SectionHeading>Archived</SectionHeading>}
-      {archived.length > 0 &&
-        archived.map((item) => (
+      {completed.length > 0 && <SectionHeading>Completed</SectionHeading>}
+      {completed.length > 0 &&
+        completed.map((item) => (
           <ListItem
             key={item.slug}
             onClick={() => handleSelect(item)}
             $isActive={selectedItem?.slug === item.slug}
+            $isCompleted
           >
             <ItemTitle>{item.frontmatter.title}</ItemTitle>
             <ItemMeta>
               {item.formattedDate && <ItemDate>{item.formattedDate}</ItemDate>}
               {item.frontmatter.status && (
-                <ItemStatus>{item.frontmatter.status}</ItemStatus>
+                <ItemStatus $isCompleted>
+                  {item.frontmatter.status}
+                </ItemStatus>
               )}
             </ItemMeta>
           </ListItem>
@@ -341,16 +320,26 @@ const ListItem = styled.button`
   padding: 0.9rem;
   border-radius: 8px;
   border: none;
-  background-color: ${({ $isActive }) =>
-    $isActive ? "#2563eb" : "transparent"};
-  color: ${({ $isActive }) => ($isActive ? "#f8fafc" : "#1f2937")};
+  background-color: ${({ $isActive, $isCompleted }) => {
+    if ($isActive) return "#2563eb";
+    if ($isCompleted) return "rgba(15, 23, 42, 0.05)";
+    return "transparent";
+  }};
+  color: ${({ $isActive, $isCompleted }) => {
+    if ($isActive) return "#f8fafc";
+    if ($isCompleted) return "#64748b";
+    return "#1f2937";
+  }};
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
   text-align: left;
 
   &:hover {
-    background-color: ${({ $isActive }) =>
-      $isActive ? "#2563eb" : "rgba(37, 99, 235, 0.08)"};
+    background-color: ${({ $isActive, $isCompleted }) => {
+      if ($isActive) return "#2563eb";
+      if ($isCompleted) return "rgba(15, 23, 42, 0.08)";
+      return "rgba(37, 99, 235, 0.08)";
+    }};
     transform: translateX(3px);
   }
 `;
@@ -373,8 +362,10 @@ const ItemDate = styled.span`
 `;
 
 const ItemStatus = styled.span`
-  background-color: rgba(14, 116, 144, 0.18);
-  color: #0e7490;
+  background-color: ${({ $isCompleted }) =>
+    $isCompleted ? "rgba(30, 64, 175, 0.15)" : "rgba(14, 116, 144, 0.18)"};
+  color: ${({ $isCompleted }) =>
+    $isCompleted ? "#1d4ed8" : "#0e7490"};
   padding: 0.1rem 0.5rem;
   border-radius: 12px;
   text-transform: uppercase;
