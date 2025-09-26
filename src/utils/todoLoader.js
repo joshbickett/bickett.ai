@@ -5,6 +5,7 @@ const TODO_FILES = [
   "gemini-cli-contribution-push.md",
   "share-open-agent-showcase.md",
   "publish-public-todos.md",
+  "share-phone-coding-thread.md",
 ];
 
 export const loadTodos = async () => {
