@@ -5,3 +5,4 @@
 - [ ] If suspended: start -> reconnect
 - [ ] (Opt) Ensure devcontainer has `ghcr.io/devcontainers/features/sshd:1`
 - [ ] Note: idle timeout 5-240 min; handle resume
+- [ ] Publish simple README describing phone/computer Codespaces workflow to track stars
