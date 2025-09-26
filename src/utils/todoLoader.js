@@ -6,6 +6,7 @@ const TODO_FILES = [
   "share-open-agent-showcase.md",
   "publish-public-todos.md",
   "share-phone-coding-thread.md",
+  "share-codex-phone-demo.md",
 ];
 
 export const loadTodos = async () => {
