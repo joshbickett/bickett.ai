@@ -8,6 +8,7 @@ import { Domains } from "./pages/Domains";
 import { Blog } from "./pages/Blog";
 import { Todos } from "./pages/Todos";
 import { Reading } from "./pages/Reading";
+import { BlogPost } from "./pages/BlogPost";
 
 export const App = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -23,6 +24,10 @@ export const App = () => {
           element={<Projects isMobile={isMobile} />}
         ></Route>
         <Route path="/blog" element={<Blog isMobile={isMobile} />}></Route>
+        <Route
+          path="/blog/:slug"
+          element={<BlogPost isMobile={isMobile} />}
+        ></Route>
         <Route path="/todos" element={<Todos isMobile={isMobile} />}></Route>
         <Route
           path="/reading"

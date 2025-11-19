@@ -27,7 +27,7 @@ export const About = () => {
   useEffect(() => {
     // Set page title and meta description
     document.title =
-      "Josh Bickett - self-taught engineer interested in AI | Creator of Self-Operating Computer Framework";
+      "Josh Bickett - Self-taught engineer interested in AI | Creator of Self-Operating Computer Framework";
 
     // Add meta description dynamically
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -198,6 +198,8 @@ export const About = () => {
             */}
           </SectionContent>
 
+          <SubstackSubscribe inline />
+
           {/* Social links with icons */}
           <SocialLinks>
             <SocialIcon
@@ -243,8 +245,6 @@ export const About = () => {
           </SocialLinks>
         </Section>
 
-        <SubstackSubscribe />
-
         {/* Blog Section - at the very bottom */}
         <Section id="blog" as="section" aria-labelledby="blog-heading">
           <SectionHeading id="blog-heading">Blog</SectionHeading>
@@ -266,7 +266,9 @@ export const About = () => {
               >
                 <BlogPostHeader>
                   <BlogPostTitle itemProp="headline">
-                    {post.frontmatter.title}
+                    <BlogPostTitleLink href={`/blog/${post.slug}`}>
+                      {post.frontmatter.title}
+                    </BlogPostTitleLink>
                   </BlogPostTitle>
                   <BlogPostDate
                     itemProp="datePublished"
@@ -704,6 +706,16 @@ const BlogPostTitle = styled.h1`
     font-size: 1.5rem;
     line-height: 1.4;
     margin-bottom: 0.75rem;
+  }
+`;
+
+const BlogPostTitleLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: #2563eb;
+    text-decoration: underline;
   }
 `;
 

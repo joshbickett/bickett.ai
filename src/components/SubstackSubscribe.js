@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-export const SubstackSubscribe = () => {
+export const SubstackSubscribe = ({ inline = false }) => {
   const [showWidget, setShowWidget] = useState(false);
 
   const handleSubscribeClick = (e) => {
@@ -9,15 +9,13 @@ export const SubstackSubscribe = () => {
     setShowWidget(true);
   };
 
+  const Container = inline ? InlineContainer : Section;
+
   return (
-    <Section>
-      <SectionHeading>Subscribe to My Writing</SectionHeading>
+    <Container>
+      {!inline && <SectionHeading>Subscribe to My Writing</SectionHeading>}
       {!showWidget ? (
         <SectionContent>
-          <p>
-            Get insights about AI agents, cost-compute trends, exponential
-            growth, and the future of technology delivered to your inbox.
-          </p>
           <p>
             <Link href="#" onClick={handleSubscribeClick}>
               Subscribe to my Substack newsletter
@@ -43,7 +41,7 @@ export const SubstackSubscribe = () => {
           <BackButton onClick={() => setShowWidget(false)}>← Back</BackButton>
         </WidgetContainer>
       )}
-    </Section>
+    </Container>
   );
 };
 
@@ -63,6 +61,11 @@ const Section = styled.section`
   @media (max-width: 480px) {
     margin-bottom: 2.5rem;
   }
+`;
+
+const InlineContainer = styled.div`
+  width: 100%;
+  margin-top: 1.5rem;
 `;
 
 const SectionHeading = styled.h3`

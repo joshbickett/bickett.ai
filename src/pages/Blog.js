@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { loadBlogPosts } from "../utils/blogLoader";
-import { MarkdownRenderer } from "../components/MarkdownRenderer";
 
 export const Blog = ({ isMobile }) => {
   const [blogPosts, setBlogPosts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isExplorerOpen, setExplorerOpen] = useState(!isMobile);
 
   useEffect(() => {
     document.title = "Blog | JoshBickett.com";
@@ -16,7 +14,6 @@ export const Blog = ({ isMobile }) => {
       try {
         const posts = await loadBlogPosts();
         setBlogPosts(posts);
-        setSelectedPost(posts[0] ?? null);
       } catch (error) {
         console.error("Error loading blog posts:", error);
       } finally {
@@ -26,105 +23,6 @@ export const Blog = ({ isMobile }) => {
 
     loadPosts();
   }, []);
-
-  useEffect(() => {
-    setExplorerOpen(!isMobile);
-  }, [isMobile]);
-
-  const handleSelectPost = (post) => {
-    setSelectedPost(post);
-
-    if (isMobile) {
-      setExplorerOpen(false);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  const listContent =
-    blogPosts.length === 0 ? (
-      <EmptyState>No blog posts found right now.</EmptyState>
-    ) : (
-      blogPosts.map((post) => {
-        const formattedDate = post.frontmatter.date
-          ? new Date(post.frontmatter.date).toLocaleDateString(undefined, {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })
-          : "";
-
-        return (
-          <PostListItem
-            key={post.slug}
-            onClick={() => handleSelectPost(post)}
-            $isActive={selectedPost?.slug === post.slug}
-          >
-            <PostTitle>{post.frontmatter.title}</PostTitle>
-            {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
-          </PostListItem>
-        );
-      })
-    );
-
-  const detailSection = (
-    <PostDetail $isMobile={isMobile}>
-      {selectedPost ? (
-        <DetailContent>
-          <DetailHeader>
-            <DetailTitle>{selectedPost.frontmatter.title}</DetailTitle>
-            {selectedPost.frontmatter.date && (
-              <DetailMeta>
-                {new Date(selectedPost.frontmatter.date).toLocaleDateString(
-                  undefined,
-                  {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  }
-                )}
-              </DetailMeta>
-            )}
-          </DetailHeader>
-          <MarkdownRenderer content={selectedPost.content} />
-        </DetailContent>
-      ) : (
-        <EmptyDetail>Select a post to start reading.</EmptyDetail>
-      )}
-    </PostDetail>
-  );
-
-  if (loading) {
-    return (
-      <PageContainer>
-        <NavigationBar active="Blog" isMobile={isMobile}>
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/projects">Research & Projects</NavItem>
-          <NavItem active href="/blog">
-            Blog
-          </NavItem>
-          <NavItem
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = "/#contact";
-            }}
-          >
-            Contact
-          </NavItem>
-        </NavigationBar>
-        <MainContainer>
-          <ExplorerContainer>
-            <PostList>
-              <LoadingMessage>Loading blog posts…</LoadingMessage>
-            </PostList>
-            <PostDetail>
-              <EmptyDetail>Preparing posts for you.</EmptyDetail>
-            </PostDetail>
-          </ExplorerContainer>
-        </MainContainer>
-      </PageContainer>
-    );
-  }
 
   return (
     <PageContainer>
@@ -146,30 +44,44 @@ export const Blog = ({ isMobile }) => {
       </NavigationBar>
 
       <MainContainer>
-        {isMobile ? (
-          <MobileLayout>
-            <MobileExplorerToggle
-              type="button"
-              onClick={() => setExplorerOpen((open) => !open)}
-            >
-              {isExplorerOpen ? "Hide post explorer" : "Browse blog posts"}
-            </MobileExplorerToggle>
-            {isExplorerOpen && (
-              <MobilePostList>
-                <ListHeading>Blog Posts</ListHeading>
-                {listContent}
-              </MobilePostList>
-            )}
-            {detailSection}
-          </MobileLayout>
+        <PageHeader>
+          <PageTitle>Blog Posts</PageTitle>
+          <PageSubhead>
+            Reverse-chronological index of my short-form writings (including
+            off-site).
+          </PageSubhead>
+        </PageHeader>
+
+        {loading ? (
+          <LoadingMessage>Loading blog posts…</LoadingMessage>
+        ) : blogPosts.length === 0 ? (
+          <EmptyState>No blog posts found right now.</EmptyState>
         ) : (
-          <ExplorerContainer>
-            <PostList>
-              <ListHeading>Blog Posts</ListHeading>
-              {listContent}
-            </PostList>
-            {detailSection}
-          </ExplorerContainer>
+          <PostList>
+            {blogPosts.map((post) => {
+              const formattedDate = post.frontmatter.date
+                ? new Date(post.frontmatter.date).toLocaleDateString(
+                    undefined,
+                    {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    }
+                  )
+                : null;
+
+              return (
+                <PostListItem key={post.slug}>
+                  <PostTitle>
+                    <PostLink to={`/blog/${post.slug}`}>
+                      {post.frontmatter.title}
+                    </PostLink>
+                  </PostTitle>
+                  {formattedDate && <PostMeta>{formattedDate}</PostMeta>}
+                </PostListItem>
+              );
+            })}
+          </PostList>
         )}
       </MainContainer>
     </PageContainer>
@@ -195,83 +107,71 @@ const MainContainer = styled.main`
   align-items: stretch;
   justify-content: flex-start;
   padding: 3.5rem 3rem 3.5rem 1.75rem;
-  max-width: 1280px;
+  max-width: 960px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 
   @media (max-width: 1024px) {
     padding: 3rem 2rem 3rem 1.5rem;
-    max-width: 1180px;
+    max-width: 900px;
   }
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1.25rem;
     width: 100%;
     max-width: 100%;
   }
 `;
 
-const ExplorerContainer = styled.div`
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 3.25rem;
-  width: 100%;
-  align-items: flex-start;
+const PageHeader = styled.header`
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+`;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: 2rem;
-  }
+const PageTitle = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
 
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
   }
+`;
+
+const PageSubhead = styled.p`
+  margin: 0;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
 `;
 
 const PostList = styled.div`
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
-  padding: 1.5rem;
-  height: fit-content;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  max-height: 80vh;
-  overflow-y: auto;
+  gap: 0.85rem;
   width: 100%;
-  min-width: 240px;
-  margin: 0;
+  box-sizing: border-box;
 `;
 
-const ListHeading = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #0f172a;
-`;
-
-const PostListItem = styled.button`
+const PostListItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.3rem;
-  padding: 0.9rem;
+  padding: 0.6rem 0.4rem;
   border-radius: 8px;
-  border: none;
-  background-color: ${({ $isActive }) =>
-    $isActive ? "#2563eb" : "transparent"};
-  color: ${({ $isActive }) => ($isActive ? "#f8fafc" : "#1f2937")};
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  text-align: left;
+  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${({ $isActive }) =>
-      $isActive ? "#2563eb" : "rgba(37, 99, 235, 0.08)"};
-    transform: translateX(3px);
+    background-color: rgba(37, 99, 235, 0.05);
   }
 `;
 
@@ -281,130 +181,18 @@ const PostTitle = styled.span`
 `;
 
 const PostMeta = styled.time`
-  font-size: 0.85rem;
-  color: inherit;
-  opacity: 0.8;
-`;
-
-const PostDetail = styled.section`
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
-  padding: 2rem 3rem;
-  min-height: 480px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-
-  ${({ $isMobile }) =>
-    $isMobile &&
-    `
-      padding: 1rem;
-      box-shadow: none;
-      border-radius: 10px;
-      overflow-x: hidden;
-      overflow-y: auto;
-      width: 100%;
-      max-width: calc(100vw - 2rem);
-    `}
-
-  @media (max-width: 900px) {
-    min-height: auto;
-    padding: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-    width: calc(100% - 2rem);
-    margin: 0 auto;
-  }
-`;
-
-const DetailContent = styled.div`
-  width: 100%;
-  max-width: 800px;
-  color: #1f2937;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  margin: 0 auto;
-  box-sizing: border-box;
-
-  * {
-    box-sizing: border-box;
-  }
-
-  .markdown-content {
-    line-height: 1.7;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    padding: 0;
-    
-    * {
-      max-width: 100%;
-      word-break: break-word;
-      box-sizing: border-box;
-    }
-    
-    pre {
-      overflow-x: auto;
-      max-width: calc(100vw - 4rem);
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      margin-left: -0.5rem;
-      margin-right: -0.5rem;
-      padding: 1rem 0.5rem;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    table {
-      display: block;
-      overflow-x: auto;
-      max-width: 100%;
-    }
-    
-    p, h1, h2, h3, h4, h5, h6, li, blockquote {
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      hyphens: auto;
-      max-width: 100%;
-    }
-
-    a {
-      word-break: break-all;
-      overflow-wrap: anywhere;
-    }
-  }
-`;
-
-const DetailHeader = styled.header`
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
-  padding-bottom: 1rem;
-`;
-
-const DetailTitle = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const DetailMeta = styled.time`
   font-size: 0.95rem;
   color: #475569;
-  font-weight: 500;
+`;
+
+const PostLink = styled(RouterLink)`
+  color: #1f2937;
+  text-decoration: none;
+
+  &:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
 `;
 
 const EmptyState = styled.div`
@@ -415,50 +203,11 @@ const EmptyState = styled.div`
   font-size: 0.95rem;
 `;
 
-const EmptyDetail = styled.div`
-  margin: auto;
-  font-size: 1rem;
-  color: #64748b;
-  text-align: center;
-`;
-
 const LoadingMessage = styled.div`
   width: 100%;
   text-align: center;
   padding: 3rem;
   color: #64748b;
-`;
-
-const MobileLayout = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  overflow-x: hidden;
-  max-width: 100vw;
-`;
-
-const MobileExplorerToggle = styled.button`
-  padding: 0.85rem 1.1rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  background-color: white;
-  color: #1f2937;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-
-  &:hover {
-    background-color: #eff6ff;
-    border-color: #bfdbfe;
-  }
-`;
-
-const MobilePostList = styled(PostList)`
-  padding: 1rem;
-  gap: 0.5rem;
-  max-height: 60vh;
 `;
 
 // Navigation components matching About page

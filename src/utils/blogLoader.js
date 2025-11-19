@@ -46,6 +46,10 @@ export const loadBlogPosts = async () => {
 export const loadBlogPost = async (slug) => {
   try {
     const response = await fetch(`/blog/${slug}.md`);
+    if (!response.ok) {
+      return null;
+    }
+
     const content = await response.text();
 
     const { data: frontmatter, content: markdown } = parseFrontmatter(content);

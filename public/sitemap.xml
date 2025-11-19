@@ -4,24 +4,40 @@
         <loc>https://joshbickett.com/</loc>
         <lastmod>2025-01-22</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
     </url>
     <url>
         <loc>https://joshbickett.com/projects</loc>
         <lastmod>2025-01-22</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://joshbickett.com/#blog</loc>
-        <lastmod>2025-01-22</lastmod>
+        <loc>https://joshbickett.com/blog</loc>
+        <lastmod>2025-09-03</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://joshbickett.com/blog/1000-for-brain-2025</loc>
+        <lastmod>2025-09-03</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://joshbickett.com/blog/selecting_a_model_based_on_stripe_conversion</loc>
+        <lastmod>2025-06-02</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://joshbickett.com/blog/self-operating-computer-framework</loc>
+        <lastmod>2025-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>https://joshbickett.com/blog/older-medium-posts</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>yearly</changefreq>
     </url>
     <url>
         <loc>https://joshbickett.com/#contact</loc>
         <lastmod>2025-01-22</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
     </url>
 </urlset>
