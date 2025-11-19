@@ -179,10 +179,6 @@ export const About = () => {
               </Link>
               .
             </p>
-            <p>
-              I'm open to discussing new projects, research collaborations, or
-              interesting ideas at the intersection of technology and science.
-            </p>
             {/*
               <p>
                 If you're looking for guidance on AI strategy or building AI

@@ -18,9 +18,13 @@ export const SubstackSubscribe = ({ inline = false }) => {
         <SectionContent>
           <p>
             <Link href="#" onClick={handleSubscribeClick}>
-              Subscribe to my Substack newsletter
+              Subscribe to my Substack
             </Link>{" "}
-            to stay updated on my latest research and thoughts.
+            or follow me on{" "}
+            <Link href="https://x.com/intent/follow?screen_name=josh_bickett">
+              Twitter
+            </Link>{" "}
+            to stay up to date.
           </p>
         </SectionContent>
       ) : (
