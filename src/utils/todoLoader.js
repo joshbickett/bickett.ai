@@ -7,6 +7,7 @@ const TODO_FILES = [
   "publish-public-todos.md",
   "share-phone-coding-thread.md",
   "share-codex-phone-demo.md",
+  "write-y-accelerate-post.md",
 ];
 
 export const loadTodos = async () => {
