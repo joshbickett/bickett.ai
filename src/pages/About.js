@@ -183,17 +183,19 @@ export const About = () => {
               I'm open to discussing new projects, research collaborations, or
               interesting ideas at the intersection of technology and science.
             </p>
-            <p>
-              If you're looking for guidance on AI strategy or building AI
-              agents, I offer{" "}
-              <Link
-                href="https://calendly.com/bickett/ai-consulting"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                1-hour paid consultations.
-              </Link>{" "}
-            </p>
+            {/*
+              <p>
+                If you're looking for guidance on AI strategy or building AI
+                agents, I offer{" "}
+                <Link
+                  href="https://calendly.com/bickett/ai-consulting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  1-hour paid consultations.
+                </Link>{" "}
+              </p>
+            */}
           </SectionContent>
 
           {/* Social links with icons */}
