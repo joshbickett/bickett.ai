@@ -99,17 +99,6 @@ export const About = () => {
               >
                 HyperWrite
               </a>
-              . Many nights and weekends, I{" "}
-              <a
-                style={{ textDecoration: "none" }}
-                href="https://indiepa.ge/bickett"
-              >
-                indie hack
-              </a>{" "}
-              or work on{" "}
-              <a style={{ textDecoration: "none" }} href="/projects">
-                research & projects
-              </a>
               .
             </p>
           </SectionContent>
