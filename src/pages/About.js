@@ -136,21 +136,6 @@ export const About = () => {
                 </ExpertiseDescription>
               </ExpertiseCard>
             </a>
-            <a
-              href="https://indiepa.ge/bickett"
-              style={{ textDecoration: "none" }}
-            >
-              <ExpertiseCard>
-                <ExpertiseIcon
-                  src={startupImage || "/placeholder.svg?height=80&width=80"}
-                  alt="Startups"
-                />
-                <ExpertiseTitle>Indie Hacking</ExpertiseTitle>
-                <ExpertiseDescription>
-                  I build, launch, and market side projects.
-                </ExpertiseDescription>
-              </ExpertiseCard>
-            </a>
           </ExpertiseGrid>
         </Section>
 
