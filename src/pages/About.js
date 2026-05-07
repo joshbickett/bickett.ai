@@ -91,7 +91,7 @@ export const About = () => {
           <SectionHeading>About Me</SectionHeading>
           <SectionContent>
             <p>
-              I am the lead software engineer at OthersideAI where we build and
+              I am the CEO of OthersideAI where we build and
               scale AI products such as{" "}
               <a
                 style={{ textDecoration: "none" }}
